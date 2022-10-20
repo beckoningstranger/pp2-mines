@@ -1,8 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     border: none;
     box-sizing: border-box;
+
+    font-family: 'Bangers', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+body {
+    color: #000;
+    background: white;
 }
 
 a {
@@ -13,16 +24,26 @@ a {
 #game-area {
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 
-#submit-button {
+#difficulty-settings {
+    text-align: center;
+    display: inline-grid;
+    align-content: center;
+}
+
+#difficulty-settings > form {
     display: flex;
+    justify-content: center;
 }
 
 .input-field-number {
-    width: 50px;
+    width: 55px;
 }
 
 input {
     border: 1px solid black;
+    width: 210px;
+    text-align: center;
 }
