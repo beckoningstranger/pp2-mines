@@ -103,6 +103,32 @@ function findSurroundingSquares(squares, rows, columns) {
 }
 
 /**
+ * Iterates through all squares of the playing field and counts the mines in all adjacent squares.
+ * It then adds this information for each square.
+ */
+function findMinesInSurroundingSquares(squares) {
+    for (let i = 0; i < squares.length; i++) {
+        let squaresToCheck = squares[i].neighboringSquares;
+        let countedMines = 0;
+        for (let square of squaresToCheck) {
+            thatSquaresIndexNumber = ''
+            // Get the index number of the square we want to check
+            for (let j = 0; j < squares.length; j++) {
+                if (squares[j].name === square) {
+                    // With the index number, check of the square has a mine
+                    if (squares[j].hasMine === 1) {
+                        countedMines++;
+                    }
+                }	
+            }
+        }
+        // Set minesNextDoor for the square that we checked to the number we counted to
+        squares[i].minesNextDoor = countedMines;
+    }
+    return squares;
+}
+
+/**
 * Generates an array of objects called "squares". Each object is a square on the playing field and contains the
 * following information: 
 * 1. Its name, 
@@ -139,7 +165,8 @@ function buildPlayingField(width, height, mines) {
     }
     playingFieldWithMines = layMines(mines, squares);
     playingFieldWithMinesAndInfoOnNeighboringSquares = findSurroundingSquares(playingFieldWithMines, rows, columns);
-    console.log(playingFieldWithMinesAndInfoOnNeighboringSquares);
+    playingFieldWithNumberOfMinesInAdjacentSquares = findMinesInSurroundingSquares(playingFieldWithMinesAndInfoOnNeighboringSquares);
+    console.log(playingFieldWithNumberOfMinesInAdjacentSquares);
 }
 
 form = document.getElementById('set-difficulty');
