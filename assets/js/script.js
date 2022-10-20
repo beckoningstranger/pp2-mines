@@ -1,8 +1,12 @@
+form = document.getElementById('set-difficulty');
+form.addEventListener('submit', startGame);
+
+
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
  * When user clicks 'Start Playing!' it hides the menu where the user could set game parameters and calls functions to build the playing field.
  */
-function startGame(event) {
+ function startGame(event) {
     event.preventDefault();
     const WIDTH = document.getElementById('width').value;
     const HEIGHT = document.getElementById('height').value;
@@ -17,11 +21,47 @@ function startGame(event) {
     playingField.style.alignContent = 'center';
     playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
     console.log(playingFieldInformation);
-    console.log(`Number of rows: ${WIDTH}`);
-    console.log(`Number of columns: ${HEIGHT}`);
-    console.log(`Number of mines: ${MINES}`);
     buildVisiblePlayingField(playingFieldInformation, HEIGHT);
 
+}
+
+/**
+* Generates an array of objects called "squares". Each object is a square on the playing field and contains the
+* following information: 
+* 1. Its name, 
+* 2. Whether it has a mine, (this will be populated later)
+* 3. How many mines there are in adjacent squares (this will be populated later)
+*/
+function buildPlayingField(width, height, mines) {
+    const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    let rows = [];
+    let columns = [];
+
+    // Create an array of letters for rows based on how many the user chose
+    for (let i = 0; i < width; i++) {
+        rows.push(LETTERS[i]);
+    }
+    // Create an array of numbers for columns based on how many the user chose
+    for (let i = 0; i < height; i++) {
+        columns.push(NUMBERS[i]);
+    }
+    console.log(rows, columns, mines);
+    let squares = [];
+    for (let a = 0; a < rows.length; a++) {
+        for (let b = 1; b < columns.length + 1; b++) {
+                let square = {
+                    name: rows[a] + b,
+                    hasMine: 0,
+                    minesNextDoor: 0,
+            }
+        squares.push(square);
+        }
+    }
+    playingFieldWithMines = layMines(mines, squares);
+    playingFieldWithMinesAndInfoOnNeighboringSquares = findSurroundingSquares(playingFieldWithMines, rows, columns);
+    playingFieldWithNumberOfMinesInAdjacentSquares = findMinesInSurroundingSquares(playingFieldWithMinesAndInfoOnNeighboringSquares);
+    return playingFieldWithNumberOfMinesInAdjacentSquares;
 }
 
 /**
@@ -135,68 +175,31 @@ function findMinesInSurroundingSquares(squares) {
 }
 
 /**
-* Generates an array of objects called "squares". Each object is a square on the playing field and contains the
-* following information: 
-* 1. Its name, 
-* 2. Whether it has a mine, 
-* 3. Whether the player has already clicked it
-* 4. How many mines there are in adjacent squares
-*/
-function buildPlayingField(width, height, mines) {
-    const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    let rows = [];
-    let columns = [];
-
-    // Create an array of letters for rows based on how many the user chose
-    for (let i = 0; i < width; i++) {
-        rows.push(LETTERS[i]);
-    }
-    // Create an array of numbers for columns based on how many the user chose
-    for (let i = 0; i < height; i++) {
-        columns.push(NUMBERS[i]);
-    }
-    console.log(rows, columns, mines);
-    let squares = [];
-    for (let a = 0; a < rows.length; a++) {
-        for (let b = 1; b < columns.length + 1; b++) {
-                let square = {
-                    name: rows[a] + b,
-                    hasMine: 0,
-                    uncovered: 0,
-                    minesNextDoor: 0,
-            }
-        squares.push(square);
-        }
-    }
-    playingFieldWithMines = layMines(mines, squares);
-    playingFieldWithMinesAndInfoOnNeighboringSquares = findSurroundingSquares(playingFieldWithMines, rows, columns);
-    playingFieldWithNumberOfMinesInAdjacentSquares = findMinesInSurroundingSquares(playingFieldWithMinesAndInfoOnNeighboringSquares);
-    return playingFieldWithNumberOfMinesInAdjacentSquares;
-}
-
+ * Generates HTML to append to the DOM. It creates buttons that contain all necessary information to play the game as classes
+ * @param {*} playingFieldInformation 
+ * @param {*} rows 
+ */
 function buildVisiblePlayingField(playingFieldInformation, rows) {
 	// First, slice the big playing field array into smaller arrays so that we get one array per row
 	let sizeOfSmallerArrays = Number(rows); 
-    console.log('I will try to make several arrays that are ' + rows + ' each long.');
-	let arrayOfArrays = [];
-    console.log('playingFieldInformation is ' + playingFieldInformation.length + ' long.')
-	for (let i=0; i < playingFieldInformation.length; i += sizeOfSmallerArrays) {
+    let arrayOfArrays = [];
+    for (let i=0; i < playingFieldInformation.length; i += sizeOfSmallerArrays) {
 	     arrayOfArrays.push(playingFieldInformation.slice(i, i + sizeOfSmallerArrays));
-         console.log("I'M HERE, value of sizeOfSmallerArrays is " + sizeOfSmallerArrays + "value of i is " + i);
 	}
-	console.log("This is the array I made" + arrayOfArrays);
 	
+    // Now, generate the HTML
 	let playingFieldHTML = '';
 	let playingFieldHTMLRow = '';
 	for (row of arrayOfArrays) {
 		playingFieldHTMLRow += '<div>';
 		for (item of row) {
-			playingFieldHTMLRow += `<button class="square unrevealed`
+			playingFieldHTMLRow += `<button class="square unrevealed ${item.minesNextDoor}-neighboring-mines`
 			if (item.hasMine === 1) {
 				playingFieldHTMLRow += ` has-mine`;
 			}
-			playingFieldHTMLRow += `" id="${item.name}" </button> `
+			playingFieldHTMLRow += `
+            " id="${item.name}" </button>
+            `
 		}
 		playingFieldHTMLRow += '</div>';
 		playingFieldHTML += playingFieldHTMLRow;
@@ -205,6 +208,3 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 	let whereToInsert = document.querySelector('#playing-field');
 	whereToInsert.insertAdjacentHTML("afterbegin", playingFieldHTML);
 }
-
-form = document.getElementById('set-difficulty');
-form.addEventListener('submit', startGame);

@@ -38,10 +38,12 @@ a {
 }
 
 .input-field-number {
+    font-size: 1.5rem;
     width: 55px;
 }
 
 input {
+    font-size: 1.5rem;
     border: 1px solid black;
     width: 210px;
     text-align: center;
