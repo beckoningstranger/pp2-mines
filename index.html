@@ -8,6 +8,32 @@
     <title>Minesweeper Game</title>
 </head>
 <body>
+    <div id="game-area">
+        <div id="difficulty-settings">
+            <p>Welcome to this Minesweeper game!</p>
+            <p>Please first set your difficulty settings:</p>
+            <form action="post">
+                <table>
+                    <tr>
+                        <td><label for="width">Width:</label></td>
+                        <td><input class="input-field-number" type="number" id="width" name="playing-field-width" placeholder="Number of Columns" value="5" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="height">Height:</label></td>
+                        <td><input class="input-field-number" type="number" id="height" name="playing-field-height" placeholder="Number of Rows" value="5" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="mines">Mines:</label></td>
+                        <td><input class="input-field-number" type="number" id="mines" name="number-of-mines" placeholder="Number of Mines" value="5" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="submit-button" value="Start Playing!"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="playing-field"></div>
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
