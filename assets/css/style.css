@@ -47,3 +47,15 @@ input {
     width: 210px;
     text-align: center;
 }
+
+/* Playing Field */
+
+#playing-field {
+    display: none;
+}
+
+.square {
+    height: 30px;
+    width: 30px;
+    padding: 24px;
+}
