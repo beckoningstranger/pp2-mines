@@ -5,9 +5,7 @@
     padding: 0;
     border: none;
     box-sizing: border-box;
-
     font-family: 'Bangers', sans-serif;
-    font-size: 1.5rem;
     font-weight: 400;
 }
 
@@ -28,6 +26,7 @@ a {
 }
 
 #difficulty-settings {
+    font-size: 1.5rem;
     text-align: center;
     display: inline-grid;
     align-content: center;
@@ -55,7 +54,13 @@ input {
 }
 
 .square {
+    font-size: 1rem;
     height: 30px;
     width: 30px;
     padding: 24px;
+    margin: 1px;
+}
+
+.has-mine {
+    background-color: red;
 }

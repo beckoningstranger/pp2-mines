@@ -4,10 +4,10 @@
  */
 function startGame(event) {
     event.preventDefault();
-    let width = document.getElementById('width').value;
-    let height = document.getElementById('height').value;
-    let mines = document.getElementById('mines').value;
-    console.log(`User wants a playing field that's ${width} x ${height} with ${mines} mines.`);
+    const WIDTH = document.getElementById('width').value;
+    const HEIGHT = document.getElementById('height').value;
+    const MINES = document.getElementById('mines').value;
+    console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${MINES} mines.`);
     // Hide the settings menu:
     const difficultySettings = document.getElementById('difficulty-settings');
     difficultySettings.style.display = 'none';
@@ -15,7 +15,13 @@ function startGame(event) {
     const playingField = document.getElementById('playing-field');
     playingField.style.display = 'grid';
     playingField.style.alignContent = 'center';
-    buildPlayingField(width, height, mines)
+    playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
+    console.log(playingFieldInformation);
+    console.log(`Number of rows: ${WIDTH}`);
+    console.log(`Number of columns: ${HEIGHT}`);
+    console.log(`Number of mines: ${MINES}`);
+    buildVisiblePlayingField(playingFieldInformation, HEIGHT);
+
 }
 
 /**
@@ -166,7 +172,38 @@ function buildPlayingField(width, height, mines) {
     playingFieldWithMines = layMines(mines, squares);
     playingFieldWithMinesAndInfoOnNeighboringSquares = findSurroundingSquares(playingFieldWithMines, rows, columns);
     playingFieldWithNumberOfMinesInAdjacentSquares = findMinesInSurroundingSquares(playingFieldWithMinesAndInfoOnNeighboringSquares);
-    console.log(playingFieldWithNumberOfMinesInAdjacentSquares);
+    return playingFieldWithNumberOfMinesInAdjacentSquares;
+}
+
+function buildVisiblePlayingField(playingFieldInformation, rows) {
+	// First, slice the big playing field array into smaller arrays so that we get one array per row
+	let sizeOfSmallerArrays = Number(rows); 
+    console.log('I will try to make several arrays that are ' + rows + ' each long.');
+	let arrayOfArrays = [];
+    console.log('playingFieldInformation is ' + playingFieldInformation.length + ' long.')
+	for (let i=0; i < playingFieldInformation.length; i += sizeOfSmallerArrays) {
+	     arrayOfArrays.push(playingFieldInformation.slice(i, i + sizeOfSmallerArrays));
+         console.log("I'M HERE, value of sizeOfSmallerArrays is " + sizeOfSmallerArrays + "value of i is " + i);
+	}
+	console.log("This is the array I made" + arrayOfArrays);
+	
+	let playingFieldHTML = '';
+	let playingFieldHTMLRow = '';
+	for (row of arrayOfArrays) {
+		playingFieldHTMLRow += '<div>';
+		for (item of row) {
+			playingFieldHTMLRow += `<button class="square unrevealed`
+			if (item.hasMine === 1) {
+				playingFieldHTMLRow += ` has-mine`;
+			}
+			playingFieldHTMLRow += `" id="${item.name}" </button> `
+		}
+		playingFieldHTMLRow += '</div>';
+		playingFieldHTML += playingFieldHTMLRow;
+		playingFieldHTMLRow = '';
+	}
+	let whereToInsert = document.querySelector('#playing-field');
+	whereToInsert.insertAdjacentHTML("afterbegin", playingFieldHTML);
 }
 
 form = document.getElementById('set-difficulty');
