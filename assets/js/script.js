@@ -19,6 +19,23 @@ function startGame(event) {
 }
 
 /**
+* Gets random squares from the playing field and assign mines to them.
+*/
+function layMines(minesToLay, playingField) {
+	let assignedMines = 0;
+	let randomlyPickedSquares = []
+	while (assignedMines < minesToLay) {
+		let randomSquare = playingField[Math.floor(Math.random() * playingField.length)];
+		if (! randomlyPickedSquares.includes(randomSquare.name)) {
+		randomSquare.hasMine = 1;
+		assignedMines++;
+		randomlyPickedSquares.push(randomSquare.name)
+		}
+	}
+    return playingField;
+}
+
+/**
 * Generates an array of objects called "squares". Each object is a square on the playing field and contains the
 * following information: 
 * 1. Its name, 
@@ -53,7 +70,8 @@ function buildPlayingField(width, height, mines) {
         squares.push(square);
         }
     }
-    console.log(squares);
+    playingFieldWithMines = layMines(mines, squares);
+    console.log(playingFieldWithMines);
 }
 
 form = document.getElementById('set-difficulty');
