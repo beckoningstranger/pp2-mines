@@ -19,9 +19,16 @@ form.addEventListener('submit', startGame);
     const playingField = document.getElementById('playing-field');
     playingField.style.display = 'grid';
     playingField.style.alignContent = 'center';
+
+    // Data for game is created. Constructs the playing field in an array
     playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
     console.log(playingFieldInformation);
+    
+    // Uses the array to now create a visible playing field in HTML
     buildVisiblePlayingField(playingFieldInformation, HEIGHT);
+
+    // Add event listeners to each created button
+    makePlayingFieldInteractive();
 
 }
 
@@ -207,4 +214,22 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 	}
 	let whereToInsert = document.querySelector('#playing-field');
 	whereToInsert.insertAdjacentHTML("afterbegin", playingFieldHTML);
+}
+
+function makePlayingFieldInteractive() {
+    let squares = document.getElementsByClassName('square');
+
+    // Left-Click Event:
+    for (square of squares) {
+        square.addEventListener("click", function() {
+            console.log("ho");
+        });
+    }
+    event.preventDefault;
+    // Right-Click Event:
+    for (square of squares) {
+        square.addEventListener('auxclick', function() {
+            console.log("hi");
+        })
+    }
 }
