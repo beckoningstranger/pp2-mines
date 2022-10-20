@@ -20,6 +20,8 @@ function startGame(event) {
 
 /**
 * Gets random squares from the playing field and assign mines to them.
+* @param {*} squares 
+* @returns 
 */
 function layMines(minesToLay, playingField) {
 	let assignedMines = 0;
@@ -33,6 +35,71 @@ function layMines(minesToLay, playingField) {
 		}
 	}
     return playingField;
+}
+
+/**
+ * Receives the playing field as an array of objects and adds for all square objects what squares are next to them.
+ * This information is later used to calculate how many mines are next to each squares.
+ * @param {*} squares 
+ * @returns 
+ */
+function findSurroundingSquares(squares, rows, columns) {
+    for (let i = 0; i < squares.length; i++) {
+    
+        let borderSquareHorizontally = 0;
+  	    let borderSquareVertically = 0;
+	    let letterBefore = '';
+        let letterAfter = '';
+        let numberBefore = '';
+        let numberAfter = '';
+        
+        // Seperate the square's name into letter and number:
+        let letterOfThisSquare = squares[i].name[0];
+        let numberOfThisSquare = Number(squares[i].name[1]);
+        
+        // Find out if the square is a border square on the playing field
+        // by looking at its index number in the array containing all letters/rows.
+        let lettersIndexNumber = rows.indexOf(letterOfThisSquare);
+        if (lettersIndexNumber === rows.length) {
+            letterBefore = rows[lettersIndexNumber - 1];
+            borderSquareHorizontally = 1;
+            }
+	
+	    // If it's not a horizontal border square, let check if it is a vertical border square.
+        if ((lettersIndexNumber === 0) && (borderSquareHorizontally === 0)) {
+            letterAfter = rows[lettersIndexNumber + 1];
+            } else {
+                letterBefore = rows[lettersIndexNumber - 1];
+                letterAfter = rows[lettersIndexNumber + 1];
+            }
+            
+        if (numberOfThisSquare === 1) {
+            numberAfter = 2;
+            borderSquareVertically = 1;
+        }
+        
+        if ((numberOfThisSquare === columns.length) && (borderSquareVertically === 0)) {
+            numberBefore = columns.length - 1;
+        } else {
+            numberBefore = numberOfThisSquare - 1;
+            if (columns.includes(numberOfThisSquare + 1)) {
+                numberAfter =  numberOfThisSquare + 1;
+            }
+        }
+	    if (numberBefore === 0 ) {
+            numberBefore = '';
+	    }
+        let adjacentSquares = [letterOfThisSquare + numberAfter, letterOfThisSquare + numberBefore, letterBefore + numberOfThisSquare, letterBefore + numberBefore, letterBefore + numberAfter, letterAfter + numberOfThisSquare, letterAfter + numberBefore, letterAfter + numberAfter];
+	    // Clean up the generated squares above by iterating in reverse order through the array and splicing all from the array that are either undefined, NaN or just a letter or a number, not a combination of both.
+	    for (let i = adjacentSquares.length - 1; i >= 0; i--) {
+            if ((adjacentSquares[i].length < 2) || (adjacentSquares[i] === "undefined") || (Number.isNaN(adjacentSquares[i]))) {
+                let indexOfThatSquare = adjacentSquares.indexOf(adjacentSquares[i]);
+                adjacentSquares.splice(indexOfThatSquare, 1)
+            }
+      }
+        squares[i].neighboringSquares = adjacentSquares;
+    }
+    return squares;
 }
 
 /**
@@ -71,7 +138,8 @@ function buildPlayingField(width, height, mines) {
         }
     }
     playingFieldWithMines = layMines(mines, squares);
-    console.log(playingFieldWithMines);
+    playingFieldWithMinesAndInfoOnNeighboringSquares = findSurroundingSquares(playingFieldWithMines, rows, columns);
+    console.log(playingFieldWithMinesAndInfoOnNeighboringSquares);
 }
 
 form = document.getElementById('set-difficulty');
