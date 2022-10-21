@@ -1,6 +1,7 @@
 form = document.getElementById('set-difficulty');
 form.addEventListener('submit', startGame);
-
+var squaresToWin;
+var clickedSquares = 0;
 
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
@@ -27,8 +28,13 @@ form.addEventListener('submit', startGame);
     // Uses the array to now create a visible playing field in HTML
     buildVisiblePlayingField(playingFieldInformation, HEIGHT);
 
+    // Amount of squares user has to click to win without clicking a mine
+    squaresToWin = WIDTH * HEIGHT - MINES;
+
     // Add event listeners to each created button
     makePlayingFieldInteractive();
+
+
 
 }
 
@@ -226,6 +232,11 @@ function makePlayingFieldInteractive() {
             if (this.classList.contains('has-mine')) {
                 console.log('GAME OVER');
             } else {
+                clickedSquares++;
+                console.log(`${clickedSquares}/${squaresToWin}`);
+                if (clickedSquares === squaresToWin) {
+                    console.log('YOU WIN!')
+                }
                 switch (number) {
                     case 0:
                         this.style.color = "forestgreen";
