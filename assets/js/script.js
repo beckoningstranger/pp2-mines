@@ -266,7 +266,7 @@ function makePlayingFieldInteractive() {
                         this.style.color = "blue";
                         break;
                     case 5:
-                        this.style.color = "deeppink";
+                        this.style.color = "hotpink";
                         break;
                     case 6:
                         this.style.color = "maroon";
