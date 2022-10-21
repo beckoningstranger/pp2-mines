@@ -222,9 +222,7 @@ function makePlayingFieldInteractive() {
     // Left-Click Event:
     for (square of squares) {
         square.addEventListener("click", function() {
-            console.log("left-click");
             let number = Number(this.innerText);
-            console.log(this.innerText)
             if (this.classList.contains('has-mine')) {
                 console.log('GAME OVER');
             } else {
@@ -264,8 +262,16 @@ function makePlayingFieldInteractive() {
     // Right-Click Event:
     for (square of squares) {
         square.addEventListener('auxclick', function() {
-            console.log("middle-click");
-            this.style.backgroundColor = "black";
+            switch (this.style.backgroundColor) {
+                case "":
+                    this.style.backgroundColor = "black";
+                    break;
+                case "black":
+                    this.style.backgroundColor = "";
+                    break;
+            }
+            // this.innerText = `<i class='fa-solid fa-land-mine-on'></i>`;
+            // this.style.color = "black";
         })
     }
 }
