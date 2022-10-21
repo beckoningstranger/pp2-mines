@@ -205,7 +205,7 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 				playingFieldHTMLRow += ` has-mine`;
 			}
 			playingFieldHTMLRow += `
-            " id="${item.name}" </button>
+            " id="${item.name}">${item.minesNextDoor}</button>
             `
 		}
 		playingFieldHTMLRow += '</div>';
@@ -222,14 +222,20 @@ function makePlayingFieldInteractive() {
     // Left-Click Event:
     for (square of squares) {
         square.addEventListener("click", function() {
-            console.log("ho");
+            console.log("left-click");
+            if (this.classList.contains('has-mine')) {
+                console.log('GAME OVER');
+            } else {
+                this.style.color = "black";
+            }
         });
     }
-    event.preventDefault;
+
     // Right-Click Event:
     for (square of squares) {
         square.addEventListener('auxclick', function() {
-            console.log("hi");
+            console.log("middle-click");
+            this.style.backgroundColor = "black";
         })
     }
 }

@@ -59,10 +59,10 @@ input {
     font-size: 1rem;
     height: 30px;
     width: 30px;
-    padding: 24px;
     margin: 1px;
+    color: rgba(102, 79, 79, 0);
 }
 
-.has-mine {
+/* .has-mine {
     background-color: red;
-}
+} */
