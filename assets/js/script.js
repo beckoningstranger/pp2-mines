@@ -1,8 +1,5 @@
 form = document.getElementById('set-difficulty');
 form.addEventListener('submit', startGame);
-var squaresToWin;
-var clickedSquares = 0;
-var foundMines = 0;
 
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
@@ -238,6 +235,8 @@ function makePlayingFieldInteractive() {
     // Left-Click Event:
     for (square of squares) {
         square.addEventListener("click", function() {
+            let squaresToWin = document.getElementsByClassName('square').length - document.getElementsByClassName('has-mine').length;
+            let clickedSquares = document.getElementsByClassName('square').length - document.getElementsByClassName('unrevealed').length;
             let number = Number(this.innerText);
             if (this.classList.contains('has-mine')) {
                 console.log('GAME OVER');
@@ -289,13 +288,13 @@ function makePlayingFieldInteractive() {
             switch (this.style.backgroundColor) {
                 case "":
                     this.style.backgroundColor = "black";
-                    foundMines++;
-                    console.log(`Looks like you found ${foundMines} mines.`)
+                    this.classList.add('marked-as-mine');
+                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`)
                     break;
                 case "black":
                     this.style.backgroundColor = "";
-                    foundMines--;
-                    console.log(`Looks like you found ${foundMines} mines.`)
+                    this.classList.remove('marked-as-mine');
+                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`)
                     break;
             }
             // this.innerText = `<i class='fa-solid fa-land-mine-on'></i>`;
