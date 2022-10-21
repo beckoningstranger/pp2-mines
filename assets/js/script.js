@@ -200,7 +200,7 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 	for (row of arrayOfArrays) {
 		playingFieldHTMLRow += '<div>';
 		for (item of row) {
-			playingFieldHTMLRow += `<button class="square unrevealed ${item.minesNextDoor}-neighboring-mines`
+			playingFieldHTMLRow += `<button class="square unrevealed`
 			if (item.hasMine === 1) {
 				playingFieldHTMLRow += ` has-mine`;
 			}
@@ -223,10 +223,40 @@ function makePlayingFieldInteractive() {
     for (square of squares) {
         square.addEventListener("click", function() {
             console.log("left-click");
+            let number = Number(this.innerText);
+            console.log(this.innerText)
             if (this.classList.contains('has-mine')) {
                 console.log('GAME OVER');
             } else {
-                this.style.color = "black";
+                switch (number) {
+                    case 0:
+                        this.style.color = "forestgreen";
+                        break;
+                    case 1:
+                        this.style.color = "black";
+                        break;
+                    case 2:
+                        this.style.color = "darkorange";
+                        break;
+                    case 3:
+                        this.style.color = "red";
+                        break;
+                    case 4:
+                        this.style.color = "blue";
+                        break;
+                    case 5:
+                        this.style.color = "deeppink";
+                        break;
+                    case 6:
+                        this.style.color = "maroon";
+                        break;
+                    case 7:
+                        this.style.color = "navy";
+                        break;
+                    case 8:
+                        this.style.color = "fuchsia";
+                        break;
+                }
             }
         });
     }
