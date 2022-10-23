@@ -57,14 +57,14 @@ input {
 
 /* Playing Field */
 
-#playing-field {
+#playing-field-area {
     display: none;
     flex-direction: column;
     align-content: center;
     justify-content: center;
 }
 
-#playing-field > p#top-menu {
+#top-menu {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -72,7 +72,7 @@ input {
     font-family: 'Space Mono';
 }
 
-#playing-field > p#top-menu > span {
+#top-menu > span {
     display: flex;
     flex-direction: column;
     justify-content: center;

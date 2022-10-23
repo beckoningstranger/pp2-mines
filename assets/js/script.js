@@ -11,16 +11,45 @@ form.addEventListener('submit', startGame);
     const HEIGHT = document.getElementById('height').value;
     const MINES = document.getElementById('mines').value;
     console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${MINES} mines.`);
+
     // Hide the settings menu:
     const difficultySettings = document.getElementById('difficulty-settings');
     difficultySettings.style.display = 'none';
-    // Show and style playing field:
-    const playingField = document.getElementById('playing-field');
+
+    // Create event listeners for the restart and quit button
+    let restartButton = document.getElementById('restart-button');
+    restartButton.addEventListener('click', function restartGame() {
+
+        // Delete current playing field and create space for a new one
+        let playingField = document.getElementById('actual-playing-field');
+        playingField.remove();
+        let whereToInsert = document.querySelector('#playing-field-area');
+        let whatToInsert = '<div id="actual-playing-field"></div>'
+        whereToInsert.insertAdjacentHTML("beforeend", whatToInsert);
+
+        // Data for game is re-created. Constructs the playing field in an array
+        playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
+        
+        // Uses the array to now create a visible playing field in HTML
+        buildVisiblePlayingField(playingFieldInformation, HEIGHT);
+
+        // Amount of squares user has to click to win without clicking a mine
+        squaresToWin = WIDTH * HEIGHT - MINES;
+
+        // Add event listeners to each created button
+        makePlayingFieldInteractive();
+
+        // Restart Timer
+        startTimer();
+    })
+
+
+    // Show playing field:
+    const playingField = document.getElementById('playing-field-area');
     playingField.style.display = 'flex';
 
     // Data for game is created. Constructs the playing field in an array
     playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
-    console.log(playingFieldInformation);
     
     // Uses the array to now create a visible playing field in HTML
     buildVisiblePlayingField(playingFieldInformation, HEIGHT);
@@ -56,7 +85,6 @@ function buildPlayingField(width, height, mines) {
     for (let i = 0; i < height; i++) {
         columns.push(NUMBERS[i]);
     }
-    console.log(rows, columns, mines);
     let squares = [];
     for (let a = 0; a < rows.length; a++) {
         for (let b = 1; b < columns.length + 1; b++) {
@@ -213,7 +241,7 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 	let playingFieldHTML = '';
 	let playingFieldHTMLRow = '';
 	for (row of arrayOfArrays) {
-		playingFieldHTMLRow += '<div>';
+		playingFieldHTMLRow += '<div class="row-of-mines">';
 		for (item of row) {
 			playingFieldHTMLRow += `<button class="square unrevealed`
 			if (item.hasMine === 1) {
@@ -227,7 +255,7 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 		playingFieldHTML += playingFieldHTMLRow;
 		playingFieldHTMLRow = '';
 	}
-	let whereToInsert = document.querySelector('#playing-field');
+	let whereToInsert = document.querySelector('#actual-playing-field');
 	whereToInsert.insertAdjacentHTML("beforeend", playingFieldHTML);
 }
 
@@ -304,4 +332,12 @@ function makePlayingFieldInteractive() {
             // this.style.color = "black";
         })
     }
+}
+
+function startTimer() {
+    // 1. reset timer first;
+}
+
+function restartGame(WIDTH, HEIGHT, MINES) {
+
 }
