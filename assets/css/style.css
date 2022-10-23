@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono&display=swap');
 
 * {
     margin: 0;
@@ -49,10 +49,34 @@ input {
     text-align: center;
 }
 
+/* Game Area */
+
+#game-area {
+    background-color: #4f6b81;
+}
+
 /* Playing Field */
 
 #playing-field {
     display: none;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+#playing-field > p#top-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    font-family: 'Space Mono';
+}
+
+#playing-field > p#top-menu > span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40px;
 }
 
 .square {

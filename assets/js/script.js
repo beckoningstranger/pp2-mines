@@ -16,8 +16,7 @@ form.addEventListener('submit', startGame);
     difficultySettings.style.display = 'none';
     // Show and style playing field:
     const playingField = document.getElementById('playing-field');
-    playingField.style.display = 'grid';
-    playingField.style.alignContent = 'center';
+    playingField.style.display = 'flex';
 
     // Data for game is created. Constructs the playing field in an array
     playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
@@ -226,7 +225,7 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 		playingFieldHTMLRow = '';
 	}
 	let whereToInsert = document.querySelector('#playing-field');
-	whereToInsert.insertAdjacentHTML("afterbegin", playingFieldHTML);
+	whereToInsert.insertAdjacentHTML("beforeend", playingFieldHTML);
 }
 
 function makePlayingFieldInteractive() {
