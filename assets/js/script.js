@@ -30,6 +30,9 @@ form.addEventListener('submit', startGame);
 
     // Add event listeners to each created button
     makePlayingFieldInteractive();
+
+    // Start Timer
+    startTimer();
 }
 
 /**
@@ -283,7 +286,8 @@ function makePlayingFieldInteractive() {
 
     // Right-Click Event:
     for (square of squares) {
-        square.addEventListener('auxclick', function() {
+        square.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
             switch (this.style.backgroundColor) {
                 case "":
                     this.style.backgroundColor = "black";
