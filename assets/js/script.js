@@ -42,6 +42,10 @@ form.addEventListener('submit', startGame);
         // Restart Timer
         startTimer();
     })
+    let quitButton = document.getElementById('quit-button');
+    quitButton.addEventListener('click', function() {
+        location.reload();
+    })
 
 
     // Show playing field:
