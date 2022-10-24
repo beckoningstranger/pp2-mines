@@ -11,10 +11,8 @@ var myTimer;
     event.preventDefault();
     const HEIGHT = document.getElementById('width').value;
     const WIDTH = document.getElementById('height').value;
-    const MINES = document.getElementById('mines').value;
-    let maximumAmountOfMines = (HEIGHT * WIDTH - 1);
-    let recommendedAmountOfMines = Math.floor(((HEIGHT * WIDTH)/5));
-    console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${MINES} mines.`);
+    let mines = document.getElementById('mines').value;
+    console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${mines} mines.`);
 
     // Hide the settings menu:
     const difficultySettings = document.getElementById('difficulty-settings');
@@ -38,7 +36,7 @@ var myTimer;
         whereToInsert.insertAdjacentHTML("beforeend", whatToInsert);
 
         // Data for game is re-created. Constructs the playing field in an array
-        let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
+        let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, mines);
         
         // Uses the array to now create a visible playing field in HTML
         buildVisiblePlayingField(playingFieldInformation, HEIGHT);
@@ -56,31 +54,31 @@ var myTimer;
         location.reload();
     });
 
-    // Check if there are too many mines on the playing field. If not, start the game.
-    if (maximumAmountOfMines > MINES) {
-
-        // Initialize Mine Countdown
-        document.getElementById('mine-countdown').innerText = MINES;
-
-        // Show playing field:
-        const playingField = document.getElementById('playing-field-area');
-        playingField.style.display = 'flex';
-
-        // Data for game is created. Constructs the playing field in an array
-        let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
-        
-        // Uses the array to now create a visible playing field in HTML
-        buildVisiblePlayingField(playingFieldInformation, HEIGHT);
-
-        // Add event listeners to each created button
-        makePlayingFieldInteractive();
-
-        // Start Timer
-        startTimer();
-    } else {
-        window.alert(`There is an impossible amount of mines in your playing field. With these dimensions, you can have at most ${maximumAmountOfMines}. Even for a relatively hard game, I recommend you play with at most ${recommendedAmountOfMines}.`);
-        location.reload();
+    // Check if there are too many mines on the playing field. If so, set a more reasonable amount and start the game
+    let recommendedAmountOfMines = Math.floor(((HEIGHT * WIDTH)/4));
+    if (recommendedAmountOfMines < mines) {
+        window.alert(`This is too many mines. Even for a very hard game, I recommend you play with at most ${recommendedAmountOfMines}. Will create a game with this parameter now.`);
+        mines = recommendedAmountOfMines;
     }
+
+    // Initialize Mine Countdown
+    document.getElementById('mine-countdown').innerText = mines;
+
+    // Show playing field:
+    const playingField = document.getElementById('playing-field-area');
+    playingField.style.display = 'flex';
+
+    // Data for game is created. Constructs the playing field in an array
+    let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, mines);
+    
+    // Uses the array to now create a visible playing field in HTML
+    buildVisiblePlayingField(playingFieldInformation, HEIGHT);
+
+    // Add event listeners to each created button
+    makePlayingFieldInteractive();
+
+    // Start Timer
+    startTimer();
 }
 
 /**
