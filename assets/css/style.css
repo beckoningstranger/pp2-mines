@@ -6,6 +6,7 @@
     border: none;
     box-sizing: border-box;
     font-family: 'Bangers', sans-serif;
+    font-size: 1.5rem;
     font-weight: 400;
 }
 
@@ -25,25 +26,77 @@ a {
     height: 100vh;
 }
 
-#difficulty-settings {
-    font-size: 1.5rem;
-    text-align: center;
+#start-menu {
     display: inline-grid;
     align-content: center;
 }
 
-#difficulty-settings > form {
+#logo {
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#start-menu-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px;
+    border: 2px solid black;
+}
+
+#start-menu-buttons * {
+    margin: 5px;
+    width: 200px;
+    border: 2px solid black;
+}
+
+#difficulty-settings {
+    display: none;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+#difficulty-settings > div > button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 135px;
+    width: 135px;
+    align-items: center;
+    margin: 5px;
+    border: 2px solid black;
+}
+
+#difficulty-settings > div > button * {
+    font-size: 1.2rem;
+}
+
+#custom-difficulty-settings {    
+    text-align: center;
+    display: none;
+    align-content: center;
+}
+
+#custom-difficulty-settings > * {
     display: flex;
     justify-content: center;
 }
 
+#custom-difficulty-settings button {
+    border: 2px solid black;
+    width: 220px;
+}
+
+#custom-difficulty-settings-instructions {
+    width: 300px;
+}
+
 .input-field-number {
-    font-size: 1.5rem;
     width: 55px;
 }
 
 input {
-    font-size: 1.5rem;
     border: 1px solid black;
     width: 210px;
     text-align: center;
@@ -64,6 +117,10 @@ input {
     justify-content: center;
 }
 
+#playing-field-area * {
+    font-size: 1rem;
+}
+
 #top-menu {
     display: flex;
     flex-direction: row;
@@ -76,7 +133,6 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 40px;
 }
 
 .square {

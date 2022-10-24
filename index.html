@@ -9,26 +9,57 @@
 </head>
 <body>
     <main id="game-area">
+        <div id="start-menu">
+            <p id="logo">Minesweeper</p>
+            <div id="start-menu-buttons">
+                <button id="start-game-button">Start Game</button>
+                <button id="how-to-play-button">How to Play</button>
+                <button id="settings-button">Settings</button>
+            </div>
+        </div>
+        <div id="how-to-play"></div>
+        <div id="settings"></div>
         <div id="difficulty-settings">
-            <p>Welcome to this Minesweeper game!</p>
-            <p>Please first select your difficulty settings:</p>
-            <form id="set-difficulty" method="post">
-                <table>
-                    <tr>
-                        <td><label for="height">Height:</label></td>
-                        <td><input class="input-field-number" type="number" id="height" name="playing-field-width" value="8" max="26" min="5" required></td>
-                    </tr>
-                    <tr>
-                        <td><label for="width">Width:</label></td>
-                        <td><input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" max="99" min="5" marequired></td>
-                    </tr>
-                    <tr>
-                        <td><label for="mines">Mines:</label></td>
-                        <td><input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" required></td>
-                    </tr>
-                    <tr><td colspan="2"><input type="submit" id="submit-button" value="Start Playing!"></td></tr>
-                </table>
-            </form>
+            <div>
+                <button id="easy-setting">
+                    <p>Easy</p>
+                    <p>8x8</p>
+                    <p>10 Mines</p>
+                </button>
+                <button id="hard-setting">
+                    <p>Hard</p>
+                    <p>16x30</p>
+                    <p>99 Mines</p>
+                </button>
+            </div>
+            <div>
+                <button id="medium-setting">
+                    <p>Medium</p>
+                    <p>8x16</p>
+                    <p>25 Mines</p>
+                </button>                
+                <button id="custom-setting">
+                    <p>Customize settings</p>
+                </button>
+            </div>
+        </div>
+        <div id="custom-difficulty-settings">
+            <p id="custom-difficulty-settings-instructions">Please select your custom difficulty settings:</p>
+            <table>
+                <tr>
+                    <td><label for="height">Height:</label></td>
+                    <td><input class="input-field-number" type="number" id="height" name="playing-field-width" value="8" max="26" min="4" required></td>
+                </tr>
+                <tr>
+                    <td><label for="width">Width:</label></td>
+                    <td><input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" min="8" max="99" min="5" marequired></td>
+                </tr>
+                <tr>
+                    <td><label for="mines">Mines:</label></td>
+                    <td><input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" required></td>
+                </tr>
+                <tr><td colspan="2"><button id="custom-difficulty-start-button">Start Playing!</button></td></tr>
+            </table>
         </div>
         <div id="playing-field-area">
             <div><p id="top-menu"><span id="restart-button"><i class="fa-solid fa-rotate-left"></i></span><span>Time<br><span id="timer">000</span></span><span id="smileyface">^_^</span></span><span>Mines<br><span id="mine-countdown">00</span></span><span id="quit-button"><i class="fa-solid fa-power-off"></i></span></p></div>

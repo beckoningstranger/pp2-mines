@@ -1,22 +1,87 @@
-let form = document.getElementById('set-difficulty');
-form.addEventListener('submit', startGame);
+let startButton = document.getElementById('start-game-button');
+let howToPlayButton = document.getElementById('how-to-play-button');
+let settingsButton = document.getElementById('settings-button');
+let startMenu = document.getElementById('start-menu');
+let difficultySettingsMenu = document.getElementById('difficulty-settings');
+let howToPlayPage = document.getElementById('how-to-play');
+let settingsMenu = document.getElementById('settings');
+let easySetting = document.getElementById('easy-setting');
+let mediumSetting = document.getElementById('medium-setting');
+let hardSetting = document.getElementById('hard-setting');
+let customSetting = document.getElementById('custom-setting');
+let customDifficultySettingMenu = document.getElementById('custom-difficulty-settings');
+let height = document.getElementById('width').value;
+let width = document.getElementById('height').value;
+let mines = document.getElementById('mines').value;
+let customSettingStartButton = document.getElementById('custom-difficulty-start-button');
 var myTimer;
+
+startButton.addEventListener('click', function() {
+    difficultySettingsMenu.style.display = 'flex';
+    startMenu.style.display = 'none';
+});
+
+howToPlayButton.addEventListener('click', function() {
+    console.log('You clicked "How to Play"');
+});
+
+settingsButton.addEventListener('click', function() {
+    console.log('You clicked "Settings"');
+});
+
+easySetting.addEventListener('click', function() {
+    console.log('You clicked "Easy"');
+    difficultySettingsMenu.style.display = 'none';
+    width = 8;
+    height = 8;
+    mines = 10;
+    startGame();    
+});
+
+mediumSetting.addEventListener('click', function() {
+    console.log('You clicked "Medium"');
+    difficultySettingsMenu.style.display = 'none';
+    width = 16;
+    height = 8;
+    mines = 25;
+    startGame();   
+});
+
+hardSetting.addEventListener('click', function() {
+    console.log('You clicked "Hard"');
+    difficultySettingsMenu.style.display = 'none';
+    width = 26;
+    height = 18;
+    mines = 99;
+    startGame();   
+});
+
+customSetting.addEventListener('click', function() {
+    console.log('You clicked "Custom"');
+    difficultySettingsMenu.style.display = 'none';
+    customDifficultySettingMenu.style.display = 'inline-grid';
+});
+
+customSettingStartButton.addEventListener('click', function() {
+    width = document.getElementById('height').value;
+    height = document.getElementById('width').value;
+    mines = document.getElementById('mines').value;
+    startGame();
+})
+
+
 
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
  * When user clicks 'Start Playing!' it hides the menu where the user could set game parameters and calls functions to build the playing field.
  * Also contains event listeners for the restart and quit button
  */
- function startGame(event) {
-    event.preventDefault();
-    const HEIGHT = document.getElementById('width').value;
-    const WIDTH = document.getElementById('height').value;
-    let mines = document.getElementById('mines').value;
-    console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${mines} mines.`);
+ function startGame() {
+    console.log(`User wants a playing field that's ${width} x ${height} with ${mines} mines.`);
 
-    // Hide the settings menu:
-    const difficultySettings = document.getElementById('difficulty-settings');
-    difficultySettings.style.display = 'none';
+    // Make sure the custom difficulty settings menu is hidden:
+    const customDifficultySettings = document.getElementById('custom-difficulty-settings');
+    customDifficultySettings.style.display = 'none';
 
     // Create event listener for the restart button
     let restartButton = document.getElementById('restart-button');
@@ -36,10 +101,10 @@ var myTimer;
         whereToInsert.insertAdjacentHTML("beforeend", whatToInsert);
 
         // Data for game is re-created. Constructs the playing field in an array
-        let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, mines);
+        let playingFieldInformation = buildPlayingField(width, height, mines);
         
         // Uses the array to now create a visible playing field in HTML
-        buildVisiblePlayingField(playingFieldInformation, HEIGHT);
+        buildVisiblePlayingField(playingFieldInformation, height);
 
         // Add event listeners to each created square
         makePlayingFieldInteractive();
@@ -55,7 +120,7 @@ var myTimer;
     });
 
     // Check if there are too many mines on the playing field. If so, set a more reasonable amount and start the game
-    let recommendedAmountOfMines = Math.floor(((HEIGHT * WIDTH)/4));
+    let recommendedAmountOfMines = Math.floor(((height * width)/4));
     if (recommendedAmountOfMines < mines) {
         window.alert(`This is too many mines. Even for a very hard game, I recommend you play with at most ${recommendedAmountOfMines}. Will create a game with this parameter now.`);
         mines = recommendedAmountOfMines;
@@ -69,10 +134,10 @@ var myTimer;
     playingField.style.display = 'flex';
 
     // Data for game is created. Constructs the playing field in an array
-    let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, mines);
+    let playingFieldInformation = buildPlayingField(width, height, mines);
     
     // Uses the array to now create a visible playing field in HTML
-    buildVisiblePlayingField(playingFieldInformation, HEIGHT);
+    buildVisiblePlayingField(playingFieldInformation, height);
 
     // Add event listeners to each created button
     makePlayingFieldInteractive();
@@ -389,9 +454,5 @@ function findNumberOfThisSquare(squares, i) {
         return numberOfThisSquare;
     } else {
         console.log(`Unexpected error, square's name is ${squares[i].name}!`)
-    }
-    
-    
+    }   
 }
-
-        
