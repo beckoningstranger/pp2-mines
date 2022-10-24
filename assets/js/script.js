@@ -1,14 +1,16 @@
 form = document.getElementById('set-difficulty');
 form.addEventListener('submit', startGame);
+var myTimer;
 
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
  * When user clicks 'Start Playing!' it hides the menu where the user could set game parameters and calls functions to build the playing field.
+ * Also contains event listeners for the restart and quit button
  */
  function startGame(event) {
     event.preventDefault();
-    const WIDTH = document.getElementById('width').value;
-    const HEIGHT = document.getElementById('height').value;
+    const HEIGHT = document.getElementById('width').value;
+    const WIDTH = document.getElementById('height').value;
     const MINES = document.getElementById('mines').value;
     console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${MINES} mines.`);
 
@@ -16,9 +18,12 @@ form.addEventListener('submit', startGame);
     const difficultySettings = document.getElementById('difficulty-settings');
     difficultySettings.style.display = 'none';
 
-    // Create event listeners for the restart and quit button
+    // Create event listener for the restart button
     let restartButton = document.getElementById('restart-button');
     restartButton.addEventListener('click', function restartGame() {
+
+        // Reset timer
+        clearInterval(myTimer);
 
         // Delete current playing field and create space for a new one
         let playingField = document.getElementById('actual-playing-field');
@@ -42,11 +47,15 @@ form.addEventListener('submit', startGame);
         // Restart Timer
         startTimer();
     })
+
+    // Create event listener for quit button
     let quitButton = document.getElementById('quit-button');
     quitButton.addEventListener('click', function() {
         location.reload();
     })
 
+    // Initialize Mine Countdown
+    document.getElementById('mine-countdown').innerText = MINES;
 
     // Show playing field:
     const playingField = document.getElementById('playing-field-area');
@@ -77,7 +86,7 @@ form.addEventListener('submit', startGame);
 */
 function buildPlayingField(width, height, mines) {
     const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
     let rows = [];
     let columns = [];
 
@@ -273,6 +282,7 @@ function makePlayingFieldInteractive() {
             let clickedSquares = document.getElementsByClassName('square').length - document.getElementsByClassName('unrevealed').length;
             let number = Number(this.innerText);
             if (this.classList.contains('has-mine')) {
+                clearInterval(myTimer);
                 console.log('GAME OVER');
             } else {
                 if (this.classList.contains('unrevealed')) {
@@ -281,6 +291,7 @@ function makePlayingFieldInteractive() {
                     this.classList.remove('unrevealed');
                 }
                 if (clickedSquares === squaresToWin) {
+                    clearInterval(myTimer);
                     console.log('YOU WIN!')
                 }
                 switch (number) {
@@ -325,11 +336,15 @@ function makePlayingFieldInteractive() {
                     this.style.backgroundColor = "black";
                     this.classList.add('marked-as-mine');
                     console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`)
+                    mineCountdown = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
+                    document.getElementById('mine-countdown').innerText = mineCountdown;
                     break;
                 case "black":
                     this.style.backgroundColor = "";
                     this.classList.remove('marked-as-mine');
                     console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`)
+                    mineCountdown = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
+                    document.getElementById('mine-countdown').innerText = mineCountdown;
                     break;
             }
             // this.innerText = `<i class='fa-solid fa-land-mine-on'></i>`;
@@ -339,7 +354,11 @@ function makePlayingFieldInteractive() {
 }
 
 function startTimer() {
-    // 1. reset timer first;
+    let counter = 0;
+    myTimer = setInterval(function () {
+        counter ++;
+        document.getElementById('timer').innerText = counter;
+    }, 1000);
 }
 
 function restartGame(WIDTH, HEIGHT, MINES) {
