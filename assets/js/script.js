@@ -342,15 +342,15 @@ function makePlayingFieldInteractive() {
                     this.style.backgroundColor = "black";
                     this.classList.add('marked-as-mine');
                     console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
-                    let mineCountdown = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
-                    document.getElementById('mine-countdown').innerText = mineCountdown;
+                    // Update mine counter
+                    document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
                     break;
                 case "black":
                     this.style.backgroundColor = "";
                     this.classList.remove('marked-as-mine');
                     console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
-                    mineCountdown = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
-                    document.getElementById('mine-countdown').innerText = mineCountdown;
+                    // Update mine counter
+                    document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
                     break;
             }
             // this.innerText = `<i class='fa-solid fa-land-mine-on'></i>`;
