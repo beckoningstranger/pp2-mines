@@ -14,7 +14,6 @@ var myTimer;
     const MINES = document.getElementById('mines').value;
     let maximumAmountOfMines = (HEIGHT * WIDTH - 1);
     let recommendedAmountOfMines = Math.floor(((HEIGHT * WIDTH)/5));
-    console.log(maximumAmountOfMines);
     console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${MINES} mines.`);
 
     // Hide the settings menu:
@@ -143,7 +142,7 @@ function layMines(minesToLay, playingField) {
 
 /**
  * Receives the playing field as an array of objects and adds for all square objects what squares are next to them.
- * This information is later used to calculate how many mines are next to each squares.
+ * This information is later used to calculate how many mines are next to each square.
  * @param {*} squares 
  * @returns 
  */
@@ -159,7 +158,8 @@ function findSurroundingSquares(squares, rows, columns) {
         
         // Seperate the square's name into letter and number:
         let letterOfThisSquare = squares[i].name[0];
-        let numberOfThisSquare = Number(squares[i].name[1]);
+        let numberOfThisSquare = findNumberOfThisSquare(squares, i);
+
         
         // Find out if the square is a border square on the playing field
         // by looking at its index number in the array containing all letters/rows.
@@ -381,3 +381,19 @@ function startTimer() {
         document.getElementById('timer').innerText = counter;
     }, 1000);
 }
+
+function findNumberOfThisSquare(squares, i) {
+    if (squares[i].name.length === 3) {
+        let numberOfThisSquare = Number(squares[i].name[1] + squares[i].name[2]);
+        return numberOfThisSquare;
+    } else if (squares[i].name.length === 2) {
+        let numberOfThisSquare = Number(squares[i].name[1]);
+        return numberOfThisSquare;
+    } else {
+        console.log(`Unexpected error, square's name is ${squares[i].name}!`)
+    }
+    
+    
+}
+
+        
