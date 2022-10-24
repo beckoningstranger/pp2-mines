@@ -1,4 +1,4 @@
-form = document.getElementById('set-difficulty');
+let form = document.getElementById('set-difficulty');
 form.addEventListener('submit', startGame);
 var myTimer;
 
@@ -20,7 +20,7 @@ var myTimer;
 
     // Create event listener for the restart button
     let restartButton = document.getElementById('restart-button');
-    restartButton.addEventListener('click', function restartGame() {
+    restartButton.addEventListener('click', function() {
 
         // Reset timer
         clearInterval(myTimer);
@@ -29,30 +29,27 @@ var myTimer;
         let playingField = document.getElementById('actual-playing-field');
         playingField.remove();
         let whereToInsert = document.querySelector('#playing-field-area');
-        let whatToInsert = '<div id="actual-playing-field"></div>'
+        let whatToInsert = '<div id="actual-playing-field"></div>';
         whereToInsert.insertAdjacentHTML("beforeend", whatToInsert);
 
         // Data for game is re-created. Constructs the playing field in an array
-        playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
+        let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
         
         // Uses the array to now create a visible playing field in HTML
         buildVisiblePlayingField(playingFieldInformation, HEIGHT);
-
-        // Amount of squares user has to click to win without clicking a mine
-        squaresToWin = WIDTH * HEIGHT - MINES;
 
         // Add event listeners to each created button
         makePlayingFieldInteractive();
 
         // Restart Timer
         startTimer();
-    })
+    });
 
     // Create event listener for quit button
     let quitButton = document.getElementById('quit-button');
     quitButton.addEventListener('click', function() {
         location.reload();
-    })
+    });
 
     // Initialize Mine Countdown
     document.getElementById('mine-countdown').innerText = MINES;
@@ -62,13 +59,10 @@ var myTimer;
     playingField.style.display = 'flex';
 
     // Data for game is created. Constructs the playing field in an array
-    playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
+    let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
     
     // Uses the array to now create a visible playing field in HTML
     buildVisiblePlayingField(playingFieldInformation, HEIGHT);
-
-    // Amount of squares user has to click to win without clicking a mine
-    squaresToWin = WIDTH * HEIGHT - MINES;
 
     // Add event listeners to each created button
     makePlayingFieldInteractive();
@@ -86,7 +80,7 @@ var myTimer;
 */
 function buildPlayingField(width, height, mines) {
     const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
     let rows = [];
     let columns = [];
 
@@ -105,13 +99,13 @@ function buildPlayingField(width, height, mines) {
                     name: rows[a] + b,
                     hasMine: 0,
                     minesNextDoor: 0,
-            }
+            };
         squares.push(square);
         }
     }
-    playingFieldWithMines = layMines(mines, squares);
-    playingFieldWithMinesAndInfoOnNeighboringSquares = findSurroundingSquares(playingFieldWithMines, rows, columns);
-    playingFieldWithNumberOfMinesInAdjacentSquares = findMinesInSurroundingSquares(playingFieldWithMinesAndInfoOnNeighboringSquares);
+    let playingFieldWithMines = layMines(mines, squares);
+    let playingFieldWithMinesAndInfoOnNeighboringSquares = findSurroundingSquares(playingFieldWithMines, rows, columns);
+    let playingFieldWithNumberOfMinesInAdjacentSquares = findMinesInSurroundingSquares(playingFieldWithMinesAndInfoOnNeighboringSquares);
     return playingFieldWithNumberOfMinesInAdjacentSquares;
 }
 
@@ -122,13 +116,13 @@ function buildPlayingField(width, height, mines) {
 */
 function layMines(minesToLay, playingField) {
 	let assignedMines = 0;
-	let randomlyPickedSquares = []
+	let randomlyPickedSquares = [];
 	while (assignedMines < minesToLay) {
 		let randomSquare = playingField[Math.floor(Math.random() * playingField.length)];
 		if (! randomlyPickedSquares.includes(randomSquare.name)) {
 		randomSquare.hasMine = 1;
 		assignedMines++;
-		randomlyPickedSquares.push(randomSquare.name)
+		randomlyPickedSquares.push(randomSquare.name);
 		}
 	}
     return playingField;
@@ -203,7 +197,7 @@ function findSurroundingSquares(squares, rows, columns) {
 	    for (let i = adjacentSquares.length - 1; i >= 0; i--) {
             if ((adjacentSquares[i].length < 2) || (adjacentSquares[i] === "undefined") || (Number.isNaN(adjacentSquares[i]))) {
                 let indexOfThatSquare = adjacentSquares.indexOf(adjacentSquares[i]);
-                adjacentSquares.splice(indexOfThatSquare, 1)
+                adjacentSquares.splice(indexOfThatSquare, 1);
             }
       }
         squares[i].neighboringSquares = adjacentSquares;
@@ -220,7 +214,6 @@ function findMinesInSurroundingSquares(squares) {
         let squaresToCheck = squares[i].neighboringSquares;
         let countedMines = 0;
         for (let square of squaresToCheck) {
-            thatSquaresIndexNumber = ''
             // Get the index number of the square we want to check
             for (let j = 0; j < squares.length; j++) {
                 if (squares[j].name === square) {
@@ -253,16 +246,16 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
     // Now, generate the HTML
 	let playingFieldHTML = '';
 	let playingFieldHTMLRow = '';
-	for (row of arrayOfArrays) {
+	for (let row of arrayOfArrays) {
 		playingFieldHTMLRow += '<div class="row-of-mines">';
-		for (item of row) {
-			playingFieldHTMLRow += `<button class="square unrevealed`
+		for (let item of row) {
+			playingFieldHTMLRow += `<button class="square unrevealed`;
 			if (item.hasMine === 1) {
 				playingFieldHTMLRow += ` has-mine`;
 			}
 			playingFieldHTMLRow += `
             " id="${item.name}">${item.minesNextDoor}</button>
-            `
+            `;
 		}
 		playingFieldHTMLRow += '</div>';
 		playingFieldHTML += playingFieldHTMLRow;
@@ -276,7 +269,7 @@ function makePlayingFieldInteractive() {
     let squares = document.getElementsByClassName('square');
 
     // Left-Click Event:
-    for (square of squares) {
+    for (let square of squares) {
         square.addEventListener("click", function() {
             let squaresToWin = document.getElementsByClassName('square').length - document.getElementsByClassName('has-mine').length;
             let clickedSquares = document.getElementsByClassName('square').length - document.getElementsByClassName('unrevealed').length;
@@ -341,28 +334,28 @@ function makePlayingFieldInteractive() {
     }
 
     // Right-Click Event:
-    for (square of squares) {
+    for (let square of squares) {
         square.addEventListener('contextmenu', function(event) {
             event.preventDefault();
             switch (this.style.backgroundColor) {
                 case "":
                     this.style.backgroundColor = "black";
                     this.classList.add('marked-as-mine');
-                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`)
-                    mineCountdown = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
+                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
+                    let mineCountdown = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
                     document.getElementById('mine-countdown').innerText = mineCountdown;
                     break;
                 case "black":
                     this.style.backgroundColor = "";
                     this.classList.remove('marked-as-mine');
-                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`)
+                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
                     mineCountdown = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
                     document.getElementById('mine-countdown').innerText = mineCountdown;
                     break;
             }
             // this.innerText = `<i class='fa-solid fa-land-mine-on'></i>`;
             // this.style.color = "black";
-        })
+        });
     }
 }
 
@@ -372,8 +365,4 @@ function startTimer() {
         counter ++;
         document.getElementById('timer').innerText = counter;
     }, 1000);
-}
-
-function restartGame(WIDTH, HEIGHT, MINES) {
-
 }
