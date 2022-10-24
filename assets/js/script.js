@@ -282,17 +282,30 @@ function makePlayingFieldInteractive() {
             let clickedSquares = document.getElementsByClassName('square').length - document.getElementsByClassName('unrevealed').length;
             let number = Number(this.innerText);
             if (this.classList.contains('has-mine')) {
+                // Lose behavior
                 clearInterval(myTimer);
                 console.log('GAME OVER');
+                document.getElementById('actual-playing-field').style.backgroundColor = "red";
+                let minedSquares = document.getElementsByClassName('has-mine');
+                for (square of minedSquares) {
+                    square.style.backgroundColor = "black";
+                }
             } else {
                 if (this.classList.contains('unrevealed')) {
                     clickedSquares++;
                     console.log(`${clickedSquares}/${squaresToWin}`);
                     this.classList.remove('unrevealed');
                 }
+                // Win behavior
                 if (clickedSquares === squaresToWin) {
                     clearInterval(myTimer);
-                    console.log('YOU WIN!')
+                    console.log('YOU WIN!');
+                    document.getElementById('actual-playing-field').style.backgroundColor = "green";
+                    let minedSquares = document.getElementsByClassName('has-mine');
+                    for (square of minedSquares) {
+                        square.style.backgroundColor = "black";
+                    }
+                    document.getElementById('mine-countdown').innerText = 0;
                 }
                 switch (number) {
                     case 0:
