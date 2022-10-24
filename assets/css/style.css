@@ -95,6 +95,7 @@ input {
     background-color: rgb(196, 145, 145);
 }
 
-/* .has-mine {
-    background-color: red;
-} */
+#smileyface {
+    font-family: 'Space Mono';
+    font-weight: 600;
+}

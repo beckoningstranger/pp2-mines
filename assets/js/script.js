@@ -25,6 +25,9 @@ var myTimer;
         // Reset timer
         clearInterval(myTimer);
 
+        // Reset smileyface
+        document.getElementById('smileyface').innerText = "^_^";
+
         // Delete current playing field and create space for a new one
         let playingField = document.getElementById('actual-playing-field');
         playingField.remove();
@@ -283,6 +286,7 @@ function makePlayingFieldInteractive() {
                 for (square of minedSquares) {
                     square.style.backgroundColor = "black";
                 }
+                document.getElementById('smileyface').innerText = "X_X";
             } else {
                 if (this.classList.contains('unrevealed')) {
                     clickedSquares++;
@@ -299,6 +303,7 @@ function makePlayingFieldInteractive() {
                         square.style.backgroundColor = "black";
                     }
                     document.getElementById('mine-countdown').innerText = 0;
+                    document.getElementById('smileyface').innerText = "d^_^b";
                 }
                 switch (number) {
                     case 0:
