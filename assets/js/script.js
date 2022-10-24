@@ -12,6 +12,9 @@ var myTimer;
     const HEIGHT = document.getElementById('width').value;
     const WIDTH = document.getElementById('height').value;
     const MINES = document.getElementById('mines').value;
+    let maximumAmountOfMines = (HEIGHT * WIDTH - 1);
+    let recommendedAmountOfMines = Math.floor(((HEIGHT * WIDTH)/5));
+    console.log(maximumAmountOfMines);
     console.log(`User wants a playing field that's ${WIDTH} x ${HEIGHT} with ${MINES} mines.`);
 
     // Hide the settings menu:
@@ -41,7 +44,7 @@ var myTimer;
         // Uses the array to now create a visible playing field in HTML
         buildVisiblePlayingField(playingFieldInformation, HEIGHT);
 
-        // Add event listeners to each created button
+        // Add event listeners to each created square
         makePlayingFieldInteractive();
 
         // Restart Timer
@@ -54,24 +57,31 @@ var myTimer;
         location.reload();
     });
 
-    // Initialize Mine Countdown
-    document.getElementById('mine-countdown').innerText = MINES;
+    // Check if there are too many mines on the playing field. If not, start the game.
+    if (maximumAmountOfMines > MINES) {
 
-    // Show playing field:
-    const playingField = document.getElementById('playing-field-area');
-    playingField.style.display = 'flex';
+        // Initialize Mine Countdown
+        document.getElementById('mine-countdown').innerText = MINES;
 
-    // Data for game is created. Constructs the playing field in an array
-    let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
-    
-    // Uses the array to now create a visible playing field in HTML
-    buildVisiblePlayingField(playingFieldInformation, HEIGHT);
+        // Show playing field:
+        const playingField = document.getElementById('playing-field-area');
+        playingField.style.display = 'flex';
 
-    // Add event listeners to each created button
-    makePlayingFieldInteractive();
+        // Data for game is created. Constructs the playing field in an array
+        let playingFieldInformation = buildPlayingField(WIDTH, HEIGHT, MINES);
+        
+        // Uses the array to now create a visible playing field in HTML
+        buildVisiblePlayingField(playingFieldInformation, HEIGHT);
 
-    // Start Timer
-    startTimer();
+        // Add event listeners to each created button
+        makePlayingFieldInteractive();
+
+        // Start Timer
+        startTimer();
+    } else {
+        window.alert(`There is an impossible amount of mines in your playing field. With these dimensions, you can have at most ${maximumAmountOfMines}. Even for a relatively hard game, I recommend you play with at most ${recommendedAmountOfMines}.`);
+        location.reload();
+    }
 }
 
 /**
