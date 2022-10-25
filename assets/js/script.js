@@ -67,6 +67,7 @@ customSettingStartButton.addEventListener('click', function() {
 howToPlayButton.addEventListener('click', function() {
     startMenu.style.display = 'none';
     howToPlayPage.style.display = 'flex';
+    document.getElementById('game-area').style.height = "auto";
     console.log('You clicked "How to Play"');
 });
 
@@ -85,6 +86,7 @@ settingsButton.addEventListener('click', function() {
 htpBackButton.addEventListener('click', function() {
     startMenu.style.display = 'inline-grid';
     howToPlayPage.style.display = 'none';
+    document.getElementById('game-area').style.height = "100vh";
     console.log('You clicked "Back To Menu"');
 })
 

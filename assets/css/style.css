@@ -105,7 +105,7 @@ input {
 /* Game Area */
 
 #game-area {
-    background-color: #4f6b81;
+    background-color: #99bdd8;
 }
 
 /* Playing Field */
@@ -162,6 +162,53 @@ input {
     display: none;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+#explanations * {
+    font-size: 1rem;
+}
+
+#explanations-heading {
+    font-size: 1.5rem;
+}
+
+#explanations > div {
+    text-align: center;
+    width: 70vw;
+    margin-top: 30px;
+}
+
+.image-right {
+    margin-left: 30px;
+}
+
+.image-left {
+    margin-right: 30px;
+}
+
+.explanations-image-right {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.explanations-image-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.explanation-with-picture {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+}
+
+#how-to-play-back-button {
+    font-size: 1.5rem;
 }
 
 #settings {
