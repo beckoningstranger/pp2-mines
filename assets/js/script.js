@@ -14,6 +14,7 @@ let height = document.getElementById('width').value;
 let width = document.getElementById('height').value;
 let mines = document.getElementById('mines').value;
 let customSettingStartButton = document.getElementById('custom-difficulty-start-button');
+var mobileFriendlyMode = 0;
 var myTimer;
 
 startButton.addEventListener('click', function() {
@@ -111,6 +112,9 @@ customSettingStartButton.addEventListener('click', function() {
 
         // Restart Timer
         startTimer();
+        if (mobileFriendlyMode === 1) {
+            adjustPlayingFieldToViewport();
+        }
     });
 
     // Create event listener for quit button
@@ -144,6 +148,11 @@ customSettingStartButton.addEventListener('click', function() {
 
     // Start Timer
     startTimer();
+
+    if (mobileFriendlyMode === 1) {
+        adjustPlayingFieldToViewport();
+    }
+    
 }
 
 /**
@@ -455,4 +464,42 @@ function findNumberOfThisSquare(squares, i) {
     } else {
         console.log(`Unexpected error, square's name is ${squares[i].name}!`)
     }   
+}
+
+function adjustPlayingFieldToViewport() {
+    console.log('Adjusting playing field to viewport');
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    const numberOfColumns = document.getElementsByClassName('row-of-mines')[0].childElementCount;
+    const numberOfRows = document.getElementsByClassName('row-of-mines').length;
+    
+    // Calculate and set how big the square should be to fit and fill the screen horizontally
+    let squareWidth = Math.floor(vw / numberOfColumns * 0.8);
+    let squares = document.getElementsByClassName('square');
+    for (square of squares) {
+        square.style.height = `${squareWidth}px`;
+        square.style.width = `${squareWidth}px`;
+    }
+
+    // Calculate and set needed vertical space
+    let neededVerticalSpace = (squareWidth * (numberOfRows + 5));
+    console.log(neededVerticalSpace);
+    if (neededVerticalSpace > vh) {
+        let verticalHeight = document.getElementById('game-area');
+        verticalHeight.style.height = `${neededVerticalSpace}px`;
+        console.log('Adjusting vertical space...')
+    } else {
+        console.log('No need to adjust vertical space');
+    }
+
+    // Adjust font size of top menu
+    let topMenu = document.getElementById('top-menu');
+    for (child of topMenu.children) {
+        child.style.fontSize = "5vw";
+    }
+
+    // Adjust font size of squares
+    for (square of squares) {
+        square.style.fontSize = "5vw";
+    }
 }
