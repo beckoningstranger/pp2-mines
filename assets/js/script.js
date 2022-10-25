@@ -10,8 +10,8 @@ let mediumSetting = document.getElementById('medium-setting');
 let hardSetting = document.getElementById('hard-setting');
 let customSetting = document.getElementById('custom-setting');
 let customDifficultySettingMenu = document.getElementById('custom-difficulty-settings');
-let height = document.getElementById('width').value;
-let width = document.getElementById('height').value;
+let height = document.getElementById('height').value;
+let width = document.getElementById('width').value;
 let mines = document.getElementById('mines').value;
 let customSettingStartButton = document.getElementById('custom-difficulty-start-button');
 var mobileFriendlyMode = 0;
@@ -350,6 +350,11 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 	whereToInsert.insertAdjacentHTML("beforeend", playingFieldHTML);
 }
 
+/**
+ * This function contains the event listeners for the playing field as well as the triggers for winning or losing the game.
+ * With left clicks, users reveal squares.
+ * With right clicks, users can mark squares as mined. When they click such squares again, they unmark the squares again.
+ */
 function makePlayingFieldInteractive() {
     let squares = document.getElementsByClassName('square');
 
@@ -440,12 +445,13 @@ function makePlayingFieldInteractive() {
                     document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
                     break;
             }
-            // this.innerText = `<i class='fa-solid fa-land-mine-on'></i>`;
-            // this.style.color = "black";
         });
     }
 }
 
+/**
+ * This function simply start the counter at the top of the playing field.
+ */
 function startTimer() {
     let counter = 0;
     myTimer = setInterval(function () {
@@ -454,6 +460,13 @@ function startTimer() {
     }, 1000);
 }
 
+/**
+ * This function receives an array of objects that contains all squares, looks at the square names and finds the number in the square name. 
+ * It then returns this number.
+ * @param {*} squares = The array of objects with all the squares.
+ * @param {*} i = The index number with the array of the specific square the function is supposed to look at.
+ * @returns number of the square the function was supposed to examine.
+ */
 function findNumberOfThisSquare(squares, i) {
     if (squares[i].name.length === 3) {
         let numberOfThisSquare = Number(squares[i].name[1] + squares[i].name[2]);
@@ -466,6 +479,11 @@ function findNumberOfThisSquare(squares, i) {
     }   
 }
 
+/**
+ * This function finds the viewport height and width of the user's device. It then adjusts the square size
+ * so that the screen real estate is used better. This results in bigger buttons and a better user experience.
+ * Font size of everything that's visible while playing is also adjusted to 5vw.
+ */
 function adjustPlayingFieldToViewport() {
     console.log('Adjusting playing field to viewport');
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
