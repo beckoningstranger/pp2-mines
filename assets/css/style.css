@@ -44,9 +44,9 @@ a {
     border: 2px solid black;
 }
 
-#start-menu-buttons * {
+.menu-buttons {
     margin: 5px;
-    width: 200px;
+    width: 220px;
     border: 2px solid black;
 }
 
@@ -142,6 +142,7 @@ input {
     width: 30px;
     margin: 1px;
     color: rgba(102, 79, 79, 0);
+    border-radius: 3px;
 }
 
 .square:hover {
@@ -156,3 +157,16 @@ input {
     font-family: 'Space Mono';
     font-weight: 600;
 }
+
+#how-to-play {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#settings {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+

@@ -5,6 +5,8 @@ let startMenu = document.getElementById('start-menu');
 let difficultySettingsMenu = document.getElementById('difficulty-settings');
 let howToPlayPage = document.getElementById('how-to-play');
 let settingsMenu = document.getElementById('settings');
+let htpBackButton = document.getElementById('how-to-play-back-button');
+let setBackButton = document.getElementById('settings-back-button');
 let easySetting = document.getElementById('easy-setting');
 let mediumSetting = document.getElementById('medium-setting');
 let hardSetting = document.getElementById('hard-setting');
@@ -20,14 +22,6 @@ var myTimer;
 startButton.addEventListener('click', function() {
     difficultySettingsMenu.style.display = 'flex';
     startMenu.style.display = 'none';
-});
-
-howToPlayButton.addEventListener('click', function() {
-    console.log('You clicked "How to Play"');
-});
-
-settingsButton.addEventListener('click', function() {
-    console.log('You clicked "Settings"');
 });
 
 easySetting.addEventListener('click', function() {
@@ -70,6 +64,29 @@ customSettingStartButton.addEventListener('click', function() {
     startGame();
 })
 
+howToPlayButton.addEventListener('click', function() {
+    startMenu.style.display = 'none';
+    howToPlayPage.style.display = 'flex';
+    console.log('You clicked "How to Play"');
+});
+
+setBackButton.addEventListener('click', function() {
+    startMenu.style.display = 'inline-grid';
+    settingsMenu.style.display = 'none';
+    console.log('You clicked "Back To Menu"');
+});
+
+settingsButton.addEventListener('click', function() {
+    startMenu.style.display = 'none';
+    settingsMenu.style.display = 'flex';
+    console.log('You clicked "Settings"');
+});
+
+htpBackButton.addEventListener('click', function() {
+    startMenu.style.display = 'inline-grid';
+    howToPlayPage.style.display = 'none';
+    console.log('You clicked "Back To Menu"');
+})
 
 
 /**
