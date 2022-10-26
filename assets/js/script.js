@@ -21,11 +21,6 @@ var myTimer;
 
 startButton.addEventListener('click', function() {
     difficultySettingsMenu.style.display = 'flex';
-    // If viewport is too small for the big playing field of a hard game, just hide it:
-    let viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    if ( viewport < 1024) {
-        document.getElementById('hard-setting').style.display = 'none';
-    }
     startMenu.style.display = 'none';
 });
 
@@ -49,11 +44,17 @@ mediumSetting.addEventListener('click', function() {
 
 hardSetting.addEventListener('click', function() {
     console.log('You clicked "Hard"');
-    difficultySettingsMenu.style.display = 'none';
-    width = 26;
-    height = 18;
-    mines = 99;
-    startGame();   
+    // If viewport is too small for the big playing field of a hard game, tell user about it:
+    let viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    if ( viewport < 1024) {
+        alert('Unfortunately your viewport is too small. Try using your device in landscape mode or switch to a larger device.');
+    } else {
+        difficultySettingsMenu.style.display = 'none';
+        width = 26;
+        height = 18;
+        mines = 99;
+        startGame();   
+    }
 });
 
 customSetting.addEventListener('click', function() {
