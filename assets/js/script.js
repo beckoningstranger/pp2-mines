@@ -18,8 +18,14 @@ let mines = document.getElementById('mines').value;
 let customSettingStartButton = document.getElementById('custom-difficulty-start-button');
 var useWholeScreenWidth = 0;
 var myTimer;
+const controller = new AbortController();
 
 startButton.addEventListener('click', function() {
+    // On Galaxy Fold, hide the Hard Setting in portrait mode. It would appear between easy and medium and it's not playable anyway.
+    let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    if (viewportWidth === 280) {
+        document.getElementById('hard-setting').style.display = 'none';
+    }
     difficultySettingsMenu.style.display = 'flex';
     startMenu.style.display = 'none';
 });
@@ -398,14 +404,38 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
  * This function contains the event listeners for the playing field as well as the triggers for winning or losing the game.
  * With left clicks, users reveal squares.
  * With right clicks, users can mark squares as mined. When they click such squares again, they unmark the squares again.
+ * The functions actually doing this are just below this function.
  */
 function makePlayingFieldInteractive() {
     let squares = document.getElementsByClassName('square');
 
     // Left-Click Event:
     for (let square of squares) {
-        square.addEventListener("click", function() {
-            let squaresToWin = document.getElementsByClassName('square').length - document.getElementsByClassName('has-mine').length;
+        square.addEventListener("click", leftClickOnSquare, { signal: controller.signal });
+    }
+
+    // Right-Click Event:
+    for (let square of squares) {
+        square.addEventListener('contextmenu', rightClickOnSquare);
+    }
+
+    // Mousedown Event:
+    for (let square of squares) {
+        square.addEventListener('mousedown', function() {
+            document.getElementById('smileyface').innerText = "O_O";
+        })
+    }
+
+    // Mouseup Event:
+    for (let square of squares) {
+        square.addEventListener('mouseup', function() {
+            document.getElementById('smileyface').innerText = "^_^";
+        })
+    }
+}
+
+function leftClickOnSquare() {
+    let squaresToWin = document.getElementsByClassName('square').length - document.getElementsByClassName('has-mine').length;
             let clickedSquares = document.getElementsByClassName('square').length - document.getElementsByClassName('unrevealed').length;
             let number = Number(this.innerText);
             if (this.classList.contains('has-mine')) {
@@ -418,6 +448,7 @@ function makePlayingFieldInteractive() {
                     square.style.backgroundColor = "black";
                 }
                 document.getElementById('smileyface').innerText = "X_X";
+                controller.abort();
             } else {
                 if (this.classList.contains('unrevealed')) {
                     clickedSquares++;
@@ -435,6 +466,7 @@ function makePlayingFieldInteractive() {
                     }
                     document.getElementById('mine-countdown').innerText = 0;
                     document.getElementById('smileyface').innerText = "d^_^b";
+                    controller.abort();
                 }
                 switch (number) {
                     case 0:
@@ -466,30 +498,25 @@ function makePlayingFieldInteractive() {
                         break;
                 }
             }
-        });
-    }
+}
 
-    // Right-Click Event:
-    for (let square of squares) {
-        square.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-            switch (this.style.backgroundColor) {
-                case "":
-                    this.style.backgroundColor = "black";
-                    this.classList.add('marked-as-mine');
-                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
-                    // Update mine counter
-                    document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
-                    break;
-                case "black":
-                    this.style.backgroundColor = "";
-                    this.classList.remove('marked-as-mine');
-                    console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
-                    // Update mine counter
-                    document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
-                    break;
-            }
-        });
+function rightClickOnSquare(event) {
+    event.preventDefault();
+    switch (this.style.backgroundColor) {
+        case "":
+            this.style.backgroundColor = "black";
+            this.classList.add('marked-as-mine');
+            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
+            // Update mine counter
+            document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
+            break;
+        case "black":
+            this.style.backgroundColor = "";
+            this.classList.remove('marked-as-mine');
+            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
+            // Update mine counter
+            document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
+            break;
     }
 }
 

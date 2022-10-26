@@ -255,10 +255,6 @@ input {
 
 @media screen and (min-width:1024px) {
 
-    #explanations * {
-        font-size: 1.2rem;
-    }
-
     #explanations > div {
         width: 900px;
     }
