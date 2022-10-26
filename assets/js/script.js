@@ -47,7 +47,7 @@ hardSetting.addEventListener('click', function() {
     // If viewport is too small for the big playing field of a hard game, tell user about it:
     let viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     if ( viewport < 1024) {
-        alert('Unfortunately your viewport is too small. Try using your device in landscape mode or switch to a larger device.');
+        alert("Unfortunately your viewport is too small. If you're in portrait mode, try using your device in landscape mode or switch to a larger device.");
     } else {
         difficultySettingsMenu.style.display = 'none';
         width = 26;
@@ -316,6 +316,25 @@ function findSurroundingSquares(squares, rows, columns) {
 }
 
 /**
+ * This function receives an array of objects that contains all squares, looks at the square names and finds the number in the square name. 
+ * It then returns this number.
+ * @param {*} squares = The array of objects with all the squares.
+ * @param {*} i = The index number with the array of the specific square the function is supposed to look at.
+ * @returns number of the square the function was supposed to examine.
+ */
+ function findNumberOfThisSquare(squares, i) {
+    if (squares[i].name.length === 3) {
+        let numberOfThisSquare = Number(squares[i].name[1] + squares[i].name[2]);
+        return numberOfThisSquare;
+    } else if (squares[i].name.length === 2) {
+        let numberOfThisSquare = Number(squares[i].name[1]);
+        return numberOfThisSquare;
+    } else {
+        console.log(`Unexpected error, square's name is ${squares[i].name}!`)
+    }   
+}
+
+/**
  * Iterates through all squares of the playing field and counts the mines in all adjacent squares.
  * It then adds this information for each square.
  */
@@ -483,25 +502,6 @@ function startTimer() {
         counter ++;
         document.getElementById('timer').innerText = counter;
     }, 1000);
-}
-
-/**
- * This function receives an array of objects that contains all squares, looks at the square names and finds the number in the square name. 
- * It then returns this number.
- * @param {*} squares = The array of objects with all the squares.
- * @param {*} i = The index number with the array of the specific square the function is supposed to look at.
- * @returns number of the square the function was supposed to examine.
- */
-function findNumberOfThisSquare(squares, i) {
-    if (squares[i].name.length === 3) {
-        let numberOfThisSquare = Number(squares[i].name[1] + squares[i].name[2]);
-        return numberOfThisSquare;
-    } else if (squares[i].name.length === 2) {
-        let numberOfThisSquare = Number(squares[i].name[1]);
-        return numberOfThisSquare;
-    } else {
-        console.log(`Unexpected error, square's name is ${squares[i].name}!`)
-    }   
 }
 
 /**

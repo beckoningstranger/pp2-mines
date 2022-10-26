@@ -167,7 +167,7 @@ input {
 }
 
 #explanations * {
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 #explanations-heading {
@@ -208,18 +208,23 @@ input {
     justify-content: center;
 }
 
-@media screen and (min-width:540) {
+@media screen and (min-width:540px) {
 
     #explanations {
         padding: 5px;
     }
 
     #explanations * {
+        font-size: 1.5rem;
         padding: 5px;
     }
 
     #explanations > div {
-        width: 80vw;
+        width: 90vw;
+    }
+
+    #explanations-heading {
+        font-size: 2rem;
     }
 }
 
@@ -234,7 +239,7 @@ input {
     }
 
     #explanations > div {
-        width: 70vw;
+        width: 80vw;
     }
 
     div.image-right {
@@ -256,9 +261,5 @@ input {
 
     #explanations > div {
         width: 900px;
-    }
-
-    #explanations-heading {
-        font-size: 1.5rem;
     }
 }
