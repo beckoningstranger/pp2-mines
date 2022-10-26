@@ -16,11 +16,16 @@ let height = document.getElementById('height').value;
 let width = document.getElementById('width').value;
 let mines = document.getElementById('mines').value;
 let customSettingStartButton = document.getElementById('custom-difficulty-start-button');
-var mobileFriendlyMode = 0;
+var useWholeScreenWidth = 0;
 var myTimer;
 
 startButton.addEventListener('click', function() {
     difficultySettingsMenu.style.display = 'flex';
+    // If viewport is too small for the big playing field of a hard game, just hide it:
+    let viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    if ( viewport < 1024) {
+        document.getElementById('hard-setting').style.display = 'none';
+    }
     startMenu.style.display = 'none';
 });
 
@@ -131,7 +136,7 @@ htpBackButton.addEventListener('click', function() {
 
         // Restart Timer
         startTimer();
-        if (mobileFriendlyMode === 1) {
+        if (useWholeScreenWidth === 1) {
             adjustPlayingFieldToViewport();
         }
     });
@@ -168,7 +173,7 @@ htpBackButton.addEventListener('click', function() {
     // Start Timer
     startTimer();
 
-    if (mobileFriendlyMode === 1) {
+    if (useWholeScreenWidth === 1) {
         adjustPlayingFieldToViewport();
     }
     
@@ -501,7 +506,7 @@ function findNumberOfThisSquare(squares, i) {
 /**
  * This function finds the viewport height and width of the user's device. It then adjusts the square size
  * so that the screen real estate is used better. This results in bigger buttons and a better user experience.
- * Font size of everything that's visible while playing is also adjusted to 5vw.
+ * Font size of everything that's visible while playing is also adjusted to 4vw.
  */
 function adjustPlayingFieldToViewport() {
     console.log('Adjusting playing field to viewport');
@@ -519,7 +524,7 @@ function adjustPlayingFieldToViewport() {
     }
 
     // Calculate and set needed vertical space
-    let neededVerticalSpace = (squareWidth * (numberOfRows + 5));
+    let neededVerticalSpace = (squareWidth * numberOfRows) + (squareWidth * 3);
     console.log(neededVerticalSpace);
     if (neededVerticalSpace > vh) {
         let verticalHeight = document.getElementById('game-area');
@@ -532,11 +537,12 @@ function adjustPlayingFieldToViewport() {
     // Adjust font size of top menu
     let topMenu = document.getElementById('top-menu');
     for (child of topMenu.children) {
-        child.style.fontSize = "5vw";
+        child.style.fontSize = "4vw";
     }
+    document.getElementsByTagName('i').style.fontSize = "5px"
 
     // Adjust font size of squares
     for (square of squares) {
-        square.style.fontSize = "5vw";
+        square.style.fontSize = "4vw";
     }
 }

@@ -6,7 +6,6 @@
     border: none;
     box-sizing: border-box;
     font-family: 'Bangers', sans-serif;
-    font-size: 1.5rem;
     font-weight: 400;
 }
 
@@ -33,6 +32,7 @@ a {
 
 #logo {
     text-align: center;
+    font-size: 2rem;
     letter-spacing: 2px;
 }
 
@@ -40,11 +40,12 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 5px;
+    padding: 5px;
     border: 2px solid black;
 }
 
 .menu-buttons {
+    font-size: 1.5rem;
     margin: 5px;
     width: 220px;
     border: 2px solid black;
@@ -69,7 +70,7 @@ a {
 }
 
 #difficulty-settings > div > button * {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 #custom-difficulty-settings {    
@@ -89,7 +90,7 @@ a {
 }
 
 #custom-difficulty-settings-instructions {
-    width: 300px;
+    width: 270px;
 }
 
 .input-field-number {
@@ -115,10 +116,6 @@ input {
     flex-direction: column;
     align-content: center;
     justify-content: center;
-}
-
-#playing-field-area * {
-    font-size: 1rem;
 }
 
 #top-menu {
@@ -167,7 +164,6 @@ input {
 
 #explanations {
     border: 2px solid black;
-    padding: 5px;
 }
 
 #explanations * {
@@ -180,34 +176,24 @@ input {
 
 #explanations > div {
     text-align: center;
-    width: 70vw;
-    margin-top: 30px;
-}
-
-.image-right {
-    margin-left: 30px;
-}
-
-.image-left {
-    margin-right: 30px;
+    padding-top: 20px;
 }
 
 .explanations-image-right {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .explanations-image-left {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .explanation-with-picture {
-    width: 30vw;
     display: flex;
     align-items: center;
 }
@@ -222,3 +208,57 @@ input {
     justify-content: center;
 }
 
+@media screen and (min-width:540) {
+
+    #explanations {
+        padding: 5px;
+    }
+
+    #explanations * {
+        padding: 5px;
+    }
+
+    #explanations > div {
+        width: 80vw;
+    }
+}
+
+@media screen and (min-width:768px) {
+
+    .explanations-image-left {
+        flex-direction: row;
+    }
+
+    .explanations-image-right {
+        flex-direction: row-reverse;
+    }
+
+    #explanations > div {
+        width: 70vw;
+    }
+
+    div.image-right {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    div.image-left {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (min-width:1024px) {
+
+    #explanations * {
+        font-size: 1.2rem;
+    }
+
+    #explanations > div {
+        width: 900px;
+    }
+
+    #explanations-heading {
+        font-size: 1.5rem;
+    }
+}
