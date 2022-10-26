@@ -140,6 +140,7 @@ input {
     margin: 1px;
     color: rgba(102, 79, 79, 0);
     border-radius: 3px;
+    border: 1px solid black;
 }
 
 .square:hover {
@@ -202,11 +203,45 @@ input {
     font-size: 1.5rem;
 }
 
+/* Settings Menu */
+
 #settings {
     display: none;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
+
+#settings > div {
+    width: 80vw;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#settings > div > p {
+    padding-bottom: 10px;
+}
+
+#settings * {
+    font-size: 1.5rem;
+}
+
+.color-picker-box {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    border: 2px solid black;
+}
+
+#use-whole-screen-width {
+    background-color: red;
+    border: 2px solid black;
+    width: 220px;
+}
+
+
+/* Medie Queries */
 
 @media screen and (min-width:540px) {
 
@@ -225,6 +260,10 @@ input {
 
     #explanations-heading {
         font-size: 2rem;
+    }
+
+    #settings > div {
+        width: 500px;
     }
 }
 
