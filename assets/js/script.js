@@ -137,7 +137,6 @@ settingsButton.addEventListener('click', function() {
     // Create event listener for the restart button
     let restartButton = document.getElementById('restart-button');
     restartButton.addEventListener('click', function() {
-
         // Reset timer
         clearInterval(myTimer);
 
@@ -163,7 +162,7 @@ settingsButton.addEventListener('click', function() {
         // Restart Timer
         startTimer();
         if (useWholeScreenWidth === 1) {
-            adjustPlayingFieldToViewport();
+            adjustPlayingFieldToViewportWidth();
         }
     });
 
@@ -200,7 +199,7 @@ settingsButton.addEventListener('click', function() {
     startTimer();
 
     if (useWholeScreenWidth === 1) {
-        adjustPlayingFieldToViewport();
+        adjustPlayingFieldToViewportWidth();
     }
 }
 
@@ -557,8 +556,8 @@ function startTimer() {
  * so that the screen real estate is used better. This results in bigger buttons and a better user experience.
  * Font size of everything that's visible while playing is also adjusted to 4vw.
  */
-function adjustPlayingFieldToViewport() {
-    console.log('Adjusting playing field to viewport');
+function adjustPlayingFieldToViewportWidth() {
+    console.log('Adjusting playing field to viewport width');
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     const numberOfColumns = document.getElementsByClassName('row-of-mines')[0].childElementCount;
@@ -582,14 +581,41 @@ function adjustPlayingFieldToViewport() {
         console.log('No need to adjust vertical space');
     }
 
-    // Adjust font size of top menu
-    let topMenu = document.getElementById('top-menu');
-    for (child of topMenu.children) {
-        child.style.fontSize = "4vw";
+    // // Adjust font size of top menu
+    // let topMenu = document.getElementById('top-menu');
+    // for (child of topMenu.children) {
+    //     child.style.fontSize = "2rem";
+    // }
+
+    // // Adjust font size of squares
+    // for (square of squares) {
+    //     square.style.fontSize = "2rem";
+    // }
+}
+
+function adjustPlayingFieldToViewportHeight() {
+    console.log('Adjusting playing field to viewport width');
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    const numberOfColumns = document.getElementsByClassName('row-of-mines')[0].childElementCount;
+    const numberOfRows = document.getElementsByClassName('row-of-mines').length;
+    
+    // Calculate and set how big the square should be to fit and fill the screen vertically
+    let squareWidth = Math.floor(vh / numberOfRows * 0.8);
+    let squares = document.getElementsByClassName('square');
+    for (square of squares) {
+        square.style.height = `${squareWidth}px`;
+        square.style.width = `${squareWidth}px`;
     }
 
-    // Adjust font size of squares
-    for (square of squares) {
-        square.style.fontSize = "4vw";
-    }
+    // // Adjust font size of top menu
+    // let topMenu = document.getElementById('top-menu');
+    // for (child of topMenu.children) {
+    //     child.style.fontSize = "2rem";
+    // }
+
+    // // Adjust font size of squares
+    // for (square of squares) {
+    //     square.style.fontSize = "2rem";
+    // }
 }
