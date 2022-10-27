@@ -3,13 +3,17 @@ let height = document.getElementById('height').value;
 let width = document.getElementById('width').value;
 let mines = document.getElementById('mines').value;
 var desktopMode = 0;
+// This timer is started when users start to play and stops either when they win or lose
 var myTimer;
+// The purpose of this is to have an abort signal for an event trigger so users can't play on after winning or losing
 var controller;
+// Check for a cookie and apply settings accordingly
 checkCookie();
 
 let startButton = document.getElementById('start-game-button');
 startButton.addEventListener('click', function() {
     // On Galaxy Fold, hide the Hard Setting in portrait mode. It would appear between easy and medium and it's not playable anyway.
+    // Add credit for this next line!
     let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     if (viewportWidth === 280) {
         document.getElementById('hard-setting').style.display = 'none';
@@ -405,7 +409,7 @@ function findMinesInSurroundingSquares(squares) {
 }
 
 /**
- * Generates HTML to append to the DOM. It creates buttons that contain all necessary information to play the game as classes
+ * Generates HTML to append to the DOM. It creates buttons that contain all necessary information to play the game as classes.
  * @param {*} playingFieldInformation 
  * @param {*} rows 
  */
@@ -542,6 +546,12 @@ function leftClickOnSquare() {
             }
 }
 
+/**
+ * This function determines the behavior when users right click a square. 
+ * If a square was not marked as being marked, it marks it by giving it a black background color and decreases the mine counter.
+ * If a square was already marked, it unmarks it by resetting the background color and increases the mine counter.
+ * @param {*} event 
+ */
 function rightClickOnSquare(event) {
     event.preventDefault();
     switch (this.style.backgroundColor) {
@@ -563,7 +573,7 @@ function rightClickOnSquare(event) {
 }
 
 /**
- * This function simply start the counter at the top of the playing field.
+ * This function simply starts the counter at the top of the playing field.
  */
 function startTimer() {
     let counter = 0;
@@ -641,13 +651,22 @@ function adjustPlayingFieldToViewportHeight() {
     // }
 }
 
-
-// This was adapted from https://www.w3schools.com/js/js_cookies.asp
+/**
+ * This function takes a name and value for a cookie and sets it.
+ * This was adapted from https://www.w3schools.com/js/js_cookies.asp, I cut the part where it sets an expiry date for the cookie out.
+ * @param {*} cname 
+ * @param {*} cvalue 
+ */
 function setCookie(cname, cvalue) {
     document.cookie = `${cname}=${cvalue};`;
 }
 
-// This was taken from https://www.w3schools.com/js/js_cookies.asp
+/**
+ * This function takes the name of a cookie and returns its value.
+ * This was taken from https://www.w3schools.com/js/js_cookies.asp
+ * @param {*} cname is the cookie's name.
+ * @returns the cookie's value.
+ */
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -664,7 +683,10 @@ function getCookie(cname) {
     return "";
   }
 
-// This was adapted from https://www.w3schools.com/js/js_cookies.asp
+/**
+ * This function looks for cookies for background color and desktop mode and sets these settings accordingly
+ * This was adapted from https://www.w3schools.com/js/js_cookies.asp
+ */ 
 function checkCookie() {
     let prefcolor = getCookie("prefcolor");
     let desktopModeCookie = getCookie("desktopModeCookie");
@@ -687,6 +709,10 @@ function checkCookie() {
     console.log("desktopMode is set to " + desktopMode)
   }
 
+/**
+ * This function looks at viewport width and height to determine what mode the user is in.
+ * @returns "landscape" or "portrait" depending on what mode the user is in
+ */
   function landscapeOrPortraitMode() {
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
