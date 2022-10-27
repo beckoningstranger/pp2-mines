@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono&display=swap');
 
+/* General styling */
+
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +25,10 @@ a {
     display: flex;
     justify-content: center;
     height: 100vh;
+    background-color: #99bdd8;
 }
+
+/* Main Menu */ 
 
 #start-menu {
     display: inline-grid;
@@ -51,11 +56,19 @@ a {
     border: 2px solid black;
 }
 
+/* Difficulty Settings Picker*/
+
 #difficulty-settings {
     display: none;
+    flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
+}
+
+#difficulty-settings > div {
+    display: flex;
+    flex-direction: row;
 }
 
 #difficulty-settings > div > button {
@@ -73,6 +86,19 @@ a {
     font-size: 1.5rem;
 }
 
+#difficulty-settings > div > #difficulty-settings-back-button {
+    margin: 5px;
+    height: 50px;
+    width: 280px;
+    border: 2px solid black;
+}
+
+/* Custom Difficulty Settings Menu */
+
+table * {
+    font-size: 1rem;
+}
+
 #custom-difficulty-settings {    
     text-align: center;
     display: none;
@@ -87,10 +113,13 @@ a {
 #custom-difficulty-settings button {
     border: 2px solid black;
     width: 220px;
+    font-size: 1rem;
+    margin-top: 5px;
 }
 
 #custom-difficulty-settings-instructions {
-    width: 270px;
+    width: 275px;
+    font-size: 1.2rem;
 }
 
 .input-field-number {
@@ -101,12 +130,6 @@ input {
     border: 1px solid black;
     width: 210px;
     text-align: center;
-}
-
-/* Game Area */
-
-#game-area {
-    background-color: #99bdd8;
 }
 
 /* Playing Field */
@@ -128,13 +151,14 @@ input {
 }
 
 #top-menu > span {
+    font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .square {
-    font-size: 1rem;
+    font-size: 1.2rem;
     height: 30px;
     width: 30px;
     margin: 1px;
@@ -155,6 +179,9 @@ input {
     font-family: 'Space Mono';
     font-weight: 600;
 }
+
+
+/* How To Play Page*/
 
 #how-to-play {
     display: none;
@@ -242,9 +269,17 @@ input {
 }
 
 
-/* Medie Queries */
+/* Media Queries */
 
 @media screen and (min-width:540px) {
+
+    /* Playing Field*/
+
+    .square {
+        font-size: 1.5rem;
+    }
+
+    /* How to Play Page */
 
     #explanations {
         padding: 5px;
@@ -263,12 +298,16 @@ input {
         font-size: 2rem;
     }
 
+    /* Settings */
+
     #settings > div {
         width: 500px;
     }
 }
 
 @media screen and (min-width:768px) {
+
+    /* How To Play Page */
 
     .explanations-image-left {
         flex-direction: row;
@@ -294,6 +333,8 @@ input {
 }
 
 @media screen and (min-width:1024px) {
+
+    /* How To Play Page */
 
     #explanations > div {
         width: 900px;

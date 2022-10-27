@@ -12,19 +12,12 @@ checkCookie();
 
 let startButton = document.getElementById('start-game-button');
 startButton.addEventListener('click', function() {
-    // On Galaxy Fold, hide the Hard Setting in portrait mode. It would appear between easy and medium and it's not playable anyway.
-    // Add credit for this next line!
-    let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    if (viewportWidth === 280) {
-        document.getElementById('hard-setting').style.display = 'none';
-    }
     let difficultySettingsMenu = document.getElementById('difficulty-settings');
     difficultySettingsMenu.style.display = 'flex';
     startMenu.style.display = 'none';
 
     let easySetting = document.getElementById('easy-setting');
     easySetting.addEventListener('click', function() {
-        console.log('You clicked "Easy"');
         difficultySettingsMenu.style.display = 'none';
         width = 8;
         height = 8;
@@ -34,7 +27,6 @@ startButton.addEventListener('click', function() {
     
     let mediumSetting = document.getElementById('medium-setting');
     mediumSetting.addEventListener('click', function() {
-        console.log('You clicked "Medium"');
         difficultySettingsMenu.style.display = 'none';
         width = 16;
         height = 8;
@@ -44,7 +36,6 @@ startButton.addEventListener('click', function() {
     
     let hardSetting = document.getElementById('hard-setting');
     hardSetting.addEventListener('click', function() {
-        console.log('You clicked "Hard"');
         // If viewport width is too small for the big playing field of a hard game, tell user about it:
         let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
         if ( viewportWidth < 1024) {
@@ -58,11 +49,16 @@ startButton.addEventListener('click', function() {
         }
     });
 
+    let difficultySettingsMenuBackButton = document.getElementById('difficulty-settings-back-button');
+    difficultySettingsMenuBackButton.addEventListener('click', function() {
+        difficultySettingsMenu.style.display = 'none';        
+        startMenu.style.display = 'inline-grid';
+    });
+
+    let customDifficultySettingMenu = document.getElementById('custom-difficulty-settings');
     let customSetting = document.getElementById('custom-setting');    
     customSetting.addEventListener('click', function() {
-        console.log('You clicked "Custom"');
-        difficultySettingsMenu.style.display = 'none';
-        let customDifficultySettingMenu = document.getElementById('custom-difficulty-settings');
+        difficultySettingsMenu.style.display = 'none';        
         customDifficultySettingMenu.style.display = 'inline-grid';
     });
     
@@ -72,7 +68,13 @@ startButton.addEventListener('click', function() {
         height = document.getElementById('width').value;
         mines = document.getElementById('mines').value;
         startGame();
-    })
+    });
+
+    let customSettingBackButton = document.getElementById('custom-difficulty-settings-back-button');
+    customSettingBackButton.addEventListener('click', function() {
+        customDifficultySettingMenu.style.display = 'none';
+        startMenu.style.display = 'inline-grid';
+    });
 
 });
 
@@ -82,15 +84,13 @@ howToPlayButton.addEventListener('click', function() {
     let howToPlayPage = document.getElementById('how-to-play');
     howToPlayPage.style.display = 'flex';
     document.getElementById('game-area').style.height = "auto";
-    console.log('You clicked "How to Play"');
 
     let htpBackButton = document.getElementById('how-to-play-back-button');
     htpBackButton.addEventListener('click', function() {
         startMenu.style.display = 'inline-grid';
         howToPlayPage.style.display = 'none';
         document.getElementById('game-area').style.height = "100vh";
-        console.log('You clicked "Back To Menu"');
-    })
+    });
 });
 
 let settingsButton = document.getElementById('settings-button');
@@ -103,14 +103,12 @@ settingsButton.addEventListener('click', function() {
     startMenu.style.display = 'none';
     let settingsMenu = document.getElementById('settings');
     settingsMenu.style.display = 'flex';
-    console.log('You clicked "Settings"');
     let setBackButton = document.getElementById('settings-back-button');
     setBackButton.addEventListener('click', function() {
         startMenu.style.display = 'inline-grid';
         settingsMenu.style.display = 'none';
         setCookie("prefcolor", document.getElementById('game-area').style.backgroundColor);
         setCookie("desktopModeCookie", document.getElementById('desktop-mode-button').innerText);
-        console.log('You clicked "Back To Menu"');
     });
     desktopModeButton.addEventListener('click', function() {
         if (this.innerText === 'Activated') {
@@ -124,12 +122,12 @@ settingsButton.addEventListener('click', function() {
         }
     });
     let colorOptions = document.getElementsByClassName('color-picker-box');
-    for (option of colorOptions) {
+    for (let option of colorOptions) {
         let wantedColor = '#' + option.id.slice(-6);
         option.style.backgroundColor = wantedColor;
         option.addEventListener('click', function() {
             document.getElementById('game-area').style.backgroundColor = wantedColor;
-        })
+        });
     }
 });
 
@@ -139,7 +137,6 @@ settingsButton.addEventListener('click', function() {
  * Also contains event listeners for the restart and quit button
  */
  function startGame() {
-    console.log(`User wants a playing field that's ${width} x ${height} with ${mines} mines.`);
 
     // Make sure the custom difficulty settings menu is hidden:
     const customDifficultySettings = document.getElementById('custom-difficulty-settings');
@@ -175,13 +172,9 @@ settingsButton.addEventListener('click', function() {
 
         // Adjust Playing Field unless Desktop Mode is activated
         if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
-            console.log('Adjusting to viewport width');
             adjustPlayingFieldToViewportWidth();
         } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
-            console.log('Adjusting to viewport height');
             adjustPlayingFieldToViewportHeight();
-        } else {
-            console.log(`No adjusting, desktop mode is set to ${desktopMode}.`)
         }
     });
 
@@ -219,13 +212,9 @@ settingsButton.addEventListener('click', function() {
 
     // Adjust Playing Field unless Desktop Mode is activated
     if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
-        console.log('Adjusting to viewport width');
         adjustPlayingFieldToViewportWidth();
     } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
-        console.log('Adjusting to viewport height');
         adjustPlayingFieldToViewportHeight();
-    } else {
-        console.log(`No adjusting, desktop mode is set to ${desktopMode}.`)
     }
 }
 
@@ -378,9 +367,7 @@ function findSurroundingSquares(squares, rows, columns) {
     } else if (squares[i].name.length === 2) {
         let numberOfThisSquare = Number(squares[i].name[1]);
         return numberOfThisSquare;
-    } else {
-        console.log(`Unexpected error, square's name is ${squares[i].name}!`)
-    }   
+    }
 }
 
 /**
@@ -460,7 +447,7 @@ function makePlayingFieldInteractive() {
 
     // Right-Click Event:
     for (let square of squares) {
-        square.addEventListener('contextmenu', rightClickOnSquare);
+        square.addEventListener('contextmenu', rightClickOnSquare, { signal: controller.signal });
     }
 
     // Long Press Event:
@@ -475,14 +462,14 @@ function makePlayingFieldInteractive() {
     for (let square of squares) {
         square.addEventListener('mousedown', function() {
             document.getElementById('smileyface').innerText = "O_O";
-        })
+        }, { signal: controller.signal });
     }
 
     // Mouseup Event:
     for (let square of squares) {
         square.addEventListener('mouseup', function() {
             document.getElementById('smileyface').innerText = "^_^";
-        })
+        }, { signal: controller.signal });
     }
 }
 
@@ -523,10 +510,9 @@ function leftClickOnSquare() {
             if (this.classList.contains('has-mine')) {
                 // Lose behavior
                 clearInterval(myTimer);
-                console.log('GAME OVER');
                 document.getElementById('actual-playing-field').style.backgroundColor = "red";
                 let minedSquares = document.getElementsByClassName('has-mine');
-                for (square of minedSquares) {
+                for (let square of minedSquares) {
                     square.style.backgroundColor = "black";
                 }
                 document.getElementById('smileyface').innerText = "X_X";
@@ -535,16 +521,14 @@ function leftClickOnSquare() {
             } else {
                 if (this.classList.contains('unrevealed')) {
                     clickedSquares++;
-                    console.log(`${clickedSquares}/${squaresToWin}`);
                     this.classList.remove('unrevealed');
                 }
                 // Win behavior
                 if (clickedSquares === squaresToWin) {
                     clearInterval(myTimer);
-                    console.log('YOU WIN!');
                     document.getElementById('actual-playing-field').style.backgroundColor = "green";
                     let minedSquares = document.getElementsByClassName('has-mine');
-                    for (square of minedSquares) {
+                    for (let square of minedSquares) {
                         square.style.backgroundColor = "black";
                     }
                     document.getElementById('mine-countdown').innerText = 0;
@@ -596,14 +580,12 @@ function rightClickOnSquare(event) {
         case "":
             this.style.backgroundColor = "black";
             this.classList.add('marked-as-mine');
-            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
             // Update mine counter
             document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
             break;
         case "black":
             this.style.backgroundColor = "";
             this.classList.remove('marked-as-mine');
-            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
             // Update mine counter
             document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
             break;
@@ -615,14 +597,12 @@ function longPressOnSquare(square) {
         case "":
             square.style.backgroundColor = "black";
             square.classList.add('marked-as-mine');
-            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
             // Update mine counter
             document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
             break;
         case "black":
             square.style.backgroundColor = "";
             square.classList.remove('marked-as-mine');
-            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
             // Update mine counter
             document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
             break;
@@ -646,7 +626,7 @@ function startTimer() {
  * Font size of everything that's visible while playing is also adjusted to 4vw.
  */
 function adjustPlayingFieldToViewportWidth() {
-    console.log('Adjusting playing field to viewport width');
+    // The code for getting the viewport height and width was taken from https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     const numberOfColumns = document.getElementsByClassName('row-of-mines')[0].childElementCount;
@@ -655,7 +635,7 @@ function adjustPlayingFieldToViewportWidth() {
     // Calculate and set how big the square should be to fit and fill the screen horizontally
     let squareWidth = Math.floor(vw / numberOfColumns * 0.8);
     let squares = document.getElementsByClassName('square');
-    for (square of squares) {
+    for (let square of squares) {
         square.style.height = `${squareWidth}px`;
         square.style.width = `${squareWidth}px`;
     }
@@ -665,47 +645,21 @@ function adjustPlayingFieldToViewportWidth() {
     if (neededVerticalSpace > vh) {
         let verticalHeight = document.getElementById('game-area');
         verticalHeight.style.height = `${neededVerticalSpace}px`;
-        console.log('Adjusting vertical space...')
-    } else {
-        console.log('No need to adjust vertical space');
     }
-
-    // // Adjust font size of top menu
-    // let topMenu = document.getElementById('top-menu');
-    // for (child of topMenu.children) {
-    //     child.style.fontSize = "2rem";
-    // }
-
-    // // Adjust font size of squares
-    // for (square of squares) {
-    //     square.style.fontSize = "2rem";
-    // }
 }
 
 function adjustPlayingFieldToViewportHeight() {
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    // The code for getting the viewport height and width was taken from https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    const numberOfColumns = document.getElementsByClassName('row-of-mines')[0].childElementCount;
     const numberOfRows = document.getElementsByClassName('row-of-mines').length;
     
     // Calculate and set how big the square should be to fit and fill the screen vertically
     let squareWidth = Math.floor(vh / numberOfRows * 0.8);
     let squares = document.getElementsByClassName('square');
-    for (square of squares) {
+    for (let square of squares) {
         square.style.height = `${squareWidth}px`;
         square.style.width = `${squareWidth}px`;
     }
-
-    // // Adjust font size of top menu
-    // let topMenu = document.getElementById('top-menu');
-    // for (child of topMenu.children) {
-    //     child.style.fontSize = "2rem";
-    // }
-
-    // // Adjust font size of squares
-    // for (square of squares) {
-    //     square.style.fontSize = "2rem";
-    // }
 }
 
 /**
@@ -747,23 +701,12 @@ function getCookie(cname) {
 function checkCookie() {
     let prefcolor = getCookie("prefcolor");
     let desktopModeCookie = getCookie("desktopModeCookie");
-    if (prefcolor != "") {
-        console.log('Your preferred color is ' + prefcolor);
-    } else {
-        console.log('Could not find a cookie with a set color');
-    }
-    if (desktopModeCookie != "") {
-        console.log('Desktop Mode Cookie is set to ' + desktopModeCookie);
-    } else {
-        console.log('Could not find a cookie governing Desktop Mode');
-    }
     document.getElementById('game-area').style.backgroundColor = prefcolor;
     if (desktopModeCookie === "Activated") {
         desktopMode = 1;
     } else {
         desktopMode = 0;
     }
-    console.log("desktopMode is set to " + desktopMode)
   }
 
 /**
@@ -771,14 +714,12 @@ function checkCookie() {
  * @returns "landscape" or "portrait" depending on what mode the user is in
  */
   function landscapeOrPortraitMode() {
+    // The code for getting the viewport height and width was taken from https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    console.log(`Viewport width is ${vw} and Viewport height is ${vh}.`)
     if (vw > vh) {
-        console.log('Returning "landscape".');
         return "landscape";
     } else {
-        console.log('Returning "portrait".');
         return "portrait";
     }
   }

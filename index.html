@@ -128,25 +128,26 @@
                     <p>8x8</p>
                     <p>10 Mines</p>
                 </button>
-                <button id="hard-setting">
-                    <p>Hard</p>
-                    <p>26x19</p>
-                    <p>99 Mines</p>
-                </button>
-            </div>
-            <div>
                 <button id="medium-setting">
                     <p>Medium</p>
                     <p>8x16</p>
                     <p>25 Mines</p>
-                </button>                
+                </button>
+            </div>
+            <div>
+                <button id="hard-setting">
+                    <p>Hard</p>
+                    <p>26x19</p>
+                    <p>99 Mines</p>
+                </button>                            
                 <button id="custom-setting">
                     <p>Customize settings</p>
                 </button>
             </div>
+            <div><button id="difficulty-settings-back-button" class="menu-buttons">Back to Menu</button></div>
         </div>
         <div id="custom-difficulty-settings">
-            <p id="custom-difficulty-settings-instructions">Please select your custom difficulty settings:</p>
+            <p id="custom-difficulty-settings-instructions">Select your custom difficulty settings:</p>
             <table>
                 <tr>
                     <td><label for="height">Height:</label></td>
@@ -160,8 +161,9 @@
                     <td><label for="mines">Mines:</label></td>
                     <td><input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" required></td>
                 </tr>
-                <tr><td colspan="2"><button id="custom-difficulty-start-button">Start Playing!</button></td></tr>
+                <tr><td colspan="2"><button id="custom-difficulty-start-button">Start Playing</button></td></tr>
             </table>
+            <div><button id="custom-difficulty-settings-back-button" class="menu-buttons">Back to Menu</button></div>
         </div>
         <div id="playing-field-area">
             <div><p id="top-menu"><span id="restart-button"><i class="fa-solid fa-rotate-left"></i></span><span>Time<br><span id="timer">000</span></span><span id="smileyface">^_^</span></span><span>Mines<br><span id="mine-countdown">00</span></span><span id="quit-button"><i class="fa-solid fa-power-off"></i></span></p></div>
