@@ -5,6 +5,7 @@ let mines = document.getElementById('mines').value;
 var useWholeScreenWidth = 0;
 var myTimer;
 var controller;
+checkCookie();
 
 let startButton = document.getElementById('start-game-button');
 startButton.addEventListener('click', function() {
@@ -90,6 +91,11 @@ howToPlayButton.addEventListener('click', function() {
 
 let settingsButton = document.getElementById('settings-button');
 settingsButton.addEventListener('click', function() {
+    let useWholeScreenWidthButton = document.getElementById('use-whole-screen-width');
+    if (useWholeScreenWidth === 1) {
+        useWholeScreenWidthButton.style.backgroundColor = 'LawnGreen';  
+        useWholeScreenWidthButton.innerText = 'Activated';
+    }
     startMenu.style.display = 'none';
     let settingsMenu = document.getElementById('settings');
     settingsMenu.style.display = 'flex';
@@ -98,9 +104,10 @@ settingsButton.addEventListener('click', function() {
     setBackButton.addEventListener('click', function() {
         startMenu.style.display = 'inline-grid';
         settingsMenu.style.display = 'none';
+        setCookie("prefcolor", document.getElementById('game-area').style.backgroundColor);
+        setCookie("screenWidth", document.getElementById('use-whole-screen-width').innerText);
         console.log('You clicked "Back To Menu"');
     });
-    let useWholeScreenWidthButton = document.getElementById('use-whole-screen-width');
     useWholeScreenWidthButton.addEventListener('click', function() {
         if (this.innerText === 'Activated') {
             this.style.backgroundColor = 'red';
@@ -619,3 +626,49 @@ function adjustPlayingFieldToViewportHeight() {
     //     square.style.fontSize = "2rem";
     // }
 }
+
+
+// This was adapted from https://www.w3schools.com/js/js_cookies.asp
+function setCookie(cname, cvalue) {
+    document.cookie = `${cname}=${cvalue};`;
+}
+
+// This was taken from https://www.w3schools.com/js/js_cookies.asp
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+// This was adapted from https://www.w3schools.com/js/js_cookies.asp
+function checkCookie() {
+    let prefcolor = getCookie("prefcolor");
+    let screenWidth = getCookie("screenWidth");
+    if (prefcolor != "") {
+        console.log('Your preferred color is ' + prefcolor);
+    } else {
+        console.log('Could not find a cookie with a set color');
+    }
+    if (screenWidth != "") {
+        console.log('Screen Width is set to ' + screenWidth);
+    } else {
+        console.log('Could not find a cookie governing screen width');
+    }
+    document.getElementById('game-area').style.backgroundColor = prefcolor;
+    if (screenWidth === "Activated") {
+        useWholeScreenWidth = 1;
+    } else {
+        useWholeScreenWidth = 0;
+    }
+    console.log("useWholeScreenWidth is set to " + useWholeScreenWidth)
+  }
