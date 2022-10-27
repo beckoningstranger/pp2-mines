@@ -463,6 +463,14 @@ function makePlayingFieldInteractive() {
         square.addEventListener('contextmenu', rightClickOnSquare);
     }
 
+    // Long Press Event:
+    for (let square of squares) {
+        // This function was taken from https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone
+        onLongPress(square, function(element) {
+            longPressOnSquare(square);
+        });
+    }
+
     // Mousedown Event:
     for (let square of squares) {
         square.addEventListener('mousedown', function() {
@@ -476,6 +484,36 @@ function makePlayingFieldInteractive() {
             document.getElementById('smileyface').innerText = "^_^";
         })
     }
+}
+
+
+/**
+ * This whole function taken from https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone with minimal editing.
+ * @param {} element 
+ * @param {*} callback 
+ */
+function onLongPress(element, callback) {
+    var timeoutId;
+
+    element.addEventListener('touchstart', function(e) {
+        timeoutId = setTimeout(function() {
+            timeoutId = null;
+            e.stopPropagation();
+            callback(e.target);
+        }, 2000);
+    }, {passive: true});
+
+    element.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    element.addEventListener('touchend', function () {
+        if (timeoutId) clearTimeout(timeoutId);
+    }, {passive: true});
+
+    element.addEventListener('touchmove', function () {
+        if (timeoutId) clearTimeout(timeoutId);
+    }, {passive: true});
 }
 
 function leftClickOnSquare() {
@@ -565,6 +603,25 @@ function rightClickOnSquare(event) {
         case "black":
             this.style.backgroundColor = "";
             this.classList.remove('marked-as-mine');
+            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
+            // Update mine counter
+            document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
+            break;
+    }
+}
+
+function longPressOnSquare(square) {
+    switch (square.style.backgroundColor) {
+        case "":
+            square.style.backgroundColor = "black";
+            square.classList.add('marked-as-mine');
+            console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
+            // Update mine counter
+            document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
+            break;
+        case "black":
+            square.style.backgroundColor = "";
+            square.classList.remove('marked-as-mine');
             console.log(`Looks like you found ${document.getElementsByClassName('marked-as-mine').length}/${document.getElementsByClassName('has-mine').length} mines.`);
             // Update mine counter
             document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length - document.getElementsByClassName('marked-as-mine').length;
