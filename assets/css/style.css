@@ -161,6 +161,7 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 10px;
 }
 
 #explanations {
@@ -234,7 +235,7 @@ input {
     border: 2px solid black;
 }
 
-#use-whole-screen-width {
+#desktop-mode-button {
     background-color: red;
     border: 2px solid black;
     width: 220px;

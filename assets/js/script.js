@@ -2,7 +2,7 @@ let startMenu = document.getElementById('start-menu');
 let height = document.getElementById('height').value;
 let width = document.getElementById('width').value;
 let mines = document.getElementById('mines').value;
-var useWholeScreenWidth = 0;
+var desktopMode = 0;
 var myTimer;
 var controller;
 checkCookie();
@@ -47,8 +47,8 @@ startButton.addEventListener('click', function() {
             alert("Unfortunately your viewport is too small. If you're in portrait mode, try using your device in landscape mode or switch to a larger device.");
         } else {
             difficultySettingsMenu.style.display = 'none';
-            width = 26;
-            height = 18;
+            width = 19;
+            height = 26;
             mines = 99;
             startGame();   
         }
@@ -91,10 +91,10 @@ howToPlayButton.addEventListener('click', function() {
 
 let settingsButton = document.getElementById('settings-button');
 settingsButton.addEventListener('click', function() {
-    let useWholeScreenWidthButton = document.getElementById('use-whole-screen-width');
-    if (useWholeScreenWidth === 1) {
-        useWholeScreenWidthButton.style.backgroundColor = 'LawnGreen';  
-        useWholeScreenWidthButton.innerText = 'Activated';
+    let desktopModeButton = document.getElementById('desktop-mode-button');
+    if (desktopMode === 1) {
+        desktopModeButton.style.backgroundColor = 'LawnGreen';  
+        desktopModeButton.innerText = 'Activated';
     }
     startMenu.style.display = 'none';
     let settingsMenu = document.getElementById('settings');
@@ -105,18 +105,18 @@ settingsButton.addEventListener('click', function() {
         startMenu.style.display = 'inline-grid';
         settingsMenu.style.display = 'none';
         setCookie("prefcolor", document.getElementById('game-area').style.backgroundColor);
-        setCookie("screenWidth", document.getElementById('use-whole-screen-width').innerText);
+        setCookie("desktopModeCookie", document.getElementById('desktop-mode-button').innerText);
         console.log('You clicked "Back To Menu"');
     });
-    useWholeScreenWidthButton.addEventListener('click', function() {
+    desktopModeButton.addEventListener('click', function() {
         if (this.innerText === 'Activated') {
             this.style.backgroundColor = 'red';
             this.innerText = 'Deactivated';
-            useWholeScreenWidth = 0;
+            desktopMode = 0;
         } else if (this.innerText === 'Deactivated') {
             this.style.backgroundColor = 'LawnGreen';
             this.innerText = 'Activated';
-            useWholeScreenWidth = 1;
+            desktopMode = 1;
         }
     });
     let colorOptions = document.getElementsByClassName('color-picker-box');
@@ -168,8 +168,16 @@ settingsButton.addEventListener('click', function() {
 
         // Restart Timer
         startTimer();
-        if (useWholeScreenWidth === 1) {
+
+        // Adjust Playing Field unless Desktop Mode is activated
+        if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
+            console.log('Adjusting to viewport width');
             adjustPlayingFieldToViewportWidth();
+        } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
+            console.log('Adjusting to viewport height');
+            adjustPlayingFieldToViewportHeight();
+        } else {
+            console.log(`No adjusting, desktop mode is set to ${desktopMode}.`)
         }
     });
 
@@ -205,8 +213,15 @@ settingsButton.addEventListener('click', function() {
     // Start Timer
     startTimer();
 
-    if (useWholeScreenWidth === 1) {
+    // Adjust Playing Field unless Desktop Mode is activated
+    if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
+        console.log('Adjusting to viewport width');
         adjustPlayingFieldToViewportWidth();
+    } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
+        console.log('Adjusting to viewport height');
+        adjustPlayingFieldToViewportHeight();
+    } else {
+        console.log(`No adjusting, desktop mode is set to ${desktopMode}.`)
     }
 }
 
@@ -601,7 +616,6 @@ function adjustPlayingFieldToViewportWidth() {
 }
 
 function adjustPlayingFieldToViewportHeight() {
-    console.log('Adjusting playing field to viewport width');
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     const numberOfColumns = document.getElementsByClassName('row-of-mines')[0].childElementCount;
@@ -653,22 +667,35 @@ function getCookie(cname) {
 // This was adapted from https://www.w3schools.com/js/js_cookies.asp
 function checkCookie() {
     let prefcolor = getCookie("prefcolor");
-    let screenWidth = getCookie("screenWidth");
+    let desktopModeCookie = getCookie("desktopModeCookie");
     if (prefcolor != "") {
         console.log('Your preferred color is ' + prefcolor);
     } else {
         console.log('Could not find a cookie with a set color');
     }
-    if (screenWidth != "") {
-        console.log('Screen Width is set to ' + screenWidth);
+    if (desktopModeCookie != "") {
+        console.log('Desktop Mode Cookie is set to ' + desktopModeCookie);
     } else {
-        console.log('Could not find a cookie governing screen width');
+        console.log('Could not find a cookie governing Desktop Mode');
     }
     document.getElementById('game-area').style.backgroundColor = prefcolor;
-    if (screenWidth === "Activated") {
-        useWholeScreenWidth = 1;
+    if (desktopModeCookie === "Activated") {
+        desktopMode = 1;
     } else {
-        useWholeScreenWidth = 0;
+        desktopMode = 0;
     }
-    console.log("useWholeScreenWidth is set to " + useWholeScreenWidth)
+    console.log("desktopMode is set to " + desktopMode)
+  }
+
+  function landscapeOrPortraitMode() {
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    console.log(`Viewport width is ${vw} and Viewport height is ${vh}.`)
+    if (vw > vh) {
+        console.log('Returning "landscape".');
+        return "landscape";
+    } else {
+        console.log('Returning "portrait".');
+        return "portrait";
+    }
   }
