@@ -282,6 +282,8 @@ input {
 
 /* Media Queries */
 
+/* Small Devices (portrait phones, 540px and up */
+
 @media screen and (min-width:540px) {
 
     /* Playing Field*/
@@ -316,6 +318,8 @@ input {
     }
 }
 
+/* Medium Devices (tablets, 768px and up */
+
 @media screen and (min-width:768px) {
 
     /* How To Play Page */
@@ -342,6 +346,8 @@ input {
         padding-right: 10px;
     }
 }
+
+/* Devices like the iPad Mini and larger devices */
 
 @media screen and (min-width:1024px) {
 

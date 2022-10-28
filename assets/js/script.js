@@ -6,14 +6,15 @@ var mines;
 var desktopMode;
 // This timer is started when users start to play and stops either when they win or lose
 var myTimer;
-// The purpose of this is to have an abort signal for an event trigger so users can't play on after winning or losing
+// The purpose of the controller variable is to have an abort signal for the playing field's event triggers so users can't play on after winning or losing
+// This is where I learned how to do this: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 var controller;
 // Check for a cookie and apply settings accordingly
 checkCookie();
 initializeMenu();
 
 /**
- * This function sets the event listeners for the menus
+ * This function sets the event listeners for the menus and also sets parameters for the three set difficulty levels
  */
 function initializeMenu() {
     let startMenu = document.getElementById('start-menu');
@@ -488,7 +489,8 @@ function makePlayingFieldInteractive() {
 
 
 /**
- * This whole function taken from https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone with minimal editing.
+ * This whole function taken from https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone 
+ * with minimal editing.
  * @param {} element 
  * @param {*} callback 
  */
@@ -637,9 +639,8 @@ function startTimer() {
 }
 
 /**
- * This function finds the viewport height and width of the user's device. It then adjusts the square size
- * so that the screen real estate is used better. This results in bigger buttons and a better user experience.
- * Font size of everything that's visible while playing is also adjusted to 4vw.
+ * This function finds the viewport height and width of the user's device. It then adjusts the square size to the viewport width
+ * so that the screen real estate is used better. This results in bigger buttons and a better user experience on mobile.
  */
 function adjustPlayingFieldToViewportWidth() {
     // The code for getting the viewport height and width was taken from https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
@@ -664,6 +665,10 @@ function adjustPlayingFieldToViewportWidth() {
     }
 }
 
+/**
+ * This function finds the viewport height and width of the user's device. It then adjusts the square size to the viewport height
+ * so that the screen real estate is used better. This results in bigger buttons and a better user experience on mobile.
+ */
 function adjustPlayingFieldToViewportHeight() {
     // The code for getting the viewport height and width was taken from https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
@@ -680,9 +685,9 @@ function adjustPlayingFieldToViewportHeight() {
 
 /**
  * This function takes a name and value for a cookie and sets it.
- * This was adapted from https://www.w3schools.com/js/js_cookies.asp, I cut the part where it sets an expiry date for the cookie out.
- * @param {*} cname 
- * @param {*} cvalue 
+ * This was adapted from https://www.w3schools.com/js/js_cookies.asp, I cut out the part where it sets an expiry date for the cookie.
+ * @param {*} cname = cookie's name
+ * @param {*} cvalue = cookie's value
  */
 function setCookie(cname, cvalue) {
     document.cookie = `${cname}=${cvalue};`;

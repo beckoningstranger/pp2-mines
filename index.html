@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Minesweeper Game</title>
+    <title>Minesweeper</title>
 </head>
 <body>
     <main id="game-area">
@@ -46,31 +46,31 @@
                 </div>
                 <div>
                     At the beginning of the game, you have absolutely no information about where mines are 
-                    and will need to click any squares to gain more information. 
-                    A good strategy is to click the corner and border squares, as they only have 3 or 5 adjacent squares respectively. 
+                    and will need to click a random square to gain some information.
+                    It is a good strategy to click the corner and border squares, as they only have 3 or 5 adjacent squares respectively. 
                     This does not reduce your chance to step on a mine, but often the information you get will lead to more progress.
                 </div>
                 <div class="explanations-image-left">
                     <div class="image-left"><img src="assets/images/step1.png" alt="A picture where the player has uncovered the top left square, finding a zero."></div>
                     <div class="explanation-with-picture">
                         Once you click a square, you know how many mines there are in the adjacent squares. 
-                        Whenever you find one with no adjacent mines i. e. a "zero square", you can uncover all surrounding squares. 
-                        Here, we have such a situation. The player can now uncover all surrounding squares.
+                        So whenever you find one with no adjacent mines i. e. a "zero square", you can uncover all surrounding squares. 
+                        Here, we have such a situation.
                     </div>
                 </div>
                 <div class="explanations-image-right">
                     <div class="image-right"><img src="assets/images/step2.png" alt="A picture where the player has uncovered a number of squares, getting good information."></div>
                     <div class="explanation-with-picture">
-                        After finding more zeroes and clicking all surrounding square to them we have reached this position. Look at the "three square" now.
+                        After finding more zeroes and clicking all their surrounding squares we have reached this position. Look at the "three square" now.
                         It has three mines in surrounding squares and there are only three squares that have not been uncovered yet next to it. 
                         Ergo the mines must be in these three squares. It is a good idea to mark mine squares by right-clicking or them. If you're on a mobile device, tap and hold for a short while.
                     </div>
                 </div>
                 <div>
-                    Note that the 'Mines' counter at the top will go down every time you mark a mine, so you always know how many mines there are left for you to find.
+                    Note that the mines counter at the top will go down every time you mark a mine, so you always know how many mines there are left for you to find.
                 </div>
                 <div>
-                    When you look at the two squares above and below the three squares, you will see that they border on two mines. 
+                    When you look at the "two squares" above and below the "three square", you will see that they border on two mines. 
                     Well, we already know where these mines are as we just marked them. 
                     This means that we can safely click the remaining surrounding squares.
                 </div>
@@ -127,21 +127,21 @@
             <!-- This is where users can pick a difficulty level -->
             <div>
                 <button id="easy-setting">
-                    <p>Easy</p>
-                    <p>8x8</p>
-                    <p>10 Mines</p>
+                    Easy<br>
+                    8x8<br>
+                    10 Mines
                 </button>
                 <button id="medium-setting">
-                    <p>Medium</p>
-                    <p>8x16</p>
-                    <p>25 Mines</p>
+                    Medium<br>
+                    8x16<br>
+                    25 Mines
                 </button>
             </div>
             <div>
                 <button id="hard-setting">
-                    <p>Hard</p>
-                    <p>26x19</p>
-                    <p>99 Mines</p>
+                    Hard<br>
+                    26x19<br>
+                    99 Mines
                 </button>                            
                 <button id="custom-setting">
                     <p>Customize settings</p>
@@ -159,7 +159,7 @@
                 </tr>
                 <tr>
                     <td><label for="width">Width:</label></td>
-                    <td><input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" min="8" max="99" min="5" marequired></td>
+                    <td><input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" max="99" min="5" required></td>
                 </tr>
                 <tr>
                     <td><label for="mines">Mines:</label></td>
