@@ -54,6 +54,7 @@ a {
     margin: 5px;
     width: 220px;
     border: 2px solid black;
+    background-color: white;
 }
 
 /* Difficulty Settings Picker*/
@@ -80,6 +81,7 @@ a {
     align-items: center;
     margin: 5px;
     border: 2px solid black;
+    background-color: white;
 }
 
 #difficulty-settings > div > button * {
@@ -114,7 +116,7 @@ table * {
     border: 2px solid black;
     width: 220px;
     font-size: 1rem;
-    margin-top: 5px;
+    margin: 2px;
 }
 
 #custom-difficulty-settings-instructions {
@@ -157,6 +159,10 @@ input {
     justify-content: center;
 }
 
+#top-menu > span > i {
+    font-size: 2rem;
+}
+
 .square {
     font-size: 1.2rem;
     height: 30px;
@@ -178,6 +184,11 @@ input {
 #smileyface {
     font-family: 'Space Mono';
     font-weight: 600;
+}
+
+#actual-playing-field {
+    padding: 5px;
+    border: solid 2px black;
 }
 
 

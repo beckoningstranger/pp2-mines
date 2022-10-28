@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Minesweeper Game</title>
 </head>
 <body>
     <main id="game-area">
+        <!-- At this level there are several divs, but only one of them is shown at a time, the others are hidden with CSS. -->
         <div id="start-menu">
+            <!-- This is the Main Menu from where users can start games, learn how to play or access the settings menu -->
             <p id="logo">Minesweeper</p>
             <div id="start-menu-buttons">
                 <button id="start-game-button" class="menu-buttons">Start Game</button>
@@ -18,6 +21,7 @@
             </div>
         </div>
         <div id="how-to-play">
+            <!-- Here users can learn what the game is about and how to play in general -->
             <div id="explanations">
                 <div id="explanations-heading">How To Play</div>
                 <div>
@@ -25,7 +29,6 @@
                     The aim of the game is to uncover the whole playing field without stepping onto a mine. 
                     Differently put, you need to click all squares that do not have a mine.
                 </div>
-
                 <div class="explanations-image-right">
                     <div class="image-right"><img src="assets/images/buttons.png" alt="A picture pointing out the Restart and Quit buttons"></div>
                     <div class="explanation-with-picture">
@@ -37,14 +40,12 @@
                         The off button allows you to navigate back to the start menu.
                     </div>
                 </div>
-
                 <div>
                     At the beginning of the game, you have absolutely no information about where mines are 
                     and will need to click any squares to gain more information. 
                     A good strategy is to click the corner and border squares, as they only have 3 or 5 adjacent squares respectively. 
                     This does not reduce your chance to step on a mine, but often the information you get will lead to more progress.
                 </div>
-
                 <div class="explanations-image-left">
                     <div class="image-left"><img src="assets/images/step1.png" alt="A picture where the player has uncovered the top left square, finding a zero."></div>
                     <div class="explanation-with-picture">
@@ -62,14 +63,13 @@
                     </div>
                 </div>
                 <div>
-                    Note that the 'Mines' counter will go down every time you mark a mine, so you always know how many mines are left for you to find.
+                    Note that the 'Mines' counter will go down every time you mark a mine, so you always know how many mines there are left for you to find.
                 </div>
                 <div>
                     When you look at the two squares above and below the three squares, you will see that they border on two mines. 
                     Well, we already know where these mines are as we just marked them. 
-                    This means, that we can safely click the remaining surrounding squares.
+                    This means that we can safely click the remaining surrounding squares.
                 </div>
-
                 <div class="explanations-image-left">
                     <div class="image-left"><img src="assets/images/step3.png" alt="A picture where the player has marked mines and can now continue to uncover more squares."></div>
                     <div class="explanation-with-picture">
@@ -77,7 +77,6 @@
                         Again, we already know where these mines are and can continue to uncover more squares.
                     </div>
                 </div>
-
                 <div class="explanations-image-right">
                     <div class="image-right"><img src="assets/images/step4.png" alt="A picture where the player has uncovered more squares, leading to yet more progress."></div>
                     <div class="explanation-with-picture">
@@ -85,15 +84,14 @@
                         At this point, you will need to guess again. This is just the nature of MineSweeper. 
                     </div>
                 </div>
-
                 <div>
                     Now it's time for you to go mine hunting yourself! Good luck solving these puzzles. Enjoy! 
                 </div>
                 <div><button id="how-to-play-back-button" class="menu-buttons">Back to Menu</button></div>
             </div>
-            
         </div>
         <div id="settings">
+            <!-- Settings Menu from where users can activate Desktop Mode or pick different background colors -->
             <div>
                 <p>If you don't want the game to adjust the playing field size to your screen, activate the button below</p>
                 <p>(May be useful on desktop)</p>
@@ -122,6 +120,7 @@
             <button id="settings-back-button" class="menu-buttons">Back to Menu</button>
         </div>
         <div id="difficulty-settings">
+            <!-- This is where users can pick a difficulty level -->
             <div>
                 <button id="easy-setting">
                     <p>Easy</p>
@@ -147,6 +146,7 @@
             <div><button id="difficulty-settings-back-button" class="menu-buttons">Back to Menu</button></div>
         </div>
         <div id="custom-difficulty-settings">
+            <!-- Here users can customize their playing field as they wish by setting height and width of the playing field and choose how many mines they have to find -->
             <p id="custom-difficulty-settings-instructions">Select your custom difficulty settings:</p>
             <table>
                 <tr>
@@ -161,16 +161,29 @@
                     <td><label for="mines">Mines:</label></td>
                     <td><input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" required></td>
                 </tr>
-                <tr><td colspan="2"><button id="custom-difficulty-start-button">Start Playing</button></td></tr>
+                <tr><td colspan="2"><button id="custom-difficulty-start-button" class="menu-buttons">Start Playing</button></td></tr>
             </table>
             <div><button id="custom-difficulty-settings-back-button" class="menu-buttons">Back to Menu</button></div>
         </div>
         <div id="playing-field-area">
-            <div><p id="top-menu"><span id="restart-button"><i class="fa-solid fa-rotate-left"></i></span><span>Time<br><span id="timer">000</span></span><span id="smileyface">^_^</span></span><span>Mines<br><span id="mine-countdown">00</span></span><span id="quit-button"><i class="fa-solid fa-power-off"></i></span></p></div>
-            <div id="actual-playing-field"></div>            
+            <div>
+                <!-- This is the top menu where users can restart or quit the game. It also holds the timer, the mine counter and an emoji for additional feedback.  -->
+                <p id="top-menu">
+                    <span id="restart-button"><i class="fa-solid fa-rotate-left"></i></span>
+                    <span>Time<br><span id="timer">000</span></span>
+                    <span id="smileyface">^_^</span>
+                    <span>Mines<br><span id="mine-countdown">00</span></span>
+                    <span id="quit-button"><i class="fa-solid fa-power-off"></i></span>
+                </p>
+            </div>
+            <div id="actual-playing-field">
+                <!-- This is where the function buildVisiblePlayingField() inserts the HTML it generates -->
+            </div>            
         </div>
     </main>
+    <!-- Javascript File -->
     <script src="assets/js/script.js"></script>
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/0f15d7891d.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-let startMenu = document.getElementById('start-menu');
 let height = document.getElementById('height').value;
 let width = document.getElementById('width').value;
 let mines = document.getElementById('mines').value;
@@ -9,22 +8,29 @@ var myTimer;
 var controller;
 // Check for a cookie and apply settings accordingly
 checkCookie();
+initializeMenu();
 
-let startButton = document.getElementById('start-game-button');
-startButton.addEventListener('click', function() {
+/**
+ * This function sets the event listeners for the menus
+ */
+function initializeMenu() {
+    let startMenu = document.getElementById('start-menu');
     let difficultySettingsMenu = document.getElementById('difficulty-settings');
-    difficultySettingsMenu.style.display = 'flex';
-    startMenu.style.display = 'none';
+    let startButton = document.getElementById('start-game-button');
+    startButton.addEventListener('click', function() {
+        difficultySettingsMenu.style.display = 'flex';
+        startMenu.style.display = 'none';
+    });
 
     let easySetting = document.getElementById('easy-setting');
-    easySetting.addEventListener('click', function() {
-        difficultySettingsMenu.style.display = 'none';
-        width = 8;
-        height = 8;
-        mines = 10;
-        startGame();    
-    });
-    
+        easySetting.addEventListener('click', function() {
+            difficultySettingsMenu.style.display = 'none';
+            width = 8;
+            height = 8;
+            mines = 10;
+            startGame();    
+        });
+        
     let mediumSetting = document.getElementById('medium-setting');
     mediumSetting.addEventListener('click', function() {
         difficultySettingsMenu.style.display = 'none';
@@ -33,7 +39,7 @@ startButton.addEventListener('click', function() {
         mines = 25;
         startGame();   
     });
-    
+
     let hardSetting = document.getElementById('hard-setting');
     hardSetting.addEventListener('click', function() {
         // If viewport width is too small for the big playing field of a hard game, tell user about it:
@@ -61,7 +67,7 @@ startButton.addEventListener('click', function() {
         difficultySettingsMenu.style.display = 'none';        
         customDifficultySettingMenu.style.display = 'inline-grid';
     });
-    
+
     let customSettingStartButton = document.getElementById('custom-difficulty-start-button');
     customSettingStartButton.addEventListener('click', function() {
         width = document.getElementById('height').value;
@@ -76,14 +82,12 @@ startButton.addEventListener('click', function() {
         startMenu.style.display = 'inline-grid';
     });
 
-});
-
-let howToPlayButton = document.getElementById('how-to-play-button');
-howToPlayButton.addEventListener('click', function() {
-    startMenu.style.display = 'none';
-    let howToPlayPage = document.getElementById('how-to-play');
-    howToPlayPage.style.display = 'flex';
-    document.getElementById('game-area').style.height = "auto";
+    let howToPlayButton = document.getElementById('how-to-play-button');
+    howToPlayButton.addEventListener('click', function() {
+        startMenu.style.display = 'none';
+        let howToPlayPage = document.getElementById('how-to-play');
+        howToPlayPage.style.display = 'flex';
+        document.getElementById('game-area').style.height = "auto";
 
     let htpBackButton = document.getElementById('how-to-play-back-button');
     htpBackButton.addEventListener('click', function() {
@@ -91,45 +95,47 @@ howToPlayButton.addEventListener('click', function() {
         howToPlayPage.style.display = 'none';
         document.getElementById('game-area').style.height = "100vh";
     });
-});
-
-let settingsButton = document.getElementById('settings-button');
-settingsButton.addEventListener('click', function() {
-    let desktopModeButton = document.getElementById('desktop-mode-button');
-    if (desktopMode === 1) {
-        desktopModeButton.style.backgroundColor = 'LawnGreen';  
-        desktopModeButton.innerText = 'Activated';
-    }
-    startMenu.style.display = 'none';
-    let settingsMenu = document.getElementById('settings');
-    settingsMenu.style.display = 'flex';
-    let setBackButton = document.getElementById('settings-back-button');
-    setBackButton.addEventListener('click', function() {
-        startMenu.style.display = 'inline-grid';
-        settingsMenu.style.display = 'none';
-        setCookie("prefcolor", document.getElementById('game-area').style.backgroundColor);
-        setCookie("desktopModeCookie", document.getElementById('desktop-mode-button').innerText);
     });
-    desktopModeButton.addEventListener('click', function() {
-        if (this.innerText === 'Activated') {
-            this.style.backgroundColor = 'red';
-            this.innerText = 'Deactivated';
-            desktopMode = 0;
-        } else if (this.innerText === 'Deactivated') {
-            this.style.backgroundColor = 'LawnGreen';
-            this.innerText = 'Activated';
-            desktopMode = 1;
+
+    let settingsButton = document.getElementById('settings-button');
+    settingsButton.addEventListener('click', function() {
+        let desktopModeButton = document.getElementById('desktop-mode-button');
+        if (desktopMode === 1) {
+            desktopModeButton.style.backgroundColor = 'LawnGreen';  
+            desktopModeButton.innerText = 'Activated';
+        }
+        startMenu.style.display = 'none';
+        let settingsMenu = document.getElementById('settings');
+        settingsMenu.style.display = 'flex';
+        let setBackButton = document.getElementById('settings-back-button');
+        setBackButton.addEventListener('click', function() {
+            startMenu.style.display = 'inline-grid';
+            settingsMenu.style.display = 'none';
+            setCookie("prefcolor", document.getElementById('game-area').style.backgroundColor);
+            setCookie("desktopModeCookie", document.getElementById('desktop-mode-button').innerText);
+        });
+        desktopModeButton.addEventListener('click', function() {
+            if (this.innerText === 'Activated') {
+                this.style.backgroundColor = 'red';
+                this.innerText = 'Deactivated';
+                desktopMode = 0;
+            } else if (this.innerText === 'Deactivated') {
+                this.style.backgroundColor = 'LawnGreen';
+                this.innerText = 'Activated';
+                desktopMode = 1;
+            }
+        });
+        let colorOptions = document.getElementsByClassName('color-picker-box');
+        for (let option of colorOptions) {
+            let wantedColor = '#' + option.id.slice(-6);
+            option.style.backgroundColor = wantedColor;
+            option.addEventListener('click', function() {
+                document.getElementById('game-area').style.backgroundColor = wantedColor;
+            });
         }
     });
-    let colorOptions = document.getElementsByClassName('color-picker-box');
-    for (let option of colorOptions) {
-        let wantedColor = '#' + option.id.slice(-6);
-        option.style.backgroundColor = wantedColor;
-        option.addEventListener('click', function() {
-            document.getElementById('game-area').style.backgroundColor = wantedColor;
-        });
-    }
-});
+}
+
 
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
@@ -170,7 +176,7 @@ settingsButton.addEventListener('click', function() {
         // Restart Timer
         startTimer();
 
-        // Adjust Playing Field unless Desktop Mode is activated
+        // Adjust Playing Field depending on whether the user is in portrait or landscape mode unless Desktop Mode is activated
         if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
             adjustPlayingFieldToViewportWidth();
         } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
@@ -210,7 +216,7 @@ settingsButton.addEventListener('click', function() {
     // Start Timer
     startTimer();
 
-    // Adjust Playing Field unless Desktop Mode is activated
+    // Adjust Playing Field depending on whether the user is in portrait or landscape mode unless Desktop Mode is activated
     if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
         adjustPlayingFieldToViewportWidth();
     } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
@@ -426,6 +432,7 @@ function buildVisiblePlayingField(playingFieldInformation, rows) {
 		playingFieldHTML += playingFieldHTMLRow;
 		playingFieldHTMLRow = '';
 	}
+    // Insert the HTML
 	let whereToInsert = document.querySelector('#actual-playing-field');
 	whereToInsert.insertAdjacentHTML("beforeend", playingFieldHTML);
 }
@@ -536,6 +543,8 @@ function leftClickOnSquare() {
                     // Send abort signal to event trigger so that the playing field is no longer clickable
                     controller.abort();
                 }
+
+                // Set a different font color depending on how many mines there are in the surrounding squares
                 switch (number) {
                     case 0:
                         this.style.color = "forestgreen";
@@ -611,6 +620,7 @@ function longPressOnSquare(square) {
 
 /**
  * This function simply starts the counter at the top of the playing field.
+ * Here is where I learned how to do this: https://medium.com/geekculture/creating-counter-with-javascript-4b1c60892c45
  */
 function startTimer() {
     let counter = 0;
