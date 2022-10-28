@@ -1,7 +1,9 @@
-let height = document.getElementById('height').value;
-let width = document.getElementById('width').value;
-let mines = document.getElementById('mines').value;
-var desktopMode = 0;
+// These three variables control the height, width and number of mines of the playing field
+var height;
+var width;
+var mines;
+// This enables users to prevent the playing field from being resized according to their viewport
+var desktopMode;
 // This timer is started when users start to play and stops either when they win or lose
 var myTimer;
 // The purpose of this is to have an abort signal for an event trigger so users can't play on after winning or losing
@@ -151,6 +153,9 @@ function initializeMenu() {
     // Create event listener for the restart button
     let restartButton = document.getElementById('restart-button');
     restartButton.addEventListener('click', function() {
+        // Reset Mine Counter
+        document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length
+
         // Reset timer
         clearInterval(myTimer);
 
@@ -176,7 +181,7 @@ function initializeMenu() {
         // Restart Timer
         startTimer();
 
-        // Adjust Playing Field depending on whether the user is in portrait or landscape mode unless Desktop Mode is activated
+        // Adjust playing field depending on whether the user is in portrait or landscape mode unless Desktop Mode is activated
         if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
             adjustPlayingFieldToViewportWidth();
         } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
@@ -193,7 +198,8 @@ function initializeMenu() {
     // Check if there are too many mines on the playing field. If so, set a more reasonable amount and start the game
     let recommendedAmountOfMines = Math.floor(((height * width)/4));
     if (recommendedAmountOfMines < mines) {
-        window.alert(`This is too many mines. Even for a very hard game, I recommend you play with at most ${recommendedAmountOfMines}. Will create a game with this parameter now.`);
+        window.alert(`This is too many mines. Even for a very hard game, I recommend you play with at most ${recommendedAmountOfMines} given the dimensions you chose.
+        \nWill create a game with this parameter now.`);
         mines = recommendedAmountOfMines;
     }
 
