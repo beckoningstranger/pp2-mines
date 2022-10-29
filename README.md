@@ -1,6 +1,6 @@
 # Minesweeper
 
-
+This is a site that allows users to play Minesweeper, a simple logic game that I personally learned back in the days of Windows 3.1. MineSweeper is a logic game that also involves some guesswork. The aim of the game is to uncover the whole playing field without stepping onto a mine.
 
 Take a look at the deployed website: <a href="https://https://beckoningstranger.github.io/pp2-mines/index.html" target="_blank" rel="noopener">Minesweeper</a>.
 
@@ -10,9 +10,6 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
 * [**User Experience UX**](#user-experience-ux)
   * [User Stories](#user-stories)
-    * [Client Goals](#client-goals)
-    * [First Time Visitor Goals](#first-time-visitor-goals)
-    * [Returning Visitor Goals](#returning-visitor-goals)
   * [Design](#design) 
     * [Site Structure](#site-structure)
     * [Color Scheme](#color-scheme)
@@ -20,18 +17,17 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
     * [Wireframes](#wireframes)
 * [Features](#features)
   * [Existing Features](#existing-features)
-    * [Navigation Menu](#navigation-menu)
-    * [Home Page: Picture Gallery with text boxes and full page scrolling](#home-page-picture-gallery-with-text-boxes-and-full-page-scrolling)
-    * [Footer](#footer)
-    * [Team Page](#team-page)
-    * [Stories Page](#stories-page)
-    * [Get in Touch Page](#get-in-touch-page)
-    * [Thank You Page](#thank-you-page)
+    * [Random playing field generation](#random-playing-field-generation)
+    * [Main Menu](#main-menu)
+    * [Difficulty Menu](#difficulty-menu)
+    * [Customize Difficulty Settings Menu](#customize-difficulty-settings-menu)
+    * [How to Play Section](#how-to-play-section)
+    * [Settings Menu](#settings-menu)
+    * [Playing Field](#playing-field)
     * [Future Implementations](#future-implementations)
-      * [Teachers Section](#teachers-section)
-      * [Members Section](#members-section)
-      * [Updated Team Page](#updated-team-page)
-      * [Swipe actions](#swipe-actions)
+      * [Reveal zero squares automatically](#reveal-zero-squares-automatically)
+      * [Leaderboards](#leaderboards)
+      * [Statistics](#statistics)
   * [Accessibility](#accessibility)
 * [Technologies Used](#technologies-used)
   * [Languages Used](#languages-used)
@@ -43,198 +39,161 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
   * [How to Clone the Repository on GitHub](#how-to-clone-the-repository-on-github)
 * [Credits](#credits)
   * [Content](#content)
-  * [Media](#media)
+  * [Code](#code)
 * [Acknowledgements](#acknowledgements)
 
 # User Experience UX
 
 ## User Stories
 
-### Client Goals
+  * As a user, I want to learn how the game works.
 
-* As the manager of the Rappelkiste I want a way to attract new parents that may visit the site on a wide range of differently sized devices so that I will have a steady flow of applications.
+  * As a user, I want to play Minesweeper in a difficulty setting fitting my skill level so that I won't feel frustrated while playing.
 
-* As the manager of the Rappelkiste I want the site to act as a calling card that gives my audience a good impression of the day care center and its team, so that they build confidence and trust with the day care center and its team.
+  * As a user, I want to customize the look of the game so that it's pleasing to the eye.
 
-* As a teacher I want to showcase projects that the teaching team has done with the children so that the audience can further build confidence/trust in the team's work.
+  * As a user, I want to see how long it takes me to win a game so that I can track my performance and see whether I'm getting faster.
 
-* As the manager I want to give people an easy way to get in touch, be it via telephone, email or a contact form so that the team can build a relation with them and their questions get answered.
+  * As a user, I want to see how many mines there are left to find so that it helps me to make informed decisions during the final phase of the game.
 
-[Back to top](<#contents>)
+  * As a user, I want the ability to mark and unmark squares as mines so that it's easier for me to make quick decisions during the game.
 
-### First Time Visitor Goals
+  * As a user, I want the ability to quickly restart my game without having to go through the initial menus. Losing happens frequently, so I don't want to waste time.
 
-* As a parent who is looking for a day care center for my child, I want to build trust with a day care center where my child will potentially spend most of their day so that I can send them there without having second thoughts.
-
-* As a parent who is looking for a day care center for my child, I want to learn what sets the Rappelkiste apart so that I know my child can grow in a safe and stimulating place.
-
-* As a parent who is looking for a day care center for my child, I want to learn what the facilities look like and get a vibe of the atmosphere so that I can be sure they are taken care of and will be happy there.
-
-* As a parent who is looking for a day care center for my child, I want to learn about who will look after my child and what background they have so that I can trust they are in good hands.
-
-* As a parent who is looking for a day care center for my child, I want to learn about special activities the teachers planned for the children so that my child will have fun and constantly learn new things.
-
-* As a parent who is looking for a day care center for my child, I want a quick way of figuring out how far the day care center is from my home so that I can estimate how much effort will go into getting them there.
-
-[Back to top](<#contents>)
-
-### Returning Visitor Goals
-
-* As a parent whose kids already attend the day care center, I want to read and learn more about activities that my child talked about after coming home, but couldn't explain fully, so that I know what my child is excited about and can take part in their life.
-
-* As somebody who wants to get in touch with the day care center, I want an easy way of calling, writing an email or otherwise contacting somebody, be it to plan a personal visit as an interested parent, to phone in to coordinate with the teachers for parents whose child already attends, or as somebody looking for an internship, just as a few examples so that there is no hurdle to get in touch.
-
-* As a parent who has made an appointment for a personal visit, I want an easy way to navigate to the day care center so that I can plan accordingly.
-
-[Back to top](<#contents>)
+  [Back to top](<#contents>)
 
 # Design
 
 ## Site Structure
 
-The website consists of four main pages and a thank you page. The [Home page](index.html) is the landing page, while the [Team page](team.html), the [Stories](stories.html) and the [Get in Touch](contact.html) page are accessible via the top menu. Once the user successfully submits a message on the [Get in Touch page](contact.html), they are taken to a simple [Thank You page](thankyou.html), from where they can navigate anywhere they want via the top menu.
+  The website consists of one page that is divided in several sections out of which only one is shown at the same time. Users always start in the main menu, from where they can start a game, learn how to play the game or customize their settings.
+  After clicking the 'Start game' button, they can pick a difficulty level or customize their difficulty level by configuring the dimensions of the playing field and the number of mines it contains. From there, they will go to the actual game.
+  Clicking the 'How to play' and 'Settings' buttons will take them to these menus respectively.
+  From all pages, they can navigate back to the main menu.
 
-[Back to top](<#contents>)
+  [Back to top](<#contents>)
 
 ## Color Scheme
 
-![Color Scheme](/assets/documentation-images/color-scheme.png)
+  ![Color Scheme](/assets/readme-images/color_palette_from_colordot_by_hailpixel.png)
 
-The color True Blue (#3567BB) was taken from the hero image that you see when you first visit the site, the darker blues were picked to create nice looking gradients that ensured contrast to keep the overlaid white text easy to read. The True Blue that's also present on every site in the header will hopefully set the mood for the entire page, as it is associated with good weather, sunshine and all the feelings that are associated with that.
-On the Team page, where the larger font size makes the text easier to read, I have picked a True Blue (#3567BB) to Dark Cornflower Blue (#19366D) gradient, on the Stories page, where the font size is significantly smaller and there's also just more text I have picked a Dark Cornflower Blue (#19366D) to Oxford Blue (#0A214B) gradient.
-The Marigold Orange (#F3A712) was picked because it can highlight elements clearly. It is used when users hover over interactive elements, such as the side bar on the Home page, the footer icons or the form on the Get in Touch page. As orange is a complementary color for blue, they work nicely together.
+  All of these color were picked because they work well with the black font. The colors for the :hover and :active effects give users feedback without getting in the way.
 
-[Back to top](<#contents>)
+  [Back to top](<#contents>)
 
 ## Typography
 
-Google Fonts was used for the following fonts:
+  Google Fonts was used for the following fonts:
 
-- Lusitana is used for headings and body text of the site. It is a serif font that is still very easy to read.
+  * Bangers is used everywhere except for the emoji over the playing field. I picked it for its gamey vibe.
 
-- Meow Script is a monoline font that adds character to the site's logo.
+  * Space Mono is used for the emoji because it looks like a terminal font, where emojis like this could be used.
 
-[Back to top](<#contents>)
+  [Back to top](<#contents>)
 
 ## Wireframes
 
-At the outset of this project, the design of the website was desktop first, which is why the emphasis was on creating wireframes for this size format. This later changed, but all designs found their way into the final website except for the Contact page which was redesigned at a late stage of development.
+  I planned this project on a whiteboard in my office:
 
-![Home Wireframe](/assets/documentation-images/home-wireframe.jpg)
-![Team Wireframe](/assets/documentation-images/team-wireframe.jpg)
-![Stories Wireframe](/assets/documentation-images/stories-wireframe.jpg)
-![Get in Touch Wireframe](/assets/documentation-images/get-in-touch-wireframe.jpg)
+  ![Complete Whiteboard](/assets/readme-images/whiteboard.jpg)
+  ![Detail: Playing Field](/assets/readme-images/playing_field.jpg)
 
-As this was my first foray into designing, I had to adapt when I found that the initial design would not work or could be improved. The most significant of these changes was the contact page where I found that the two-column design with the clearly defined border in the middle would not be practical, even on larger screens as the picture would often be cut off or the two columns would not be of equal length, breaking the design. I eventually opted for a screen filling background picture with an overlaid box for the text and form.
-
-The initial Team page design was realized for mid-sized screens, i.e. larger phones in landscape mode and tablets with viewport widths greater than 540px but smaller than 1200px. For smaller viewports I decided on a one-column design and for viewports over 1200px in width I found a completely new design that presents the team as a whole in one line with a text box under the pictures with changing text, depending on which picture the user taps/hovers. 
-
-[Back to top](<#contents>)
+  [Back to top](<#contents>)
 
 # Features
 
 ## Existing Features
 
-### __Navigation Menu__
+### Random playing field generation
 
-  - The navigation menu lets users access the four main pages of the website. It is responsive and displayed in two rows for viewport widths lower than 768px. In wider viewports, all of the content is fit into one row. 
-  - Users on devices with attached pointing devices will see a hovering effect that underlines the menu items they hover over, except on the logo.
-  - The page the users are on is displayed as underlined.
-  - The logo is also clickable and will show the Home page if clicked.
+* The playing field is generated automatically and mines are placed in random spots, so that every game is different and a new challenge.
 
-  ![Layout for viewport widths below 786px](assets/documentation-images/topmenu-one-row.png)
-  ![Layout for viewport widths 786px and up](assets/documentation-images/topmenu-two-rows.png)
+### __Main Menu__
 
-[Back to top](<#contents>)
+  * This menu lets users start games and navigate to both the 'How to play' and the 'Settings' sections.
+  * Users on devices with attached pointing devices will see a hovering effect for clickable elements.
 
-### __Home page: Picture Gallery with text boxes and full page scrolling__
-
-  - On the Home page, the background pictures cover 80% or 90% of the viewport height per section, depending of device orientation, resulting in a view where the navigation menu covers the top 10-20% and the background picture the rest of the screen. This puts the pictures front and center, with no distractions. Naturally, the pictures look better the larger the viewport is, but I have created 3 picture sizes that are applied depending on the viewport width:
-
-    - For phones, a 1024x1024px sized picture, so that users can also use their phone in landscape mode without the picture being cut off.
-    - For tables and small laptops, a 1368x1368px sized picture. This specific size was chosen because of the Surface Pro 7 that has this exact width in landscape mode. The iPad Pro has a width of 1366px, which is very similar.
-    - For wider viewports, a picture with a width of 2160px is used.
-
-  All pictures are centered on both axes, except for the hero image where I wanted to avoid the gable of the house being cut off.
-
-  - For each picture, there is an overlaid text box, that provides additional information for users. This way, users get a good idea of the facilities and values that underpin the day to day life of the day care center. The text box is mostly located at the bottom center, expect when that would block an element of the photo that I wanted to be in clear view. In these cases, the text box was moved to the top center. These text boxes are also fully responsive and adapt to the viewport width and whether the device is in portrait or landscape mode. A lot of testing went into this, more on this in the [Testing Section](TESTING.md).
-  To ensure that the text is easy to read, the overlay text box is semi-transparent, giving enough contrast against the background picture.
-
-  - A side bar with 5 dots, one for each section, gives the user an idea of the amount of sections he can see as well as a means to navigate to each section easily. Using this bar also has the advantage that each picture will be nicely aligned with the viewport edges. This sidebar is positioned at center left and will show a slight hover effect for users using pointing devices.
-
-  ![Home page 1 of 5 sections](assets/documentation-images/home-page-content.jpg)
-
-[Back to top](<#contents>)  
-
-### __Footer__
-
-  - The footer contains three links. One to easily place a call to the day care center, one to email them and one that will take you to Google Maps in case you want to see where the day care center is located or you want to navigate to it.
-  - When users hover over an icon, they get visual feedback as the icon is highlighted in orange.
-
-  ![Footer](assets/documentation-images/footer.jpg)
+  ![Main Menu](/assets/readme-images/main_menu.jpg)
 
 [Back to top](<#contents>)
 
-### __Team Page__
+### __Difficulty Menu__
 
-  - The Team page is fully responsive and will display in three different layouts, depending on viewport size. For viewports below 540px width, there's a one column view, for viewports below 1200px a two column view and for viewports of 1200px and above a third layout, where all of the team members are display side by side and users have to click them to read their descriptions. Even though I like this design, it's probably the poorest UX of all the ones present here, because users will find the page with an empty text box before they tap/hover a picture. I intend to change this once I learn about JavaScript, so that the user will find the page with a photo pre-selected and the text box at the bottom filled. Unfortunately, there does not seem to be a way to do this with pure HTML/CSS, I did quite a bit of research and also eventually consulted the tutor team, with no results.
-  - The Team page will give users an idea of who will look after their children and what background they have, the aim is to build trust.
+  * In this menu users can pick the difficulty level of their choice,navigate to the custom difficulty settings menu or go back the main menu.
 
-  ![Team page - 1 column layout](/assets/documentation-images/team-page-1-column.jpg)
-  ![Team page - 2 column layout](/assets/documentation-images/team-page-2-columns.jpg)
-  ![Team page - wide viewports layout](/assets/documentation-images/team-page-wide-viewports.jpg)
+  ![](/assets/readme-images/difficulty_menu.jpg)
 
-[Back to top](<#contents>)
+  [Back to top](<#contents>)  
 
-### __Stories Page__
+### __Customize Difficulty Settings Menu__
 
-  - The Stories page is also fully responsive, with a one column layout for viewports widths below 1200px and a two column layout for viewports above 1200px width. Where photo and viewport width allow, photos will be displayed next to each other to fit more content on the screen. On this page, users can read more about the team's work, recent events and projects the children did and anything else the teachers might choose to blog about. All of this serves to build trust in the day care center and its team's work.
+  * Here users can customize the playing field by adjusting the parameters of its height and width. 
+  * They can also configure the number of mines that will be in the playing field.
+  * After they are done, they can start the game by clicking the 'Start Playing' button.
+  * If they would rather pick one of the pre-defined settings, they can go back to the main menu and restart from there.
+
+  ![Customize Difficulty Settings Page](/assets/readme-images/custom_difficulty.jpg)
+
+  [Back to top](<#contents>)
+
+### __How To Play Section__
+
+  * Here users can learn what Minesweeper is and how to play the game.
+
+  * The two clickable buttons at the top of the playing field are also briefly explained. They are the only elements that are not completely straight-forward.
+
+  * At the bottom they can also see what it looks like to win and lose a game.
+
+  ![How To Play Section](/assets/readme-images/how_to_play.jpg)
+
+  [Back to top](<#contents>)
+
+### __Settings Menu__
+
+  * Here users can activate Desktop Mode, which just prevents the playing field from being resized with respect to their viewport. Users who know the game from the olden days might want to prefer the squares never to vary in size. This is deactivated by default because the resizing feature is essential on mobile devices.
+  * Users can also pick a different background color that they might prefer to the standard greyish blue.
+
+  ![Settings Menu](/assets/readme-images/settings_menu.jpg)
+
+  [Back to top](<#contents>)
+
+### __Playing Field__
   
-  ![Stories page - 1 column layout](/assets/documentation-images/stories-page-one-column.jpg)
-  ![Stories page - 2 column layout](/assets/documentation-images/stories-page-two-columns.jpg)
+    * On the playing field there is a circle arrow at the top left. By clicking it, users can quickly restart their games. This is essential because clicking a mine and losing in the process is such a frequent part of the game.
+    * The timer starts counting as soon as a game is started. It only stops once the player either loses or wins.
+    * The ^_^ emoji indicates that the game is still going on. It temporarily changes to O_O when the player is clicking a mine, which conveys a certain tension as every click is potentially the end of the game. Once players lose it changes to X_X indicating that the player is dead and to d^_^b to indicate a double thumbs up, acknowledging the player's feat. All of this was heavily inspired by the original game that had a graphical emoji with similar expressions.
+    * The mines counter shows the number of mines players have left to find. Every time a player marks a square as minend by right-clicking or long-pressing it, the counter goes down. As in the original game, it is not a clear indicator of whether the marked square really contain mines, it does not perform a check. It simply serves as an indicator of the players progress and can help with decisions late in the game when the player can evaluate how many mines are in the last remaining squares. This can be helpful.
+    * The off button allows players to navigate back to the main menu.
+    * Every square on the playing field has a hover effect and an active effect for more feedback.
+    * The numbers that players reveal by clicking or tapping squares are color-coded to help players make faster decisions.
+    * When a game is lost, the background of the playing field will turn red, when the players wins it turns green. This is different from the original game but gives additional feedback.
+    * When the game ends, all mines are revealed as their squares will show in black.
 
-[Back to top](<#contents>)
+  ![Playing Field: Easy Difficulty](/assets/readme-images/easy_difficulty.jpg)
+  ![Players wins](/assets/readme-images/win.jpg)
+  ![Players loses](/assets/readme-images/lose.jpg)
 
-### __Get in Touch Page__
-
-  - The Get in Touch page is displayed with a one column layout for viewports below 1200px of width and a background page with an overlaid box on the left hand side for wider viewports. Here, users have another easy way to get in touch with the day care center. 
-  - When users hover over the elements of the form, they get visual feedback as the elements are highlighted in orange.
-  - Upon submitting the form, users are taken to a simple Thank You page.
-
-  ![Get in Touch page - 1 column layout](/assets/documentation-images/contact-page-one-column.jpg)
-  ![Get in Touch page - Layout with background image and overlaid form box](/assets/documentation-images/contact-page-overlay-box.jpg)
-
-[Back to top](<#contents>)
-
-### __Thank You Page__
-  
-  - From this simple page, user can navigate back to where they want, as the navigation menu at the top is shown as on all other sites. This just serves as feedback that their message was processed.
-
-  ![Thank You page](assets/documentation-images/thank-you-page.jpg)
-
-[Back to top](<#contents>)
+  [Back to top](<#contents>)
 
 ## Future Implementations
 
-### Teachers Section
+### Reveal zero squares automatically
 
-  *  A teachers section that allows teachers to publish more articles on the Stories page and post announcements for all current parents. Polls are another idea.
+  *  When you click a square that does not border on any mined squares (zero square), the game should automatically reveal all adjacent squares and do the same if it finds any more zero squares in the process. This would mimick the original game's behavior.
 
-### Members Section
-  - A members section where parents can read the announcements that teachers have previously posted (cf. idea above)
+### Leaderboards
 
-### Updated Team page
-  - An update to the Team page layout visible with viewports wider than 1200px so that when users come to it, a teacher is pre-selected.
+  * Record times and player names for won games in leaderboards for all difficulty levels.
 
-### Swipe actions
-
-  - Swipe actions on mobile devices to let users navigate from page to page, giving it the feel of an app.
+### Statistics
+  
+  * Create statistics like 'x games won out of x attempts' or 'percentage of revealed squares before losing'.
 
 [Back to top](<#contents>)
 
 ## Accessibility
 
-I have tried to keep the website as accessible as possible by using semantic HTML elements, providing adequate contrast for my fonts, which are sometimes displayed over images, especially on the Home and Get in Touch page, using the alt attribute for images, the title attribute for links, etc. To further ensure that the site is accessible I ran tests with the Web Accessibility Evaluation Tool (WAVE) and also used a Chrome browser extension called Web Disability Simulator. More on this in [Testing](#testing).
+I have tried to keep the website as accessible as possible by using semantic HTML elements, providing adequate contrast for fonts, using the alt attribute for images, the title attribute for links, etc. To further ensure that the site is accessible I ran tests with the Web Accessibility Evaluation Tool (WAVE) and also used a Chrome browser extension called Web Disability Simulator. More on this in [Testing](#testing).
 
 [Back to top](<#contents>)
 
@@ -242,41 +201,43 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 
 ## Languages Used
 
-HTML5 & CSS3
+  * HTML5
+  * CSS3
+  * Javascript
 
 ## Frameworks, Libraries & Programs Used
 
-* [Figma](https://figma.com) - For creating designs and experimenting with page layouts
+  * [Git](https://git-scm.com/) - For version control
 
-* [Git](https://git-scm.com/) - For version control
+  * [GitHub](https://github.com) - To save and store my project files
 
-* [GitHub](https://github.com) - To save and store my project files
+  * [Google Fonts](https://fonts.google.com/) - To find and import fonts
 
-* [Google Fonts](https://fonts.google.com/) - To find and import fonts
+  * [Colordot](https://color.hailpixel.com/) - To create the color palette above
 
-* [Font Awesome](https://fontawesome.com/) - To build the full page scrolling navbar and additional iconography
+  * [Font Awesome](https://fontawesome.com/) - For the Restart and Off Button icons
 
-* [Google Dev Tools](https://developer.chrome.com/docs/devtools/) - To work out bugs, troubleshoot and test features and play around with property values. Also, to test the website using the Lighthouse Test.
+  * [Google Dev Tools](https://developer.chrome.com/docs/devtools/) - To work out bugs, troubleshoot and test features and play around with property values. Also, to test the website using the Lighthouse Test.
 
-* [Compressor.io](https://compressor.io) - To compress images
+  * [Compressor.io](https://compressor.io) - To compress images
 
-* [GIMP](https://gimp.org) - To resize and convert images and to make the skies on the images I used one coherent color so that there is no visible transition to the header
+  * [GIMP](https://gimp.org) - To resize and convert images.
 
-* [Favicon.io](https://favicon.io/) - To create a favicon
+  * [ScreenToGif](https://www.screentogif.com/) - To record gameplay for the How to Play section.
 
-* [Am I Responsive?](https://ui.dev/amiresponsive) - To showcase the website on all of the images used in this documentation file
+  <!-- * [Favicon.io](https://favicon.io/) - To create a favicon -->
 
-* [Web Disability Simulator](https://chrome.google.com/webstore/detail/web-disability-simulator/olioanlbgbpmdlgjnnampnnlohigkjla) - To ensure accessibility for all users
+  * [Am I Responsive?](https://ui.dev/amiresponsive) - To showcase the website on all of the images used in this documentation file
 
-* [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) - To further ensure accessibility for all users
+  * [Web Disability Simulator](https://chrome.google.com/webstore/detail/web-disability-simulator/olioanlbgbpmdlgjnnampnnlohigkjla) - To ensure accessibility for all users
 
-* [Google Translate](https://translate.google.com) - To translate some of the content from German to English
+  * [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) - To further ensure accessibility for all users
 
-[Back to top](<#contents>)
+  [Back to top](<#contents>)
 
 # Testing
 
-Please go [here](TESTING.md) for information about the testing that went into this project.
+  Please go [here](TESTING.md) for information about the testing that went into this project.
 
 [Back to top](<#contents>)
 
@@ -284,7 +245,7 @@ Please go [here](TESTING.md) for information about the testing that went into th
 
 ## How to Deploy the Project on GitHub Pages
 
-1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/rappelkiste)
+1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/pp2-mines)
 ![Image of the repository's website](assets/documentation-images/how-to-deploy.png)
 2. Click on the 'Settings' button in the top menu
 3. Select the 'Pages' section in the side bar on the left
@@ -299,7 +260,7 @@ Please go [here](TESTING.md) for information about the testing that went into th
 
 ## How to Fork the Repository on GitHub
 
-1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/rappelkiste)
+1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/pp2-mines)
 2. Click the 'Fork' button at the top right of the page. If you are not the owner of the project, it will not appear greyed out to you:
 
 ![Location of Fork button](assets/documentation-images/how-to-fork.png)
@@ -322,23 +283,25 @@ Please go [here](TESTING.md) for information about the testing that went into th
 
 ## Content
 
-All of the content on the Home Page was written by myself, except for the heading 'Your child is unique - so are we', which was written by the Rappelkiste's team and only translated from the German 'Ihr Kind ist einzigartig - wir sind es auch'. This can be found on [their current live website](https://www.rappelkiste-siegen.de), specifically [here](https://www.rappelkiste-siegen.de/wer-wir-sind/).
+  * All of the content on the Home Page was written by myself.
 
-The Team Page and Stories page content was also written by the Rappelkiste's team and then translated by Google Translate. All of the content used is used with express permission from the team.
+  * The game principle is of course not my own and according to [the Minesweeper Wikipedia page](https://en.wikipedia.org/wiki/Microsoft_Minesweeper) it is unclear.
 
-All of the other content is original and written by me.
+## Code
 
-[Back to top](<#contents>)
+  * As this was my first Javascript project, there were many first times here, where I searched the web for solutions to my problems. Here is where I actually took code and used it for this project: 
+    
+    * When I was looking for a way to disable the event triggers for the playing field to stop players from playing on after losing, I finally settled on using an abort signal. I learned this reading the [MDN addEventListener page](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and adapted their code.
 
-## Media
+    * When I was looking for a good way to resize the playing field specifially for a user's viewport I learned how to get the needed values by reading [ryanve's answer on this Stackoverflow page](https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions).
 
-All photos on the page were taken by the Rappelkiste's team and are used with express permission by them. There are only three exceptions to this:
+    * Implementing a long press to enable users to mark squares as mines was harder than expected, but with [the answers on this Stackoverflow page](https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone) I could make it work.
 
-  1. The hero image was taken by myself.
-  2. The image for the 'Out and About' section of the Home page. This was taken from Pexels, specifically [cottonbro](https://www.pexels.com/photo/a-boy-hiding-behind-the-wooden-sticks-6034408/).
-  3. The image of the police car in the article [Mr Röcher, the policeman comes to visit!](https://beckoningstranger.github.io/rappelkiste/stories.html) on the Stories page. I found it on [Pexels](https://www.pexels.com/photo/a-photo-of-a-police-car-3671134/), it was taken by Markus Spiske.
+    * [This article by Tulusibrahim](https://medium.com/geekculture/creating-counter-with-javascript-4b1c60892c45) helped me greatly to create my own timer.
 
-[Back to top](<#contents>)
+    * To save the settings the website uses cookies. As I had no prior knowledge of how this is done, I used the information in [W3School's article](https://www.w3schools.com/js/js_cookies.asp) on the subject from which I took one function without altering it.
+  
+  [Back to top](<#contents>)
 
 # Acknowledgements
 
@@ -346,17 +309,11 @@ I would like to thank the following people
 
 * Precious Ijege, my mentor, for providing feedback on my ideas and helping me create this project.
 
-* Kera Cudmore, for her class on how to write a README and her insight she offered when I contacted her on Slack.
-
-* Chris Williams, for his peer code review when I asked for it on Slack.
-
-* Kristy Maulerova, for moral support and feedback during development and when I asked for a peer code review on Slack.
+* Kera Cudmore, for her class on how to write a README and the insight she offered when I contacted her on Slack.
 
 * Ewan Colquhoun, whose [first project's README](https://github.com/EwanColquhoun/wawaswoods/blob/master/README.md) served as a model for this one.
 
-* The Code Institute tutor team, especially for making me aware of flexbox, which solved so many problems for my page layout.
-
-* My family, for bearing with me when I dealt with time pressure and frustration.
+* My kids for being interested in this project and learning how to play the game.
 
 * My wife, for putting up with me and proofreading my work.
 

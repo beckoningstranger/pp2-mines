@@ -45,7 +45,8 @@ function initializeMenu() {
 
     let hardSetting = document.getElementById('hard-setting');
     hardSetting.addEventListener('click', function() {
-        // If viewport width is too small for the big playing field of a hard game, tell user about it:
+        // If viewport width is too small for the big playing field of a hard game, tell user about it
+        // The code for getting the viewport height and width was taken from https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
         let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
         if ( viewportWidth < 1024) {
             alert("Unfortunately your viewport is too small. If you're in portrait mode, try using your device in landscape mode or switch to a larger device.");
@@ -138,7 +139,6 @@ function initializeMenu() {
         }
     });
 }
-
 
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
@@ -270,10 +270,11 @@ function buildPlayingField(width, height, mines) {
 }
 
 /**
-* Gets random squares from the playing field and assign mines to them.
-* @param {*} squares 
-* @returns 
-*/
+ * Gets random squares from the playing field and assign mines to them.
+ * @param {*} minesToLay is the amount of mines to be distributed on the playing field
+ * @param {*} playingField is the array of objects (one object per square) that is modified in this function
+ * @returns 
+ */
 function layMines(minesToLay, playingField) {
 	let assignedMines = 0;
 	let randomlyPickedSquares = [];
@@ -291,7 +292,9 @@ function layMines(minesToLay, playingField) {
 /**
  * Receives the playing field as an array of objects and adds for all square objects what squares are next to them.
  * This information is later used to calculate how many mines are next to each square.
- * @param {*} squares 
+ * @param {*} squares takes an array of objects (one object per square) that is modified in this function
+ * @param {*} rows takes an array of letters, one for each row on the playing field, e.g. ["a", "b", "c", "d", "e"]
+ * @param {*} columns takes an array of numbers, one for each column on the playing field, e.g. ["1", "2", "3", "4", "5"]
  * @returns 
  */
 function findSurroundingSquares(squares, rows, columns) {
@@ -343,7 +346,7 @@ function findSurroundingSquares(squares, rows, columns) {
             }
         }
 
-        // This if statement makes sure corner squares don't have a0 etc. as neighboring squares.
+        // This makes sure corner squares don't have a0 etc. as neighboring squares.
 	    if (numberBefore === 0) {
             numberBefore = '';
 	    }
@@ -385,7 +388,7 @@ function findSurroundingSquares(squares, rows, columns) {
 
 /**
  * Iterates through all squares of the playing field and counts the mines in all adjacent squares.
- * It then adds this information for each square.
+ * It then adds this information for each square and returns the array of squares.
  */
 function findMinesInSurroundingSquares(squares) {
     for (let i = 0; i < squares.length; i++) {

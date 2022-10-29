@@ -28,7 +28,11 @@ a {
     background-color: #99bdd8;
 }
 
-/* Main Menu */ 
+.menu-buttons:hover {
+    border: 2px solid white;
+}
+
+/* Main Menu */
 
 #start-menu {
     display: inline-grid;
@@ -67,12 +71,12 @@ a {
     justify-content: center;
 }
 
-#difficulty-settings > div {
+#difficulty-settings>div {
     display: flex;
     flex-direction: row;
 }
 
-#difficulty-settings > div > button {
+#difficulty-settings>div>button {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,32 +86,37 @@ a {
     margin: 5px;
     border: 2px solid black;
     background-color: white;
-}
-
-#difficulty-settings > div > button * {
     font-size: 1.5rem;
 }
 
-#difficulty-settings > div > #difficulty-settings-back-button {
+#difficulty-settings>div>button:hover {
+    border: 2px solid white;
+}
+
+#difficulty-settings>div>#difficulty-settings-back-button {
     margin: 5px;
     height: 50px;
     width: 280px;
     border: 2px solid black;
 }
 
+#difficulty-settings>div>#difficulty-settings-back-button:hover {
+    border: 2px solid white;
+}
+
 /* Custom Difficulty Settings Menu */
 
 table * {
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
-#custom-difficulty-settings {    
+#custom-difficulty-settings {
     text-align: center;
     display: none;
     align-content: center;
 }
 
-#custom-difficulty-settings > * {
+#custom-difficulty-settings>* {
     display: flex;
     justify-content: center;
 }
@@ -115,13 +124,17 @@ table * {
 #custom-difficulty-settings button {
     border: 2px solid black;
     width: 220px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 2px;
+}
+
+#custom-difficulty-settings button:hover {
+    border: 2px solid white;
 }
 
 #custom-difficulty-settings-instructions {
     width: 275px;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .input-field-number {
@@ -152,14 +165,14 @@ input {
     margin: 0 20px;
 }
 
-#top-menu > span {
+#top-menu>span {
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#top-menu > span > i {
+#top-menu>span>i {
     font-size: 2rem;
 }
 
@@ -191,6 +204,13 @@ input {
     border: solid 2px black;
 }
 
+#quit-button:hover {
+    color: white;
+}
+
+#restart-button:hover {
+    color: white;
+}
 
 /* How To Play Page*/
 
@@ -214,7 +234,7 @@ input {
     font-size: 1.5rem;
 }
 
-#explanations > div {
+#explanations>div {
     text-align: center;
     padding-top: 20px;
 }
@@ -251,14 +271,14 @@ input {
     align-items: center;
 }
 
-#settings > div {
+#settings>div {
     width: 80vw;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-#settings > div > p {
+#settings>div>p {
     padding-bottom: 10px;
 }
 
@@ -273,12 +293,19 @@ input {
     border: 2px solid black;
 }
 
+.color-picker-box:hover {
+    border: 2px solid white;
+}
+
 #desktop-mode-button {
     background-color: red;
     border: 2px solid black;
     width: 220px;
 }
 
+#desktop-mode-button:hover {
+    border: 2px solid white;
+}
 
 /* Media Queries */
 
@@ -303,7 +330,7 @@ input {
         padding: 5px;
     }
 
-    #explanations > div {
+    #explanations>div {
         width: 90vw;
     }
 
@@ -313,7 +340,7 @@ input {
 
     /* Settings */
 
-    #settings > div {
+    #settings>div {
         width: 500px;
     }
 }
@@ -332,7 +359,7 @@ input {
         flex-direction: row-reverse;
     }
 
-    #explanations > div {
+    #explanations>div {
         width: 80vw;
     }
 
@@ -340,7 +367,7 @@ input {
         padding-left: 10px;
         padding-right: 10px;
     }
-    
+
     div.image-left {
         padding-left: 10px;
         padding-right: 10px;
@@ -353,7 +380,7 @@ input {
 
     /* How To Play Page */
 
-    #explanations > div {
+    #explanations>div {
         width: 900px;
     }
 }

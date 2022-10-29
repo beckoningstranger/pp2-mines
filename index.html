@@ -24,10 +24,6 @@
             <!-- Here users can learn what the game is about and how to play in general -->
             <div id="explanations">
                 <div id="explanations-heading">How To Play</div>
-                <div id="animations">
-                    <img src="assets/images/win.gif" alt="An animation of a player winning the game after clearing all squares.">
-                    <img src="assets/images/lose.gif" alt="An animation of a player clicking a mine and losing.">
-                </div>
                 <div>
                     MineSweeper is a logic game that also involves some guesswork. 
                     The aim of the game is to uncover the whole playing field without stepping onto a mine. 
@@ -91,6 +87,10 @@
                 <div>
                     Now it's time for you to go mine hunting yourself! Good luck solving these puzzles. Enjoy! 
                 </div>
+                <div id="animations">
+                    <img src="assets/images/win.gif" alt="An animation of a player winning the game after clearing all squares.">
+                    <img src="assets/images/lose.gif" alt="An animation of a player clicking a mine and losing.">
+                </div>
                 <div><button id="how-to-play-back-button" class="menu-buttons">Back to Menu</button></div>
             </div>
         </div>
@@ -99,7 +99,7 @@
             <div>
                 <p>If you don't want the game to adjust the playing field size to your screen, activate the button below</p>
                 <p>(May be useful on desktop)</p>
-                <button id="desktop-mode-button">Deactivated</button>
+                <button id="desktop-mode-button" class="menu-buttons">Deactivated</button>
             </div>
             <div>
                 <p>Pick a different background color:</p>
@@ -126,25 +126,25 @@
         <div id="difficulty-settings">
             <!-- This is where users can pick a difficulty level -->
             <div>
-                <button id="easy-setting">
+                <button id="easy-setting" class="menu-buttons">
                     Easy<br>
                     8x8<br>
                     10 Mines
                 </button>
-                <button id="medium-setting">
+                <button id="medium-setting" class="menu-buttons">
                     Medium<br>
                     8x16<br>
                     25 Mines
                 </button>
             </div>
             <div>
-                <button id="hard-setting">
+                <button id="hard-setting" class="menu-buttons">
                     Hard<br>
                     26x19<br>
                     99 Mines
                 </button>                            
-                <button id="custom-setting">
-                    <p>Customize settings</p>
+                <button id="custom-setting" class="menu-buttons">
+                    Customize settings
                 </button>
             </div>
             <div><button id="difficulty-settings-back-button" class="menu-buttons">Back to Menu</button></div>
