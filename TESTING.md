@@ -30,13 +30,13 @@ To ensure that there are no problems in my Javascript code I used JSHint and dis
 
 ## Lighthouse Test
 
-Lighthouse Test for desktops - Home
+Lighthouse Test for desktops - index.html
 
-![Lighthouse Test for desktops - Home](/assets/documentation-images/lighthouse-desktop-home.png)
+![Lighthouse Test for desktops](/assets/documentation-images/lighthouse-desktop-home.png)
 
-Lighthouse Test for mobile devices - Home
+Lighthouse Test for mobile devices - index.html
 
-![Lighthouse Test for mobile devices - Home](/assets/documentation-images/lighthouse-mobile-home.png)
+![Lighthouse Test for mobile devices](/assets/documentation-images/lighthouse-mobile-home.png)
 
 [Back to top](<#contents>)
 
@@ -44,10 +44,7 @@ Lighthouse Test for mobile devices - Home
 
 WAVE does not report any errors or contrast errors.
 
-![WAVE Testing - Home](/assets/documentation-images/WAVE-home.png)
-![WAVE Testing - Team](/assets/documentation-images/WAVE-team.png)
-![WAVE Testing - Stories](/assets/documentation-images/WAVE-stories.png)
-![WAVE Testing - Contact](/assets/documentation-images/WAVE-contact.png)
+![WAVE Testing](/assets/documentation-images/WAVE-home.png)
 
 [Back to top](<#contents>)
 
