@@ -363,7 +363,7 @@ function findSurroundingSquares(squares, rows, columns) {
                 let indexOfThatSquare = adjacentSquares.indexOf(adjacentSquares[i]);
                 adjacentSquares.splice(indexOfThatSquare, 1);
             }
-      }
+        }
         squares[i].neighboringSquares = adjacentSquares;
     }
     return squares;
