@@ -230,10 +230,6 @@ input {
     border: 2px solid black;
 }
 
-#explanations div {
-    font-size: 1.2rem;
-}
-
 .headings {
     font-size: 2rem;
     text-align: center;
@@ -242,7 +238,8 @@ input {
 
 #explanations>div {
     text-align: center;
-    padding-top: 20px;
+    font-size: 1.2rem;
+    padding: 20px 5px 0 5px;
 }
 
 .explanations-image-right {
@@ -266,6 +263,14 @@ input {
 
 #how-to-play-back-button {
     font-size: 1.5rem;
+}
+
+#how-to-play img {
+    width: 250px;
+}
+
+#animations video {
+    width: 250px;
 }
 
 /* Settings Menu */
@@ -331,13 +336,10 @@ input {
         padding: 5px;
     }
 
-    #explanations div {
-        font-size: 1.5rem;
-        padding: 5px;
-    }
-
     #explanations>div {
         width: 90vw;
+        font-size: 1.5rem;
+        padding: 5px;
     }
 
     #explanations-heading {

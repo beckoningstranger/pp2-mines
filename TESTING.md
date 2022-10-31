@@ -44,7 +44,7 @@ Lighthouse Test for mobile devices - index.html
 
 WAVE does not report any errors or contrast errors.
 
-![WAVE Testing](/assets/documentation-images/WAVE-home.png)
+![WAVE Testing](/assets/readme-images/wave.jpg)
 
 [Back to top](<#contents>)
 
