@@ -14,7 +14,7 @@
         <!-- At this level there are several divs, but only one of them is shown at a time, the others are hidden with CSS. -->
         <div id="start-menu">
             <!-- This is the Main Menu from where users can start games, learn how to play or access the settings menu -->
-            <p id="logo">Minesweeper</p>
+            <h1 id="logo">Minesweeper</h1>
             <div id="start-menu-buttons">
                 <button id="start-game-button" class="menu-buttons">Start Game</button>
                 <button id="how-to-play-button" class="menu-buttons">How to Play</button>
@@ -24,7 +24,7 @@
         <div id="how-to-play">
             <!-- Here users can learn what the game is about and how to play in general -->
             <div id="explanations">
-                <div id="explanations-heading">How To Play</div>
+                <h1 class="headings">How To Play</h1>
                 <div>
                     MineSweeper is a logic game that also involves some guesswork. 
                     The aim of the game is to uncover the whole playing field without stepping onto a mine. 
@@ -89,11 +89,11 @@
                     Now it's time for you to go mine hunting yourself! Good luck solving these puzzles. Enjoy! 
                 </div>
                 <div id="animations">
-                    <video width="290" height="321" autoplay muted>
+                    <video aria-label="An animation of a player winning a game" width="290" height="321" autoplay muted>
                         <source src="assets/images/win.webm" type="video/webm">
                     Your browser does not support the video tag.
                     </video>
-                    <video width="290" height="321" autoplay muted>
+                    <video aria-label="An animation of a player losing a game" width="290" height="321" autoplay muted>
                         <source src="assets/images/lose.webm" type="video/webm">
                     Your browser does not support the video tag.
                     </video>
@@ -103,6 +103,7 @@
         </div>
         <div id="settings">
             <!-- Settings Menu from where users can activate Desktop Mode or pick different background colors -->
+            <h1 class="headings">Settings</h1>
             <div>
                 <p>If you don't want the game to adjust the playing field size to your screen, activate the button below</p>
                 <p>(May be useful on desktop)</p>
@@ -112,19 +113,19 @@
                 <p>Pick a different background color:</p>
                 <div id="color-picker">
                     <div class="color-picker-row">
-                        <button class="color-picker-box" id="color-99BDD8"></button>
-                        <button class="color-picker-box" id="color-4ac1d7"></button>
-                        <button class="color-picker-box" id="color-cc1a62"></button>
+                        <button class="color-picker-box" id="color-99BDD8" value="Greyish Blue"></button>
+                        <button class="color-picker-box" id="color-4ac1d7" value="Teal"></button>
+                        <button class="color-picker-box" id="color-cc1a62" value="Wine Red"></button>
                     </div>
                     <div class="color-picker-row">
-                        <button class="color-picker-box" id="color-3ce551"></button>
-                        <button class="color-picker-box" id="color-f4945a"></button>
-                        <button class="color-picker-box" id="color-ef18c5"></button>
+                        <button class="color-picker-box" id="color-3ce551" value="Bright Green"></button>
+                        <button class="color-picker-box" id="color-f4945a" value="Orange"></button>
+                        <button class="color-picker-box" id="color-ef18c5" value="Pink"></button>
                     </div>
                     <div class="color-picker-row">
-                        <button class="color-picker-box" id="color-f6f15d"></button>
-                        <button class="color-picker-box" id="color-e4e4e4"></button>
-                        <button class="color-picker-box" id="color-988bd6"></button>
+                        <button class="color-picker-box" id="color-f6f15d" value="Yellow"></button>
+                        <button class="color-picker-box" id="color-e4e4e4" value="Grey"></button>
+                        <button class="color-picker-box" id="color-988bd6" value="Purple"></button>
                     </div>
                 </div>
             </div>
@@ -132,6 +133,7 @@
         </div>
         <div id="difficulty-settings">
             <!-- This is where users can pick a difficulty level -->
+            <h1 class="headings">Pick a difficulty level:</h1>
             <div>
                 <button id="easy-setting" class="menu-buttons">
                     Easy<br>
@@ -158,23 +160,24 @@
         </div>
         <div id="custom-difficulty-settings">
             <!-- Here users can customize their playing field as they wish by setting height and width of the playing field and choose how many mines they have to find -->
-            <p id="custom-difficulty-settings-instructions">Select your custom difficulty settings:</p>
-            <table>
-                <tr>
-                    <td><label for="height">Height:</label></td>
-                    <td><input class="input-field-number" type="number" id="height" name="playing-field-width" value="8" max="26" min="4" required></td>
-                </tr>
-                <tr>
-                    <td><label for="width">Width:</label></td>
-                    <td><input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" max="99" min="5" required></td>
-                </tr>
-                <tr>
-                    <td><label for="mines">Mines:</label></td>
-                    <td><input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" required></td>
-                </tr>
-                <tr><td colspan="2"><button id="custom-difficulty-start-button" class="menu-buttons">Start Playing</button></td></tr>
-            </table>
-            <div><button id="custom-difficulty-settings-back-button" class="menu-buttons">Back to Menu</button></div>
+            <h1 class="headings">Select your custom difficulty settings:</h1>
+            <div>
+                <label for="height" class="description-left-column">Height:</label>
+                <input class="input-field-number" type="number" id="height" name="playing-field-width" value="8" max="26" min="4" required>
+            </div>
+            <div>
+                <label for="width" class="description-left-column">Width:</label>
+                <input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" max="99" min="5" required>
+            </div>
+            <div>
+                <label for="mines" class="description-left-column">Mines:</label>
+                <input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" required>
+            </div>
+            <div id="custom-difficulty-settings-buttons">
+                <button id="custom-difficulty-start-button" class="menu-buttons">Start Playing</button>
+                <button id="custom-difficulty-settings-back-button" class="menu-buttons">Back to Menu</button>
+            </div>
+
         </div>
         <div id="playing-field-area">
             <div>

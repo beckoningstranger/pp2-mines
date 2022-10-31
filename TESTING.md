@@ -32,11 +32,11 @@ To ensure that there are no problems in my Javascript code I used JSHint and dis
 
 Lighthouse Test for desktops - index.html
 
-![Lighthouse Test for desktops](/assets/documentation-images/lighthouse-desktop-home.png)
+![Lighthouse Test for desktops](/assets/readme-images/lighthouse_desktop.jpg)
 
 Lighthouse Test for mobile devices - index.html
 
-![Lighthouse Test for mobile devices](/assets/documentation-images/lighthouse-mobile-home.png)
+![Lighthouse Test for mobile devices](/assets/readme-images/lighthouse_mobile.jpg)
 
 [Back to top](<#contents>)
 
