@@ -93,7 +93,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
 ## Wireframes
 
-  I planned this project on a whiteboard in my office:
+  I planned the UI of this project on a whiteboard in my office:
 
   ![Complete Whiteboard](/assets/readme-images/whiteboard.jpg)
   ![Detail: Playing Field](/assets/readme-images/playing_field.jpg)
@@ -213,6 +213,8 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 
   * [Google Fonts](https://fonts.google.com/) - To find and import fonts
 
+  * [CloudConverg](https://cloudconvert.com/) - To convert PNG images to WebP images and GIF to WebM animations
+
   * [Colordot](https://color.hailpixel.com/) - To create the color palette above
 
   * [Font Awesome](https://fontawesome.com/) - For the Restart and Off Button icons
@@ -246,15 +248,13 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 ## How to Deploy the Project on GitHub Pages
 
 1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/pp2-mines)
-![Image of the repository's website](assets/documentation-images/how-to-deploy.png)
+![Image of the repository's website](assets/readme-images/howtodeploy.jpg)
 2. Click on the 'Settings' button in the top menu
 3. Select the 'Pages' section in the side bar on the left
 4. Under 'Source' select 'Deploy from a branch'
 5. Select the 'main' branch
 6. Click 'Save'
 7. After about a minute, when you come back to the page, you will see the message 'Your site is live ...' with a link you can simply click.
-
-![Here's a short gif of the process:](assets/documentation-images/how-to-deploy.gif)
 
 [Back to top](<#contents>)
 
@@ -263,7 +263,7 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/pp2-mines)
 2. Click the 'Fork' button at the top right of the page. If you are not the owner of the project, it will not appear greyed out to you:
 
-![Location of Fork button](assets/documentation-images/how-to-fork.png)
+![Location of Fork button](assets/readme-images/forkbutton.jpg)
 
 [Back to top](<#contents>)
 
@@ -272,7 +272,7 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/rappelkiste)
 2. Click the 'Code' button, make sure you have HTTPS selected and then click the button to copy the link to your clipboard as demonstrated in this GIF:
 
-  ![How to Clone](assets/documentation-images/how-to-clone.gif)
+  ![How to Clone](assets/readme-images/howtoclone.jpg)
 
 3. Open your IDE and either use the functionality it provides (many IDE offer buttons that help you clone repositories) and paste your link there to have your clone created or go to the terminal and type: 'git clone \[insert your link here\]'
 4. Hit ENTER and wait for you local clone to be created.
@@ -283,9 +283,9 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 
 ## Content
 
-  * All of the content on the Home Page was written by myself.
+  * All of the content was written by myself.
 
-  * The game principle is of course not my own and according to [the Minesweeper Wikipedia page](https://en.wikipedia.org/wiki/Microsoft_Minesweeper) it is unclear.
+  * The game principle is of course not my own and according to [the Minesweeper Wikipedia page](https://en.wikipedia.org/wiki/Microsoft_Minesweeper) its origin is unclear.
 
 ## Code
 
@@ -309,12 +309,8 @@ I would like to thank the following people
 
 * Precious Ijege, my mentor, for providing feedback on my ideas and helping me create this project.
 
-* Kera Cudmore, for her class on how to write a README and the insight she offered when I contacted her on Slack.
+* My daughter for being interested in this project and learning how to play the game.
 
-* Ewan Colquhoun, whose [first project's README](https://github.com/EwanColquhoun/wawaswoods/blob/master/README.md) served as a model for this one.
-
-* My kids for being interested in this project and learning how to play the game.
-
-* My wife, for putting up with me and proofreading my work.
+* My wife, for proofreading my work.
 
 [Back to top](<#contents>)

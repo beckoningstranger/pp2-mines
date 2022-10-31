@@ -2,6 +2,7 @@
 
 * [**Validator Testing**](#validator-testing)
   * [HTML and CSS](#html-and-css)
+  * [Javascript](#javascript)
   * [Lighthouse Test](#lighthouse-test)
   * [WAVE Web Accessibility Evaluation Tool](#wave-web-accessibility-evaluation-tool)
 * [Responsiveness Test](#responsiveness-test)
@@ -19,14 +20,13 @@
 
 To test compliance with HTML standards, the [W3C Markup Validation Service](https://validator.w3.org/) was used. Here are the results for all files:
 
-![index.html](/assets/documentation-images/code-validation-index.png)
-![team.html](/assets/documentation-images/code-validation-team.png)
-![stories.html](/assets/documentation-images/code-validation-stories.png)
-![contact.html](/assets/documentation-images/code-validation-contact.png)
-![thankyou.html](/assets/documentation-images/code-validation-thankyou.png)
-![style.css](/assets/documentation-images/jigsaw-validation.png)
-
+![index.html](/assets/readme-images/nuhtml.jpg)
+![style.css](/assets/readme-images/jigsaw.jpg)
 [Back to top](<#contents>)
+
+## Javascript
+
+To ensure that there are no problems in my Javascript code I used JSHint and discussed the results with my mentor.
 
 ## Lighthouse Test
 
@@ -37,38 +37,6 @@ Lighthouse Test for desktops - Home
 Lighthouse Test for mobile devices - Home
 
 ![Lighthouse Test for mobile devices - Home](/assets/documentation-images/lighthouse-mobile-home.png)
-
-Lighthouse Test for desktops - Team
-
-![Lighthouse Test for desktops - Team](/assets/documentation-images/lighthouse-desktop-team.png)
-
-Lighthouse Test for mobile devices - Team
-
-![Lighthouse Test for mobile devices - Team](/assets/documentation-images/lighthouse-mobile-team.png)
-
-Lighthouse Test for desktops - Stories
-
-![Lighthouse Test for desktops - Stories](/assets/documentation-images/lighthouse-desktop-stories.png)
-
-Lighthouse Test for mobile devices - Stories
-
-![Lighthouse Test for mobile devices - Stories](/assets/documentation-images/lighthouse-mobile-stories.png)
-
-Lighthouse Test for desktops - Get in Touch
-
-![Lighthouse Test for desktops - Get in Touch](/assets/documentation-images/lighthouse-desktop-contact.png)
-
-Lighthouse Test for mobile devices - Get in Touch
-
-![Lighthouse Test for mobile devices - Get in Touch](/assets/documentation-images/lighthouse-mobile-contact.png)
-
-Lighthouse Test for desktops - Thank You
-
-![Lighthouse Test for desktops - Thank You](/assets/documentation-images/lighthouse-desktop-thankyou.png)
-
-Lighthouse Test for mobile devices - Thank You
-
-![Lighthouse Test for mobile devices - Thank You](/assets/documentation-images/lighthouse-mobile-thankyou.png)
 
 [Back to top](<#contents>)
 
