@@ -94,7 +94,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
 ### Wireframes
 
-  I planned the UI of this project on a whiteboard in my office:
+  I planned the UI of this project on a whiteboard in my office. As the menus don't require a lot of space, I did not create special wireframes for mobile, the game looks the same almost everywhere. The playing field is the only place where space is precious and I style it with Javascript by looking at the available viewport size and sizing elements based on that.
 
   ![Complete Whiteboard](/assets/readme-images/whiteboard.jpg)
   ![Detail: Playing Field](/assets/readme-images/playing_field.jpg)
@@ -122,7 +122,11 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   * In this menu users can pick the difficulty level of their choice, navigate to the customize difficulty settings menu or go back to the main menu.
 
-  ![](/assets/readme-images/difficulty_menu.jpg)
+    ![Difficulty Menu](/assets/readme-images/difficulty_menu.jpg)
+
+  * On viewports with less than 1024px width, the hard and custom difficulty options are hidden. Hard would definitely break the layout and custom options have a high chance of doing that as well, as narrow viewports can't handle more than 8 columns of squares. Beginners will be satisfied with the lower difficulty levels.
+
+    ![Difficulty Menu with hidden options](/assets/readme-images/diff_options_hidden.jpg)
 
   [Back to top](<#contents>)  
 
@@ -141,9 +145,9 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   * Here users can learn what Minesweeper is and how to play the game.
 
-  * The two clickable buttons at the top of the playing field are also briefly explained. They are the only elements that are not completely straight-forward.
+  * The two clickable buttons at the top of the playing field are also briefly explained. They are the only elements that are not completely straightforward.
 
-  * At the bottom they can also see what it looks like to win and lose a game.
+  * At the bottom of the page users can also see what it looks like to win and lose a game.
 
   ![How To Play Section](/assets/readme-images/how_to_play.jpg)
 
@@ -163,7 +167,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
   * On the playing field there is a circle arrow at the top left. By clicking it, users can quickly restart their games. This is essential because clicking a mine and losing in the process is such a frequent part of the game.
   * The timer starts counting as soon as a game is started. It only stops once the player either loses or wins.
   * The ^\_^ emoji indicates that the game is still going on. It temporarily changes to O\_O when the player is clicking a mine, which conveys a certain tension as every click is potentially the end of the game. Once players lose, it changes to X\_X indicating that the player is dead and to d^\_^b when they win to indicate a double thumbs up, acknowledging the player's feat. All of this was heavily inspired by the original game that had a graphical emoji with similar expressions.
-  * The mines counter shows the number of mines players have left to find. Every time a player marks a square as mined by right-clicking or long-pressing it, the counter goes down. As in the original game, it is not a clear indicator of whether the marked squares really contain mines, it does not perform a check. It simply serves as an indicator of the player's progress and can help with decisions late in the game when the player can evaluate how many mines are in the last remaining squares. This can be helpful.
+  * The mines counter shows the number of mines players have left to find. Every time a player marks a square as mined by right-clicking or long-pressing it, the counter goes down. As in the original game, it is not a clear indicator of whether the marked squares really contain mines, it does not perform a check. It simply serves as an indicator of the player's progress and can help with decisions late in the game when the player can evaluate how many mines there are in the last remaining squares. This can be helpful.
   * The off button allows players to navigate back to the main menu.
   * Every square on the playing field has a hover effect and an active effect for more feedback.
   * The numbers that players reveal by clicking or tapping squares are color-coded to help players make faster decisions.
@@ -184,7 +188,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
 ### Leaderboards
 
-  * Record times and player names for won games in leaderboards for all difficulty levels.
+  * Record times and player names for won games in leaderboards for the standard difficulty levels.
 
 ### Statistics
   
