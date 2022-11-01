@@ -28,6 +28,7 @@
 ## Javascript
 
   To ensure that there are no problems in my Javascript code I used JSHint and discussed the results with my mentor.
+  ![style.css](/assets/readme-images/jshint.png)
 
 ## Lighthouse Test
 

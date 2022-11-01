@@ -13,7 +13,7 @@ var controller;
 checkCookie();
 // Set event listeners for the menus
 initializeMenu();
-// Hide hard and custom difficulty modes on viewports that have less than 1024px width:
+// Hide hard and custom difficulty modes on viewports that have less than 1024px width as large playing fields would break the layout:
 if (Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) < 1024) {
     document.getElementById('hard-setting').style.display = "none";
     document.getElementById('custom-setting').style.display = "none";
@@ -84,16 +84,29 @@ function initializeMenu() {
         height = Math.floor(document.getElementById('height').value);
         mines = Math.floor(document.getElementById('mines').value);
         // Check whether user input conforms to supported parameters
-        if (width < 5 || height < 4 || mines < 5) {
-            alert('Either your playing field is too small or there are not enough mines. The smallest possible parameters are a 8x4 playing field with 5 mines. Will create a game with these parameters now.');
-            width = 8;
-            height = 4;
-            mines = 5;
-        } else if (width > 26 || height > 19 || mines > 99) {
-            alert('Your playing field is too big on at least one axis or there are too many mines. The largest possible parameters are a 26x19 playing field with 99 mines. Will create a game with these parameters now.');
+        if (width < 5) {
+            alert('The minimum supported width is 8. Will use this value to create the playing field.');
+            width = 5;
+        }
+        if (width > 26) {
+            alert('The maximum supported width is 26. Will use this value to create the playing field.');
             width = 26;
+        }
+        if (height < 4) {
+            alert('The minimum supported height is 4. Will use this value to create the playing field.');
+            height = 4;
+        }
+        if (height > 19) {
+            alert('The maximum supported height is 19. Will use this value to create the playing field.');
             height = 19;
-            mines = 99;
+        }
+        if (mines < 5) {
+            alert('The minimum supported number of mines is 4. Will use this value to create the playing field.');
+            mines = 4;
+        }
+        if (mines > 99) {
+            alert('The maximum supported number of mines is 19. Will use this value to create the playing field.');
+            mines = 19;
         }
         startGame();
     });
@@ -200,12 +213,8 @@ function initializeMenu() {
         // Restart Timer
         startTimer();
 
-        // Adjust playing field depending on whether the user is in portrait or landscape mode unless Desktop Mode is activated
-        if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
-            adjustPlayingFieldToViewportWidth();
-        } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
-            adjustPlayingFieldToViewportHeight();
-        }
+        // Adjust playing field
+        adjustPlayingField();
     });
 
     // Create event listener for quit button
@@ -238,10 +247,17 @@ function initializeMenu() {
     // Add event listeners to each created button
     makePlayingFieldInteractive();
 
-    // Start Timer
+    // Start timer
     startTimer();
 
-    // Adjust Playing Field depending on whether the user is in portrait or landscape mode unless Desktop Mode is activated
+    // Adjust playing field
+    adjustPlayingField();
+}
+
+/**
+ * Adjust Playing Field depending on whether the user is in portrait or landscape mode unless Desktop Mode is activated
+ */
+function adjustPlayingField() {
     if ((desktopMode === 0) && (landscapeOrPortraitMode() === "portrait")) {
         adjustPlayingFieldToViewportWidth();
     } else if ((desktopMode === 0) && (landscapeOrPortraitMode() === "landscape")) {
@@ -693,10 +709,19 @@ function adjustPlayingFieldToViewportWidth() {
 function adjustPlayingFieldToViewportHeight() {
     // The code for getting the viewport height and width was taken from https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const numberOfRows = document.getElementsByClassName('row-of-mines').length;
+    const numberOfColumns = document.getElementsByClassName('row-of-mines')[0].childElementCount;
     
     // Calculate and set how big the square should be to fit and fill the screen vertically
     let squareWidth = Math.floor(vh / numberOfRows * 0.8);
+
+    // If calculated square width would not fit because there are too many columns (might happen with user customized parameters), calculated maximum available horizontal space and fill that.
+    if (squareWidth * numberOfColumns > vw) {
+        squareWidth = Math.floor(vw / numberOfColumns * 0.8);
+    }    
+
+    // Style all squares with the calculated value
     let squares = document.getElementsByClassName('square');
     for (let square of squares) {
         square.style.height = `${squareWidth}px`;
