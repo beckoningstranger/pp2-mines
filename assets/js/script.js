@@ -11,6 +11,7 @@ var myTimer;
 var controller;
 // Check for a cookie and apply settings accordingly
 checkCookie();
+// Set event listeners for the menus
 initializeMenu();
 
 /**
@@ -37,8 +38,8 @@ function initializeMenu() {
     let mediumSetting = document.getElementById('medium-setting');
     mediumSetting.addEventListener('click', function() {
         difficultySettingsMenu.style.display = 'none';
-        width = 16;
-        height = 8;
+        width = 8;
+        height = 16;
         mines = 25;
         startGame();   
     });
@@ -52,8 +53,8 @@ function initializeMenu() {
             alert("Unfortunately your viewport is too small. If you're in portrait mode, try using your device in landscape mode or switch to a larger device.");
         } else {
             difficultySettingsMenu.style.display = 'none';
-            width = 19;
-            height = 26;
+            width = 26;
+            height = 19;
             mines = 99;
             startGame();   
         }
@@ -74,9 +75,21 @@ function initializeMenu() {
 
     let customSettingStartButton = document.getElementById('custom-difficulty-start-button');
     customSettingStartButton.addEventListener('click', function() {
-        width = document.getElementById('height').value;
-        height = document.getElementById('width').value;
-        mines = document.getElementById('mines').value;
+        width = Math.floor(document.getElementById('width').value);
+        height = Math.floor(document.getElementById('height').value);
+        mines = Math.floor(document.getElementById('mines').value);
+        // Check whether user input conforms to supported parameters
+        if (width < 5 || height < 4 || mines < 5) {
+            alert('Either your playing field is too small or there are not enough mines. The smallest possible parameters are a 8x4 playing field with 5 mines. Will create a game with these parameters now.');
+            width = 8;
+            height = 4;
+            mines = 5;
+        } else if (width > 26 || height > 19 || mines > 99) {
+            alert('Your playing field is too big on at least one axis or there are too many mines. The largest possible parameters are a 26x19 playing field with 99 mines. Will create a game with these parameters now.');
+            width = 26;
+            height = 19;
+            mines = 99;
+        }
         startGame();
     });
 
@@ -142,8 +155,8 @@ function initializeMenu() {
 
 /**
  * Reads how big the playing field is supposed to be and how many mines should be placed from the DOM.
- * When user clicks 'Start Playing!' it hides the menu where the user could set game parameters and calls functions to build the playing field.
- * Also contains event listeners for the restart and quit button
+ * When user clicks 'Start Playing!', it hides the menu where the user could set game parameters and calls functions to build the playing field.
+ * Also contains event listeners for the restart and quit buttons
  */
  function startGame() {
 
@@ -174,7 +187,7 @@ function initializeMenu() {
         let playingFieldInformation = buildPlayingField(width, height, mines);
         
         // Uses the array to now create a visible playing field in HTML
-        buildVisiblePlayingField(playingFieldInformation, height);
+        buildVisiblePlayingField(playingFieldInformation, width);
 
         // Add event listeners to each created square
         makePlayingFieldInteractive();
@@ -215,7 +228,7 @@ function initializeMenu() {
     let playingFieldInformation = buildPlayingField(width, height, mines);
     
     // Uses the array to now create a visible playing field in HTML
-    buildVisiblePlayingField(playingFieldInformation, height);
+    buildVisiblePlayingField(playingFieldInformation, width);
 
     // Add event listeners to each created button
     makePlayingFieldInteractive();
@@ -240,16 +253,16 @@ function initializeMenu() {
 */
 function buildPlayingField(width, height, mines) {
     const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+    const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
     let rows = [];
     let columns = [];
 
     // Create an array of letters for rows based on how many the user chose
-    for (let i = 0; i < width; i++) {
+    for (let i = 0; i < height; i++) {
         rows.push(LETTERS[i]);
     }
     // Create an array of numbers for columns based on how many the user chose
-    for (let i = 0; i < height; i++) {
+    for (let i = 0; i < width; i++) {
         columns.push(NUMBERS[i]);
     }
     let squares = [];
@@ -398,7 +411,7 @@ function findMinesInSurroundingSquares(squares) {
             // Get the index number of the square we want to check
             for (let j = 0; j < squares.length; j++) {
                 if (squares[j].name === square) {
-                    // With the index number, check of the square has a mine
+                    // With the index number, check if the square has a mine
                     if (squares[j].hasMine === 1) {
                         countedMines++;
                     }
@@ -492,7 +505,7 @@ function makePlayingFieldInteractive() {
 
 
 /**
- * This whole function taken from https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone 
+ * This whole function was taken from https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone 
  * with minimal editing.
  * @param {} element 
  * @param {*} callback 

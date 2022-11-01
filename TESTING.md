@@ -84,31 +84,31 @@ The website was tested in Google Chrome, Mozilla Firefox, Microsoft Edge, Opera 
 
   **As a user, I want to learn how the game works.**
   
-    * From the main menu, users can click the 'How To Play' button to do this.
+  * From the main menu, users can click the 'How To Play' button to do this.
 
   **As a user, I want to play Minesweeper in a difficulty setting fitting my skill level so that I won't feel frustrated while playing.**
 
-    * From the main menu, users can click 'Start Game' and then either pick a predefined difficulty level by clicking one of the three buttons for this or click 'Customize Settings' to go to the custom difficulty page where they can set their own settings by entering values for height, width and mines. After clicking the 'Start playing' button the game starts.
+  * From the main menu, users can click 'Start Game' and then either pick a predefined difficulty level by clicking one of the three buttons for this or click 'Customize Settings' to go to the custom difficulty page where they can set their own settings by entering values for height, width and mines. After clicking the 'Start playing' button, the game starts.
 
   **As a user, I want to customize the look of the game so that it's pleasing to the eye.**
 
-    * From the main menu, users can click the 'Settings' button to open the settings menu. Here, they can choose from 9 different background colors just by clicking one of the colored buttons. They can also activate 'Desktop Mode' to prevent the squares on the playing field from being resized to fully use the available space of their viewports. These settings are saved in a cookie so that users won't have to set them again and again.
+  * From the main menu, users can click the 'Settings' button to open the settings menu. Here, they can choose from 9 different background colors just by clicking one of the colored buttons. They can also activate 'Desktop Mode' to prevent the squares on the playing field from being resized to fully use the available space of their viewports. These settings are saved in a cookie so that users won't have to set them again and again.
 
   **As a user, I want to see how long it takes me to win a game so that I can track my performance and see whether I'm getting faster.**
 
-    * After starting a game, a timer at the top of the playing field is started that only stops after the user has either won or lost the current game. This way, users can keep track of their performance.
+  * After starting a game, a timer at the top of the playing field is started that only stops after the user has either won or lost the current game. This way, users can keep track of their performance.
 
   **As a user, I want to see how many mines there are left to find so that it helps me to make informed decisions during the final phase of the game.**
 
-    * At the top of the playing field the number of mines that users still have to find is shown. It decreases when a user marks a field by right-clicking on it.
+  * At the top of the playing field the number of mines that users still have to find is shown. It decreases when a user marks a field by right-clicking on it.
 
   **As a user, I want the ability to mark and unmark squares as mines so that it's easier for me to make quick decisions during the game.**
 
-    * This is done by right-clicking squares, just as experienced Minesweeper players would expect.
+  * This is done by right-clicking squares, just as experienced Minesweeper players would expect.
 
   **As a user, I want the ability to quickly restart my game without having to go through the initial menus. Losing happens frequently, so I don't want to waste time.**
 
-    * There is a button (a circle arrow) at the top left of the playing field that allows users to quickly generate a new playing field with one click.
+   * There is a button (a circle arrow) at the top left of the playing field that allows users to quickly generate a new playing field with one click.
 
 [Back to top](<#contents>)
 

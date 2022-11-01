@@ -162,16 +162,16 @@
             <!-- Here users can customize their playing field as they wish by setting height and width of the playing field and choose how many mines they have to find -->
             <h1 class="headings">Select your custom difficulty settings:</h1>
             <div>
-                <label for="height" class="description-left-column">Height:</label>
-                <input class="input-field-number" type="number" id="height" name="playing-field-width" value="8" max="26" min="4" required>
+                <label for="width" class="description-left-column">Width:</label>
+                <input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" max="26" min="8" required>
             </div>
             <div>
-                <label for="width" class="description-left-column">Width:</label>
-                <input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" max="99" min="5" required>
+                <label for="height" class="description-left-column">Height:</label>
+                <input class="input-field-number" type="number" id="height" name="playing-field-width" value="8" max="19" min="4" required>
             </div>
             <div>
                 <label for="mines" class="description-left-column">Mines:</label>
-                <input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" required>
+                <input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" max="99" required>
             </div>
             <div id="custom-difficulty-settings-buttons">
                 <button id="custom-difficulty-start-button" class="menu-buttons">Start Playing</button>

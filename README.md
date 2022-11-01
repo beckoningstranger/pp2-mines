@@ -1,10 +1,10 @@
 # Minesweeper
 
-This is a site that allows users to play Minesweeper, a simple logic game that I personally learned back in the days of Windows 3.1. MineSweeper is a logic game that also involves some guesswork. The aim of the game is to uncover the whole playing field without stepping onto a mine.
+This is a site that allows users to play Minesweeper, a simple logic game that I personally learned back in the days of Windows 3.1. Minesweeper is a logic game that also involves some guesswork. The aim of the game is to uncover the whole playing field without stepping onto a mine.
 
 Take a look at the deployed website: <a href="https://https://beckoningstranger.github.io/pp2-mines/index.html" target="_blank" rel="noopener">Minesweeper</a>.
 
-![Responsive Design - Rappelkiste e.V.](/assets/readme-images/amiresponsive.png)
+![Responsive Design - Minesweeper](/assets/readme-images/amiresponsive.png)
 
 # Contents
 
@@ -62,18 +62,18 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   [Back to top](<#contents>)
 
-# Design
+## Design
 
-## Site Structure
+### Site Structure
 
-  The website consists of one page that is divided in several sections out of which only one is shown at the same time. Users always start in the main menu, from where they can start a game, learn how to play the game or customize their settings.
+  The website consists of one page that is divided into several sections out of which only one is shown at the same time. Users always start in the main menu, from where they can start a game, learn how to play the game or customize their settings.
   After clicking the 'Start game' button, they can pick a difficulty level or customize their difficulty level by configuring the dimensions of the playing field and the number of mines it contains. From there, they will go to the actual game.
   Clicking the 'How to play' and 'Settings' buttons will take them to these menus respectively.
   From all pages, they can navigate back to the main menu.
 
   [Back to top](<#contents>)
 
-## Color Scheme
+### Color Scheme
 
   ![Color Scheme](/assets/readme-images/color_palette_from_colordot_by_hailpixel.png)
 
@@ -81,7 +81,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   [Back to top](<#contents>)
 
-## Typography
+### Typography
 
   Google Fonts was used for the following fonts:
 
@@ -91,7 +91,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   [Back to top](<#contents>)
 
-## Wireframes
+### Wireframes
 
   I planned the UI of this project on a whiteboard in my office:
 
@@ -108,7 +108,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
 * The playing field is generated automatically and mines are placed in random spots, so that every game is different and a new challenge.
 
-### __Main Menu__
+### Main Menu
 
   * This menu lets users start games and navigate to both the 'How to play' and the 'Settings' sections.
   * Users on devices with attached pointing devices will see a hovering effect for clickable elements.
@@ -117,15 +117,15 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
 [Back to top](<#contents>)
 
-### __Difficulty Menu__
+### Difficulty Menu
 
-  * In this menu users can pick the difficulty level of their choice,navigate to the custom difficulty settings menu or go back the main menu.
+  * In this menu users can pick the difficulty level of their choice, navigate to the customize difficulty settings menu or go back to the main menu.
 
   ![](/assets/readme-images/difficulty_menu.jpg)
 
   [Back to top](<#contents>)  
 
-### __Customize Difficulty Settings Menu__
+### Customize Difficulty Settings Menu
 
   * Here users can customize the playing field by adjusting the parameters of its height and width. 
   * They can also configure the number of mines that will be in the playing field.
@@ -136,7 +136,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   [Back to top](<#contents>)
 
-### __How To Play Section__
+### How To Play Section
 
   * Here users can learn what Minesweeper is and how to play the game.
 
@@ -148,7 +148,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   [Back to top](<#contents>)
 
-### __Settings Menu__
+### Settings Menu
 
   * Here users can activate Desktop Mode, which just prevents the playing field from being resized with respect to their viewport. Users who know the game from the olden days might want to prefer the squares never to vary in size. This is deactivated by default because the resizing feature is essential on mobile devices.
   * Users can also pick a different background color that they might prefer to the standard greyish blue.
@@ -157,17 +157,17 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
   [Back to top](<#contents>)
 
-### __Playing Field__
+### Playing Field
   
-    * On the playing field there is a circle arrow at the top left. By clicking it, users can quickly restart their games. This is essential because clicking a mine and losing in the process is such a frequent part of the game.
-    * The timer starts counting as soon as a game is started. It only stops once the player either loses or wins.
-    * The ^_^ emoji indicates that the game is still going on. It temporarily changes to O_O when the player is clicking a mine, which conveys a certain tension as every click is potentially the end of the game. Once players lose it changes to X_X indicating that the player is dead and to d^_^b to indicate a double thumbs up, acknowledging the player's feat. All of this was heavily inspired by the original game that had a graphical emoji with similar expressions.
-    * The mines counter shows the number of mines players have left to find. Every time a player marks a square as minend by right-clicking or long-pressing it, the counter goes down. As in the original game, it is not a clear indicator of whether the marked square really contain mines, it does not perform a check. It simply serves as an indicator of the players progress and can help with decisions late in the game when the player can evaluate how many mines are in the last remaining squares. This can be helpful.
-    * The off button allows players to navigate back to the main menu.
-    * Every square on the playing field has a hover effect and an active effect for more feedback.
-    * The numbers that players reveal by clicking or tapping squares are color-coded to help players make faster decisions.
-    * When a game is lost, the background of the playing field will turn red, when the players wins it turns green. This is different from the original game but gives additional feedback.
-    * When the game ends, all mines are revealed as their squares will show in black.
+  * On the playing field there is a circle arrow at the top left. By clicking it, users can quickly restart their games. This is essential because clicking a mine and losing in the process is such a frequent part of the game.
+  * The timer starts counting as soon as a game is started. It only stops once the player either loses or wins.
+  * The ^\_^ emoji indicates that the game is still going on. It temporarily changes to O\_O when the player is clicking a mine, which conveys a certain tension as every click is potentially the end of the game. Once players lose, it changes to X\_X indicating that the player is dead and to d^\_^b when they win to indicate a double thumbs up, acknowledging the player's feat. All of this was heavily inspired by the original game that had a graphical emoji with similar expressions.
+  * The mines counter shows the number of mines players have left to find. Every time a player marks a square as mined by right-clicking or long-pressing it, the counter goes down. As in the original game, it is not a clear indicator of whether the marked squares really contain mines, it does not perform a check. It simply serves as an indicator of the player's progress and can help with decisions late in the game when the player can evaluate how many mines are in the last remaining squares. This can be helpful.
+  * The off button allows players to navigate back to the main menu.
+  * Every square on the playing field has a hover effect and an active effect for more feedback.
+  * The numbers that players reveal by clicking or tapping squares are color-coded to help players make faster decisions.
+  * When a game is lost, the background of the playing field will turn red, when the player wins, it turns green. This is different from the original game but gives additional feedback.
+  * When the game ends, all mines are revealed as their squares will show in black.
 
   ![Playing Field: Easy Difficulty](/assets/readme-images/easy_difficulty.jpg)
   ![Players wins](/assets/readme-images/win.jpg)
@@ -193,7 +193,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
 
 ## Accessibility
 
-I have tried to keep the website as accessible as possible by using semantic HTML elements, providing adequate contrast for fonts, using the alt attribute for images, the title attribute for links, etc. To further ensure that the site is accessible I ran tests with the Web Accessibility Evaluation Tool (WAVE) and also used a Chrome browser extension called Web Disability Simulator. More on this in [Testing](#testing).
+I have tried to keep the website as accessible as possible by using semantic HTML elements, providing adequate contrast for fonts, using the alt attribute for images, the title attribute for links, etc. To further ensure that the site is accessible, I ran tests with the Web Accessibility Evaluation Tool (WAVE) and also used a Chrome browser extension called Web Disability Simulator. More on this in [Testing](#testing).
 
 [Back to top](<#contents>)
 
@@ -269,7 +269,7 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 
 ## How to Clone the Repository on GitHub
 
-1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/rappelkiste)
+1. In your browser, navigate to the [GitHub page of this project.](https://github.com/beckoningstranger/pp2-mines)
 2. Click the 'Code' button, make sure you have HTTPS selected and then click the button to copy the link to your clipboard as demonstrated in this GIF:
 
   ![How to Clone](assets/readme-images/howtoclone.jpg)
@@ -291,9 +291,9 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 
   * As this was my first Javascript project, there were many first times here, where I searched the web for solutions to my problems. Here is where I actually took code and used it for this project: 
     
-    * When I was looking for a way to disable the event triggers for the playing field to stop players from playing on after losing, I finally settled on using an abort signal. I learned this reading the [MDN addEventListener page](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and adapted their code.
+    * When I was looking for a way to disable the event triggers for the playing field to stop players from playing on after losing, I finally found the possibility to use an abort signal. I learned this reading the [MDN addEventListener page](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and adapted their code.
 
-    * When I was looking for a good way to resize the playing field specifially for a user's viewport I learned how to get the needed values by reading [ryanve's answer on this Stackoverflow page](https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions).
+    * When I was looking for a good way to resize the playing field specifically for a user's viewport, I learned how to get the needed values by reading [ryanve's answer on this Stackoverflow page](https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions).
 
     * Implementing a long press to enable users to mark squares as mines was harder than expected, but with [the answers on this Stackoverflow page](https://stackoverflow.com/questions/6139225/how-to-detect-a-long-touch-pressure-with-javascript-for-android-and-iphone) I could make it work.
 
@@ -311,6 +311,6 @@ I would like to thank the following people
 
 * My daughter for being interested in this project and learning how to play the game.
 
-* My wife, for proofreading my work.
+* My wife for proofreading my work.
 
 [Back to top](<#contents>)
