@@ -13,6 +13,11 @@ var controller;
 checkCookie();
 // Set event listeners for the menus
 initializeMenu();
+// Hide hard and custom difficulty modes on viewports that have less than 1024px width:
+if (Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) < 1024) {
+    document.getElementById('hard-setting').style.display = "none";
+    document.getElementById('custom-setting').style.display = "none";
+}
 
 /**
  * This function sets the event listeners for the menus and also sets parameters for the three set difficulty levels

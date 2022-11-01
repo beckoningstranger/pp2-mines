@@ -213,25 +213,21 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 
   * [Google Fonts](https://fonts.google.com/) - To find and import fonts
 
-  * [CloudConverg](https://cloudconvert.com/) - To convert PNG images to WebP images and GIF to WebM animations
+  * [CloudConvert](https://cloudconvert.com/) - To convert PNG images to WebP images and GIF to WebM animations
 
   * [Colordot](https://color.hailpixel.com/) - To create the color palette above
 
   * [Font Awesome](https://fontawesome.com/) - For the Restart and Off Button icons
 
-  * [Google Dev Tools](https://developer.chrome.com/docs/devtools/) - To work out bugs, troubleshoot and test features and play around with property values. Also, to test the website using the Lighthouse Test.
+  * [Google Dev Tools](https://developer.chrome.com/docs/devtools/) - To work out bugs, troubleshoot and test features and play around with property values and to test the website using the Lighthouse Test
 
   * [Compressor.io](https://compressor.io) - To compress images
 
-  * [GIMP](https://gimp.org) - To resize and convert images.
+  * [GIMP](https://gimp.org) - To resize and convert images
 
-  * [ScreenToGif](https://www.screentogif.com/) - To record gameplay for the How to Play section.
-
-  <!-- * [Favicon.io](https://favicon.io/) - To create a favicon -->
+  * [ScreenToGif](https://www.screentogif.com/) - To record gameplay for the How to Play section and animations for the documentation of this project
 
   * [Am I Responsive?](https://ui.dev/amiresponsive) - To showcase the website on all of the images used in this documentation file
-
-  * [Web Disability Simulator](https://chrome.google.com/webstore/detail/web-disability-simulator/olioanlbgbpmdlgjnnampnnlohigkjla) - To ensure accessibility for all users
 
   * [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) - To further ensure accessibility for all users
 
