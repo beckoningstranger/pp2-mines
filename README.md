@@ -39,6 +39,7 @@ Take a look at the deployed website: <a href="https://https://beckoningstranger.
   * [How to Clone the Repository on GitHub](#how-to-clone-the-repository-on-github)
 * [Credits](#credits)
   * [Content](#content)
+  * [Media](#media)
   * [Code](#code)
 * [Acknowledgements](#acknowledgements)
 
@@ -217,6 +218,8 @@ I have tried to keep the website as accessible as possible by using semantic HTM
 
   * [Colordot](https://color.hailpixel.com/) - To create the color palette above
 
+  * [Favicon.io](https://favicon.io/) - To create a favicon
+
   * [Font Awesome](https://fontawesome.com/) - For the Restart and Off Button icons
 
   * [Google Dev Tools](https://developer.chrome.com/docs/devtools/) - To work out bugs, troubleshoot and test features and play around with property values and to test the website using the Lighthouse Test
@@ -282,6 +285,10 @@ I have tried to keep the website as accessible as possible by using semantic HTM
   * All of the content was written by myself.
 
   * The game principle is of course not my own and according to [the Minesweeper Wikipedia page](https://en.wikipedia.org/wiki/Microsoft_Minesweeper) its origin is unclear.
+
+## Media
+
+  * For my favicon, I used [this free picture](https://pixabay.com/illustrations/bomb-explode-detonate-explosion-1602109/) by [95C](https://pixabay.com/users/95c-484762/).
 
 ## Code
 

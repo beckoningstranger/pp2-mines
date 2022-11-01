@@ -173,7 +173,7 @@ function initializeMenu() {
     let restartButton = document.getElementById('restart-button');
     restartButton.addEventListener('click', function() {
         // Reset Mine Counter
-        document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length
+        document.getElementById('mine-countdown').innerText = document.getElementsByClassName('has-mine').length;
 
         // Reset timer
         clearInterval(myTimer);
