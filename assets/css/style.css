@@ -1,394 +1,393 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono&display=swap'); */
 
 /* General styling */
 
 * {
-    margin: 0;
-    padding: 0;
-    border: none;
-    box-sizing: border-box;
-    font-family: 'Bangers', sans-serif;
-    font-weight: 400;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Bangers", sans-serif;
+  font-weight: 400;
 }
 
 body {
-    color: #000;
-    background: white;
+  color: #000;
+  background: white;
 }
 
 a {
-    text-decoration: none;
-    color: inherit
+  text-decoration: none;
+  color: inherit;
 }
 
 #game-area {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    background-color: #99bdd8;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: #99bdd8;
 }
 
 .menu-buttons:hover {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 
 /* Main Menu */
 
 #start-menu {
-    display: inline-grid;
-    align-content: center;
+  display: inline-grid;
+  align-content: center;
 }
 
 #logo {
-    text-align: center;
-    font-size: 2rem;
-    letter-spacing: 2px;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 2px;
 }
 
 #start-menu-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5px;
-    border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  border: 2px solid black;
 }
 
 .menu-buttons {
-    font-size: 1.5rem;
-    margin: 5px;
-    width: 220px;
-    border: 2px solid black;
-    background-color: white;
+  font-size: 1.5rem;
+  margin: 5px;
+  width: 220px;
+  border: 2px solid black;
+  background-color: white;
 }
 
 /* Difficulty Settings Picker*/
 
 #difficulty-settings {
-    display: none;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
+  display: none;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 }
 
-#difficulty-settings>div {
-    display: flex;
-    flex-direction: row;
+#difficulty-settings > div {
+  display: flex;
+  flex-direction: row;
 }
 
-#difficulty-settings>div>button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 135px;
-    width: 135px;
-    align-items: center;
-    margin: 5px;
-    border: 2px solid black;
-    background-color: white;
-    font-size: 1.5rem;
+#difficulty-settings > div > button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 135px;
+  width: 135px;
+  align-items: center;
+  margin: 5px;
+  border: 2px solid black;
+  background-color: white;
+  font-size: 1.5rem;
 }
 
-#difficulty-settings>div>button:hover {
-    border: 2px solid white;
+#difficulty-settings > div > button:hover {
+  border: 2px solid white;
 }
 
-#difficulty-settings>div>#difficulty-settings-back-button {
-    margin: 5px;
-    height: 50px;
-    width: 280px;
-    border: 2px solid black;
+#difficulty-settings > div > #difficulty-settings-back-button {
+  margin: 5px;
+  height: 50px;
+  width: 280px;
+  border: 2px solid black;
 }
 
-#difficulty-settings>div>#difficulty-settings-back-button:hover {
-    border: 2px solid white;
+#difficulty-settings > div > #difficulty-settings-back-button:hover {
+  border: 2px solid white;
 }
 
 /* Custom Difficulty Settings Menu */
 
 #custom-difficulty-settings {
-    text-align: center;
-    display: none;
-    align-content: center;
+  text-align: center;
+  display: none;
+  align-content: center;
 }
 
 #custom-difficulty-settings div {
-    display: flex;
-    justify-content: center;
-    font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
 }
 
 #custom-difficulty-settings button {
-    border: 2px solid black;
-    width: 220px;
-    font-size: 1.5rem;
-    margin: 2px;
+  border: 2px solid black;
+  width: 220px;
+  font-size: 1.5rem;
+  margin: 2px;
 }
 
 #custom-difficulty-settings button:hover {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 
 #custom-difficulty-settings-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .description-left-column {
-    width: 100px;
+  width: 100px;
 }
 
 .input-field-number {
-    width: 55px;
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+  width: 55px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
 }
 
 input {
-    border: 1px solid black;
-    width: 210px;
-    text-align: center;
+  border: 1px solid black;
+  width: 210px;
+  text-align: center;
 }
 
 /* Playing Field */
 
 #playing-field-area {
-    display: none;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
+  display: none;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 }
 
 #top-menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    font-family: 'Space Mono';
-    margin: 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  font-family: "Space Mono";
+  margin: 0 20px;
 }
 
-#top-menu>span {
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#top-menu > span {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#top-menu>span>i {
-    font-size: 2rem;
+#top-menu > span > i {
+  font-size: 2rem;
 }
 
 .square {
-    font-size: 1.2rem;
-    height: 30px;
-    width: 30px;
-    margin: 1px;
-    color: rgba(102, 79, 79, 0);
-    border-radius: 3px;
-    border: 1px solid black;
+  font-size: 1.2rem;
+  height: 30px;
+  width: 30px;
+  margin: 1px;
+  color: rgba(102, 79, 79, 0);
+  border-radius: 3px;
+  border: 1px solid black;
 }
 
 .square:hover {
-    background-color: rgb(185, 182, 182);
+  background-color: rgb(185, 182, 182);
 }
 
 .square:active {
-    background-color: rgb(196, 145, 145);
+  background-color: rgb(196, 145, 145);
 }
 
 #smileyface {
-    font-family: 'Space Mono';
-    font-weight: 600;
+  font-family: "Space Mono";
+  font-weight: 600;
 }
 
 #actual-playing-field {
-    padding: 5px;
-    border: solid 2px black;
+  padding: 5px;
+  border: solid 2px black;
 }
 
 #quit-button:hover {
-    color: white;
+  color: white;
+  cursor: pointer;
 }
 
 #restart-button:hover {
-    color: white;
+  color: white;
+  cursor: pointer;
 }
 
 /* How To Play Page*/
 
 #how-to-play {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }
 
 #explanations {
-    border: 2px solid black;
+  border: 2px solid black;
 }
 
 .headings {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 5px;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
-#explanations>div {
-    text-align: center;
-    font-size: 1.2rem;
-    padding: 20px 5px 0 5px;
+#explanations > div {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 20px 5px 0 5px;
 }
 
 .explanations-image-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .explanations-image-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .explanation-with-picture {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #how-to-play-back-button {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 #how-to-play img {
-    width: 250px;
+  width: 250px;
 }
 
 #animations video {
-    width: 250px;
+  width: 250px;
 }
 
 /* Settings Menu */
 
 #settings {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#settings>div {
-    width: 80vw;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+#settings > div {
+  width: 80vw;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-#settings>div>p {
-    padding-bottom: 10px;
+#settings > div > p {
+  padding-bottom: 10px;
 }
 
 #settings p {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .color-picker-box {
-    height: 40px;
-    width: 40px;
-    margin: 5px;
-    border: 2px solid black;
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+  border: 2px solid black;
 }
 
 .color-picker-box:hover {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 
 #desktop-mode-button {
-    background-color: red;
-    border: 2px solid black;
-    width: 220px;
+  background-color: red;
+  border: 2px solid black;
+  width: 220px;
 }
 
 #desktop-mode-button:hover {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 
 /* Media Queries */
 
 /* Small Devices (portrait phones, 540px and up */
 
-@media screen and (min-width:540px) {
+@media screen and (min-width: 540px) {
+  /* Playing Field*/
 
-    /* Playing Field*/
+  .square {
+    font-size: 1.5rem;
+  }
 
-    .square {
-        font-size: 1.5rem;
-    }
+  /* How to Play Page */
 
-    /* How to Play Page */
+  #explanations {
+    padding: 5px;
+  }
 
-    #explanations {
-        padding: 5px;
-    }
+  #explanations > div {
+    width: 90vw;
+    font-size: 1.5rem;
+    padding: 5px;
+  }
 
-    #explanations>div {
-        width: 90vw;
-        font-size: 1.5rem;
-        padding: 5px;
-    }
+  #explanations-heading {
+    font-size: 2rem;
+  }
 
-    #explanations-heading {
-        font-size: 2rem;
-    }
+  /* Settings */
 
-    /* Settings */
-
-    #settings>div {
-        width: 500px;
-    }
+  #settings > div {
+    width: 500px;
+  }
 }
 
 /* Medium Devices (tablets, 768px and up */
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
+  /* How To Play Page */
 
-    /* How To Play Page */
+  .explanations-image-left {
+    flex-direction: row;
+  }
 
-    .explanations-image-left {
-        flex-direction: row;
-    }
+  .explanations-image-right {
+    flex-direction: row-reverse;
+  }
 
-    .explanations-image-right {
-        flex-direction: row-reverse;
-    }
+  #explanations > div {
+    width: 80vw;
+  }
 
-    #explanations>div {
-        width: 80vw;
-    }
+  div.image-right {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-    div.image-right {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    div.image-left {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
+  div.image-left {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 /* Devices like the iPad Mini and larger devices */
 
-@media screen and (min-width:1024px) {
+@media screen and (min-width: 1024px) {
+  /* How To Play Page */
 
-    /* How To Play Page */
-
-    #explanations>div {
-        width: 900px;
-    }
+  #explanations > div {
+    width: 900px;
+  }
 }

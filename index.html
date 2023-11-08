@@ -1,205 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play MineSweeper on your desktop or mobile device">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Play MineSweeper on your desktop or mobile device"
+    />
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>Minesweeper</title>
     <!-- Favicon Link -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
     <main id="game-area">
-        <!-- At this level there are several divs, but only one of them is shown at a time, the others are hidden with CSS. -->
-        <div id="start-menu">
-            <!-- This is the Main Menu from where users can start games, learn how to play or access the settings menu -->
-            <h1 id="logo">Minesweeper</h1>
-            <div id="start-menu-buttons">
-                <button id="start-game-button" class="menu-buttons">Start Game</button>
-                <button id="how-to-play-button" class="menu-buttons">How to Play</button>
-                <button id="settings-button" class="menu-buttons">Settings</button>
-            </div>
+      <!-- At this level there are several divs, but only one of them is shown at a time, the others are hidden with CSS. -->
+      <div id="start-menu">
+        <!-- This is the Main Menu from where users can start games, learn how to play or access the settings menu -->
+        <h1 id="logo">Minesweeper</h1>
+        <div id="start-menu-buttons">
+          <button id="start-game-button" class="menu-buttons">
+            Start Game
+          </button>
+          <button id="how-to-play-button" class="menu-buttons">
+            How to Play
+          </button>
+          <button id="settings-button" class="menu-buttons">Settings</button>
         </div>
-        <div id="how-to-play">
-            <!-- Here users can learn what the game is about and how to play in general -->
-            <div id="explanations">
-                <h1 class="headings">How To Play</h1>
-                <div>
-                    MineSweeper is a logic game that also involves some guesswork. 
-                    The aim of the game is to uncover the whole playing field without stepping onto a mine. 
-                    Differently put, you need to click all squares that do not have a mine.
-                </div>
-                <div class="explanations-image-right">
-                    <div class="image-right"><img src="assets/images/buttons.webp" alt="A picture pointing out the Restart and Quit buttons"></div>
-                    <div class="explanation-with-picture">
-                        First, note that once you have started a game, you can click the circle arrow to restart. 
-                        After clicking it, the computer creates a new playing field. 
-                        No two games of MineSweeper are the same! 
-                        As its unavoidable to step on mines, you will have to restart quite often. 
-                        Don't be discouraged, this is a natural part of the game. 
-                        The off button allows you to navigate back to the start menu.
-                    </div>
-                </div>
-                <div>
-                    At the beginning of the game, you have absolutely no information about where mines are 
-                    and will need to click a random square to gain some information.
-                    It is a good strategy to click the corner and border squares, as they only have 3 or 5 adjacent squares respectively. 
-                    This does not reduce your chance to step on a mine, but often the information you get will lead to more progress.
-                </div>
-                <div class="explanations-image-left">
-                    <div class="image-left"><img src="assets/images/step1.webp" alt="A picture where the player has uncovered the top left square, finding a zero."></div>
-                    <div class="explanation-with-picture">
-                        Once you click a square, you know how many mines there are in the adjacent squares. 
-                        So whenever you find one with no adjacent mines i. e. a "zero square", you can uncover all surrounding squares. 
-                        Here, we have such a situation.
-                    </div>
-                </div>
-                <div class="explanations-image-right">
-                    <div class="image-right"><img src="assets/images/step2.webp" alt="A picture where the player has uncovered a number of squares, getting good information."></div>
-                    <div class="explanation-with-picture">
-                        After finding more zeroes and clicking all their surrounding squares we have reached this position. Look at the "three square" now.
-                        It has three mines in surrounding squares and there are only three squares that have not been uncovered yet next to it. 
-                        Ergo the mines must be in these three squares. It is a good idea to mark mine squares by right-clicking or them. If you're on a mobile device, tap and hold for a short while.
-                    </div>
-                </div>
-                <div>
-                    Note that the mines counter at the top will go down every time you mark a mine, so you always know how many mines there are left for you to find.
-                </div>
-                <div>
-                    When you look at the "two squares" above and below the "three square", you will see that they border on two mines. 
-                    Well, we already know where these mines are as we just marked them. 
-                    This means that we can safely click the remaining surrounding squares.
-                </div>
-                <div class="explanations-image-left">
-                    <div class="image-left"><img src="assets/images/step3.webp" alt="A picture where the player has marked mines and can now continue to uncover more squares."></div>
-                    <div class="explanation-with-picture">
-                        After doing that, we have found two "one squares". 
-                        Again, we already know where these mines are and can continue to uncover more squares.
-                    </div>
-                </div>
-                <div class="explanations-image-right">
-                    <div class="image-right"><img src="assets/images/step4.webp" alt="A picture where the player has uncovered more squares, leading to yet more progress."></div>
-                    <div class="explanation-with-picture">
-                        Unfortunately the information we gained from this does not directly tell us what squares we should mark or click next. 
-                        At this point, you will need to guess again. This is just the nature of MineSweeper. 
-                    </div>
-                </div>
-                <div>
-                    Now it's time for you to go mine hunting yourself! Good luck solving these puzzles. Enjoy! 
-                </div>
-                <div id="animations">
-                    <video aria-label="An animation of a player winning a game" width="290" height="321" autoplay muted>
-                        <source src="assets/images/win.webm" type="video/webm">
-                    Your browser does not support the video tag. If it did, you would see an animation of a player winning a game.
-                    </video>
-                    <video aria-label="An animation of a player losing a game" width="290" height="321" autoplay muted>
-                        <source src="assets/images/lose.webm" type="video/webm">
-                    Your browser does not support the video tag. If it did, you would see an animation of a player losing a game.
-                    </video>
-                </div>
-                <div><button id="how-to-play-back-button" class="menu-buttons">Back to Menu</button></div>
+      </div>
+      <div id="how-to-play">
+        <!-- Here users can learn what the game is about and how to play in general -->
+        <div id="explanations">
+          <h1 class="headings">How To Play</h1>
+          <div>
+            MineSweeper is a logic game that also involves some guesswork. The
+            aim of the game is to uncover the whole playing field without
+            stepping onto a mine. Differently put, you need to click all squares
+            that do not have a mine.
+          </div>
+          <div class="explanations-image-right">
+            <div class="image-right">
+              <img
+                src="assets/images/buttons.webp"
+                alt="A picture pointing out the Restart and Quit buttons"
+              />
             </div>
+            <div class="explanation-with-picture">
+              First, note that once you have started a game, you can click the
+              circle arrow to restart. After clicking it, the computer creates a
+              new playing field. No two games of MineSweeper are the same! As
+              its unavoidable to step on mines, you will have to restart quite
+              often. Don't be discouraged, this is a natural part of the game.
+              The off button allows you to navigate back to the start menu.
+            </div>
+          </div>
+          <div>
+            At the beginning of the game, you have absolutely no information
+            about where mines are and will need to click a random square to gain
+            some information. It is a good strategy to click the corner and
+            border squares, as they only have 3 or 5 adjacent squares
+            respectively. This does not reduce your chance to step on a mine,
+            but often the information you get will lead to more progress.
+          </div>
+          <div class="explanations-image-left">
+            <div class="image-left">
+              <img
+                src="assets/images/step1.webp"
+                alt="A picture where the player has uncovered the top left square, finding a zero."
+              />
+            </div>
+            <div class="explanation-with-picture">
+              Once you click a square, you know how many mines there are in the
+              adjacent squares. So whenever you find one with no adjacent mines
+              i. e. a "zero square", you can uncover all surrounding squares.
+              Here, we have such a situation.
+            </div>
+          </div>
+          <div class="explanations-image-right">
+            <div class="image-right">
+              <img
+                src="assets/images/step2.webp"
+                alt="A picture where the player has uncovered a number of squares, getting good information."
+              />
+            </div>
+            <div class="explanation-with-picture">
+              After finding more zeroes and clicking all their surrounding
+              squares we have reached this position. Look at the "three square"
+              now. It has three mines in surrounding squares and there are only
+              three squares that have not been uncovered yet next to it. Ergo
+              the mines must be in these three squares. It is a good idea to
+              mark mine squares by right-clicking or them. If you're on a mobile
+              device, tap and hold for a short while.
+            </div>
+          </div>
+          <div>
+            Note that the mines counter at the top will go down every time you
+            mark a mine, so you always know how many mines there are left for
+            you to find.
+          </div>
+          <div>
+            When you look at the "two squares" above and below the "three
+            square", you will see that they border on two mines. Well, we
+            already know where these mines are as we just marked them. This
+            means that we can safely click the remaining surrounding squares.
+          </div>
+          <div class="explanations-image-left">
+            <div class="image-left">
+              <img
+                src="assets/images/step3.webp"
+                alt="A picture where the player has marked mines and can now continue to uncover more squares."
+              />
+            </div>
+            <div class="explanation-with-picture">
+              After doing that, we have found two "one squares". Again, we
+              already know where these mines are and can continue to uncover
+              more squares.
+            </div>
+          </div>
+          <div class="explanations-image-right">
+            <div class="image-right">
+              <img
+                src="assets/images/step4.webp"
+                alt="A picture where the player has uncovered more squares, leading to yet more progress."
+              />
+            </div>
+            <div class="explanation-with-picture">
+              Unfortunately the information we gained from this does not
+              directly tell us what squares we should mark or click next. At
+              this point, you will need to guess again. This is just the nature
+              of MineSweeper.
+            </div>
+          </div>
+          <div>
+            Now it's time for you to go mine hunting yourself! Good luck solving
+            these puzzles. Enjoy!
+          </div>
+          <div id="animations">
+            <video
+              aria-label="An animation of a player winning a game"
+              width="290"
+              height="321"
+              autoplay
+              muted
+            >
+              <source src="assets/images/win.webm" type="video/webm" />
+              Your browser does not support the video tag. If it did, you would
+              see an animation of a player winning a game.
+            </video>
+            <video
+              aria-label="An animation of a player losing a game"
+              width="290"
+              height="321"
+              autoplay
+              muted
+            >
+              <source src="assets/images/lose.webm" type="video/webm" />
+              Your browser does not support the video tag. If it did, you would
+              see an animation of a player losing a game.
+            </video>
+          </div>
+          <div>
+            <button id="how-to-play-back-button" class="menu-buttons">
+              Back to Menu
+            </button>
+          </div>
         </div>
-        <div id="settings">
-            <!-- Settings Menu from where users can activate Desktop Mode or pick different background colors -->
-            <h1 class="headings">Settings</h1>
-            <div>
-                <p>If you don't want the game to adjust the playing field size to your screen, activate the button below</p>
-                <p>(May be useful on desktop)</p>
-                <button id="desktop-mode-button" class="menu-buttons">Deactivated</button>
-            </div>
-            <div>
-                <p>Pick a different background color:</p>
-                <div id="color-picker">
-                    <div class="color-picker-row">
-                        <button class="color-picker-box" id="color-99BDD8" aria-label="Greyish Blue"></button>
-                        <button class="color-picker-box" id="color-4ac1d7" aria-label="Teal"></button>
-                        <button class="color-picker-box" id="color-cc1a62" aria-label="Wine Red"></button>
-                    </div>
-                    <div class="color-picker-row">
-                        <button class="color-picker-box" id="color-3ce551" aria-label="Bright Green"></button>
-                        <button class="color-picker-box" id="color-f4945a" aria-label="Orange"></button>
-                        <button class="color-picker-box" id="color-ef18c5" aria-label="Pink"></button>
-                    </div>
-                    <div class="color-picker-row">
-                        <button class="color-picker-box" id="color-f6f15d" aria-label="Yellow"></button>
-                        <button class="color-picker-box" id="color-e4e4e4" aria-label="Grey"></button>
-                        <button class="color-picker-box" id="color-988bd6" aria-label="Purple"></button>
-                    </div>
-                </div>
-            </div>
-            <button id="settings-back-button" class="menu-buttons">Back to Menu</button>
+      </div>
+      <div id="settings">
+        <!-- Settings Menu from where users can activate Desktop Mode or pick different background colors -->
+        <h1 class="headings">Settings</h1>
+        <div>
+          <p>
+            If you don't want the game to adjust the playing field size to your
+            screen, activate the button below
+          </p>
+          <p>(May be useful on desktop)</p>
+          <button id="desktop-mode-button" class="menu-buttons">
+            Deactivated
+          </button>
         </div>
-        <div id="difficulty-settings">
-            <!-- This is where users can pick a difficulty level -->
-            <h1 class="headings">Pick a difficulty level:</h1>
-            <div>
-                <button id="easy-setting" class="menu-buttons">
-                    Easy<br>
-                    8x8<br>
-                    10 Mines
-                </button>
-                <button id="medium-setting" class="menu-buttons">
-                    Medium<br>
-                    8x16<br>
-                    25 Mines
-                </button>
+        <div>
+          <p>Pick a different background color:</p>
+          <div id="color-picker">
+            <div class="color-picker-row">
+              <button
+                class="color-picker-box"
+                id="color-99BDD8"
+                aria-label="Greyish Blue"
+              ></button>
+              <button
+                class="color-picker-box"
+                id="color-4ac1d7"
+                aria-label="Teal"
+              ></button>
+              <button
+                class="color-picker-box"
+                id="color-cc1a62"
+                aria-label="Wine Red"
+              ></button>
             </div>
-            <div>
-                <button id="hard-setting" class="menu-buttons">
-                    Hard<br>
-                    26x19<br>
-                    99 Mines
-                </button>                            
-                <button id="custom-setting" class="menu-buttons">
-                    Customize settings
-                </button>
+            <div class="color-picker-row">
+              <button
+                class="color-picker-box"
+                id="color-3ce551"
+                aria-label="Bright Green"
+              ></button>
+              <button
+                class="color-picker-box"
+                id="color-f4945a"
+                aria-label="Orange"
+              ></button>
+              <button
+                class="color-picker-box"
+                id="color-ef18c5"
+                aria-label="Pink"
+              ></button>
             </div>
-            <div><button id="difficulty-settings-back-button" class="menu-buttons">Back to Menu</button></div>
+            <div class="color-picker-row">
+              <button
+                class="color-picker-box"
+                id="color-f6f15d"
+                aria-label="Yellow"
+              ></button>
+              <button
+                class="color-picker-box"
+                id="color-e4e4e4"
+                aria-label="Grey"
+              ></button>
+              <button
+                class="color-picker-box"
+                id="color-988bd6"
+                aria-label="Purple"
+              ></button>
+            </div>
+          </div>
         </div>
-        <div id="custom-difficulty-settings">
-            <!-- Here users can customize their playing field as they wish by setting height and width of the playing field and choose how many mines they have to find -->
-            <h1 class="headings">Select your custom difficulty settings:</h1>
-            <div>
-                <label for="width" class="description-left-column">Width:</label>
-                <input class="input-field-number" type="number" id="width" name="playing-field-height" value="8" max="26" min="8" required>
-            </div>
-            <div>
-                <label for="height" class="description-left-column">Height:</label>
-                <input class="input-field-number" type="number" id="height" name="playing-field-width" value="8" max="19" min="4" required>
-            </div>
-            <div>
-                <label for="mines" class="description-left-column">Mines:</label>
-                <input class="input-field-number" type="number" id="mines" name="number-of-mines" value="10" min="1" max="99" required>
-            </div>
-            <div id="custom-difficulty-settings-buttons">
-                <button id="custom-difficulty-start-button" class="menu-buttons">Start Playing</button>
-                <button id="custom-difficulty-settings-back-button" class="menu-buttons">Back to Menu</button>
-            </div>
-
+        <button id="settings-back-button" class="menu-buttons">
+          Back to Menu
+        </button>
+      </div>
+      <div id="difficulty-settings">
+        <!-- This is where users can pick a difficulty level -->
+        <h1 class="headings">Pick a difficulty level:</h1>
+        <div>
+          <button id="easy-setting" class="menu-buttons">
+            Easy<br />
+            8x8<br />
+            10 Mines
+          </button>
+          <button id="medium-setting" class="menu-buttons">
+            Medium<br />
+            8x16<br />
+            25 Mines
+          </button>
         </div>
-        <div id="playing-field-area">
-            <div>
-                <!-- This is the top menu where users can restart or quit the game. It also holds the timer, the mine counter and an emoji for additional feedback.  -->
-                <p id="top-menu">
-                    <span id="restart-button"><i class="fa-solid fa-rotate-left"></i></span>
-                    <span>Time<br><span id="timer">000</span></span>
-                    <span id="smileyface">^_^</span>
-                    <span>Mines<br><span id="mine-countdown">00</span></span>
-                    <span id="quit-button"><i class="fa-solid fa-power-off"></i></span>
-                </p>
-            </div>
-            <div id="actual-playing-field">
-                <!-- This is where the function buildVisiblePlayingField() inserts the HTML it generates -->
-            </div>            
+        <div>
+          <button id="hard-setting" class="menu-buttons">
+            Hard<br />
+            26x19<br />
+            99 Mines
+          </button>
+          <button id="custom-setting" class="menu-buttons">
+            Customize settings
+          </button>
         </div>
+        <div>
+          <button id="difficulty-settings-back-button" class="menu-buttons">
+            Back to Menu
+          </button>
+        </div>
+      </div>
+      <div id="custom-difficulty-settings">
+        <!-- Here users can customize their playing field as they wish by setting height and width of the playing field and choose how many mines they have to find -->
+        <h1 class="headings">Select your custom difficulty settings:</h1>
+        <div>
+          <label for="width" class="description-left-column">Width:</label>
+          <input
+            class="input-field-number"
+            type="number"
+            id="width"
+            name="playing-field-height"
+            value="8"
+            max="26"
+            min="8"
+            required
+          />
+        </div>
+        <div>
+          <label for="height" class="description-left-column">Height:</label>
+          <input
+            class="input-field-number"
+            type="number"
+            id="height"
+            name="playing-field-width"
+            value="8"
+            max="19"
+            min="4"
+            required
+          />
+        </div>
+        <div>
+          <label for="mines" class="description-left-column">Mines:</label>
+          <input
+            class="input-field-number"
+            type="number"
+            id="mines"
+            name="number-of-mines"
+            value="10"
+            min="1"
+            max="99"
+            required
+          />
+        </div>
+        <div id="custom-difficulty-settings-buttons">
+          <button id="custom-difficulty-start-button" class="menu-buttons">
+            Start Playing
+          </button>
+          <button
+            id="custom-difficulty-settings-back-button"
+            class="menu-buttons"
+          >
+            Back to Menu
+          </button>
+        </div>
+      </div>
+      <div id="playing-field-area">
+        <div>
+          <!-- This is the top menu where users can restart or quit the game. It also holds the timer, the mine counter and an emoji for additional feedback.  -->
+          <p id="top-menu">
+            <span id="restart-button">Restart</span>
+            <span>Time<br /><span id="timer">000</span></span>
+            <span>Mines<br /><span id="mine-countdown">00</span></span>
+            <span id="quit-button">Quit</span>
+          </p>
+        </div>
+        <div id="actual-playing-field">
+          <!-- This is where the function buildVisiblePlayingField() inserts the HTML it generates -->
+        </div>
+      </div>
     </main>
     <!-- Javascript File -->
     <script src="assets/js/script.js"></script>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/0f15d7891d.js" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
