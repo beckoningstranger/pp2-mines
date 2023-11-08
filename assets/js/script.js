@@ -249,6 +249,9 @@ function startGame() {
     }, []);
     squaresToCheck = [];
     alreadyChecked = [];
+    document
+      .getElementById("actual-playing-field")
+      .addEventListener("contextmenu", (e) => e.preventDefault());
 
     // Uses the array to now create a visible playing field in HTML
     buildVisiblePlayingField(playingFieldInformation, width);
@@ -292,6 +295,9 @@ function startGame() {
     }
     return a;
   }, []);
+  document
+    .getElementById("actual-playing-field")
+    .addEventListener("contextmenu", (e) => e.preventDefault());
 
   // Uses the array to now create a visible playing field in HTML
   buildVisiblePlayingField(playingFieldInformation, width);
@@ -712,12 +718,13 @@ function revealSquare(square, neighbors) {
   revealToWin = revealToWin.filter((x) => x !== square);
 
   const x = document.getElementById(square);
+  x.style.backgroundColor = "white";
 
   let number = Number(x.innerText);
   // Set a different font color depending on how many mines there are in the surrounding squares
   switch (number) {
     case 0:
-      x.style.color = "forestgreen";
+      x.style.color = "transparent";
       break;
     case 1:
       x.style.color = "black";

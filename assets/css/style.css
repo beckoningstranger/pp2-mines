@@ -190,6 +190,10 @@ input {
   border: 1px solid black;
 }
 
+.unrevealed {
+  background-color: rgb(#737070) !important;
+}
+
 .square:hover {
   background-color: rgb(185, 182, 182);
 }
