@@ -2,7 +2,7 @@
 
 This is a site that allows users to play Minesweeper, a simple logic game that I personally learned back in the days of Windows 3.1. Minesweeper is a logic game that also involves some guesswork. The aim of the game is to uncover the whole playing field without stepping onto a mine.
 
-Take a look at the deployed website: <a href="https://https://beckoningstranger.github.io/pp2-mines/index.html" target="_blank" rel="noopener">Minesweeper</a>.
+Take a look at the deployed website: <a href="https://beckoningstranger.github.io/pp2-mines/index.html" target="_blank" rel="noopener">Minesweeper</a>.
 
 ![Responsive Design - Minesweeper](/assets/readme-images/amiresponsive.png)
 

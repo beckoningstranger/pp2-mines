@@ -247,6 +247,8 @@ function startGame() {
       }
       return a;
     }, []);
+    squaresToCheck = [];
+    alreadyChecked = [];
 
     // Uses the array to now create a visible playing field in HTML
     buildVisiblePlayingField(playingFieldInformation, width);
@@ -661,6 +663,8 @@ function leftClickOnSquare() {
     clearInterval(myTimer);
     document.getElementById("actual-playing-field").style.backgroundColor =
       "red";
+    document.getElementById(thisSquare.name).style.border = "4px solid yellow";
+    document.getElementById(thisSquare.name).style.color = "transparent";
     let markedSquares = document.getElementsByClassName("marked-as-mine");
     for (let square of markedSquares) {
       square.style.backgroundColor = "#f0f0f0";
@@ -669,7 +673,6 @@ function leftClickOnSquare() {
     for (let square of minedSquares) {
       square.style.backgroundColor = "black";
     }
-    removeInteractivity();
   }
 
   // Win?
@@ -752,7 +755,11 @@ function revealSquare(square, neighbors) {
           !squaresToCheck.includes(thisSquare) &&
           !alreadyChecked.includes(thisSquare)
         ) {
-          squaresToCheck.push(thisSquare);
+          // There is a bug where "undefined" mysteriously gets added to "squaresToCheck" that I could not investigate yet.
+          // For now, this prevents it so everything is working.
+          if (thisSquare !== undefined) {
+            squaresToCheck.push(thisSquare);
+          }
         }
       }
     }
